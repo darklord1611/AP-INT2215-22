@@ -1,0 +1,30 @@
+1. trả về một giá trị boolean 
+    bool isA = (grade >= 90 && grade <= 100)
+
+2. 0
+
+3. y là kiểu long(chứa tối đa 32 bits) trong khi đó 65536 có giá trị trong binary là 0000 0000 0000 0001 0000 0000 0000 0000, khi tính 65536^2 ta được giá trị trong binary là 1 0000 0000 0000 0000 0000 0000 0000 0000(33 bits). Vậy ta sẽ lược bỏ bit đầu tiên(sign bit) và giữ lại 32 bits còn lại (có giá trị là 0).
+
+4. 0 or False
+
+5. nothing
+
+6. error: invalid operands of types ‘int’ and ‘const char [6]’ to binary ‘operator*’
+
+7. 0
+0.75
+0.75
+0.75
+
+
+8. error: extended character ’ is not valid in an identifier (kí hiệu trên ko hợp lệ đối với kiểu char)
+error: conflicting declaration ‘char arg1’ (xảy ra xung đột khi khai báo biến nhiều lần).
+
+
+9. Chỉ đến biến kiểu char 
+
+10. Chỉ đến biến kiểu int
+
+11. Ko chuyển về kiểu double với phép tính và để dấu ngoặc khiến cho phép tính 5 / 9 được thực hiện trước nên output sẽ luôn bằng 0.
+
+12. Here(Dấu chấm phẩy đã kết thúc cả lệnh if lẫn else do đó chương trình sẽ chạy tiếp khối lệnh con còn lại).
