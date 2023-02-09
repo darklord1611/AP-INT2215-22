@@ -3,8 +3,8 @@
 
 using namespace std;
 // Graphics
-const int WINDOW_WIDTH = 512;
-const int WINDOW_HEIGHT = 284;
+const int WINDOW_WIDTH = 700;
+const int WINDOW_HEIGHT = 1200;
 
 SDL_Window* g_main_window;
 SDL_Renderer* g_main_renderer;
@@ -17,10 +17,10 @@ namespace Colors {
 static bool Init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) > 0) {
         cout << "SDL_Init failed with error: " << SDL_GetError() << endl;
-        return 1;
+        return false;
     }
     g_main_window = SDL_CreateWindow(
-        "SDL Create Window (512x284)",
+        "SDL Create Window",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         WINDOW_HEIGHT,
@@ -63,24 +63,27 @@ int main() {
     SDL_Event event;
     bool running = true;
 
-    while(running) {
+    while(running) 
+    {
         ClearScreen(g_main_renderer);
-    }
 
-    // Check and process I/0 events
-
-    if(SDL_PollEvent(&event)) {
-        switch (event.type) {
-            case SDL_KEYDOWN: {
-                running = event.key.keysym.scancode != SDL_SCANCODE_ESCAPE;
-                break;
+        // Check and process I/O events
+        if(SDL_PollEvent(&event)) 
+        {
+            switch (event.type) 
+            {
+                case SDL_KEYDOWN: 
+                {
+                    running = event.key.keysym.scancode != SDL_SCANCODE_ESCAPE;
+                    break;
+                }
+                case SDL_QUIT: {
+                    running = false;
+                    break;
+                }
+                default:
+                    break;
             }
-            case SDL_QUIT: {
-                running = false;
-                break;
-            }
-            default:
-                break;
         }
         // Update the screen with the content rendered in the background buffer
         SDL_RenderPresent(g_main_renderer);
