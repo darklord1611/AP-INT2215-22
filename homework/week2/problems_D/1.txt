@@ -1,0 +1,5 @@
+1. ;
+2. ; not , 
+3.  { }
+4. infinite loop as the loop doesnt meet the stop criteria(i < 20)
+5. 
