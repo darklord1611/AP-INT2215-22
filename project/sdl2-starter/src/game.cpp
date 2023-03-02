@@ -13,10 +13,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_PRESENTVSYNC);
         if(g_renderer != 0) 
         {
-            SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 0);
+            SDL_SetRenderDrawColor(g_renderer, 255, 255, 255, 255);
         }
     }
-    SDL_Surface* g_temp_surface = SDL_LoadBMP("assets/queen.bmp");
+    SDL_Surface* g_temp_surface = IMG_Load("assets/queen.png");
     if(g_temp_surface == nullptr) 
     {
         cout << SDL_GetError() << endl;

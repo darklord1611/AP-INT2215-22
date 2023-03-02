@@ -6,7 +6,7 @@ OBJ_NAME = play
 INCLUDE_PATHS = -Iinclude
 LIBRARY_PATHS = -Llib
 COMPILER_FLAGS = -std=c++11 -Wall -O0 -g
-LINKER_FLAGS = -lsdl2
+LINKER_FLAGS = -lsdl2 -lsdl2_image
 
 
 all:
