@@ -16,24 +16,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             SDL_SetRenderDrawColor(g_renderer, 255, 255, 255, 255);
         }
     }
-    SDL_Surface* g_temp_surface = IMG_Load("assets/queen.png");
-    if(g_temp_surface == nullptr) 
-    {
-        cout << SDL_GetError() << endl;
-        return false;
-    }
-    g_texture = SDL_CreateTextureFromSurface(g_renderer, g_temp_surface);
-    if(g_texture == NULL) 
-    {
-        cout << SDL_GetError() << endl;
-        return false;
-    }
-    SDL_FreeSurface(g_temp_surface);
-    SDL_QueryTexture(g_texture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
-    m_destinationRectangle.x = m_sourceRectangle.x = 0; 
-    m_destinationRectangle.y = m_sourceRectangle.y = 0; 
-    m_destinationRectangle.w = m_sourceRectangle.w; 
-    m_destinationRectangle.h = m_sourceRectangle.h;
+    m_go.load(100, 100, 128, 82, "queen");
+    m_player.load(300, 300, 128, 82, "queen");
     isRunning = true;
     return true;
 }
@@ -43,10 +27,18 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::render() 
 {
     SDL_RenderClear(g_renderer);
-    SDL_RenderCopy(g_renderer, g_texture, &m_sourceRectangle, &m_destinationRectangle);
+
+    m_go.draw(g_renderer); 
+    m_player.draw(g_renderer);
+
     SDL_RenderPresent(g_renderer);
 }
 
+void Game::update() 
+{
+    m_go.update(); 
+    m_player.update();
+}
 
 void Game::clean()
 {
