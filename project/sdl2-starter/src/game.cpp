@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "TextureManager.h"
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
@@ -16,8 +17,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             SDL_SetRenderDrawColor(g_renderer, 255, 255, 255, 255);
         }
     }
-    m_go.load(100, 100, 128, 82, "queen");
-    m_player.load(300, 300, 128, 82, "queen");
+    m_go.load(100, 100, 128, 82, "queen", "assets/Chess_qdd40.png");
+    m_player.load(300, 300, 128, 82, "queen_player", "assets/Chess_qdd40.png");
     isRunning = true;
     return true;
 }
