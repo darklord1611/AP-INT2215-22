@@ -1,3 +1,4 @@
+#pragma once
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<map>
@@ -7,10 +8,10 @@ using namespace std;
 
 class GameObject { 
 public:
-    void load(int x, int y, int width, int height, string textureID, string fileName);
-    void draw(SDL_Renderer* g_renderer);
-    void update();
-    void clean();  
+    virtual void load(int x, int y, int width, int height, string textureID, string fileName);
+    virtual void draw(SDL_Renderer* g_renderer);
+    virtual void update();
+    virtual void clean() {};  
 protected:
     string m_fileName;
     string m_textureID;

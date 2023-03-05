@@ -3,7 +3,10 @@
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<iostream>
+#include<vector>
+
 #include "Player.h"
+#include "Enemy.h"
 
 using namespace std;
 
@@ -22,8 +25,10 @@ private:
     SDL_Window* g_window;
     SDL_Renderer* g_renderer;
     bool isRunning;
-    GameObject m_go; 
-    Player m_player;
+    GameObject* m_go; 
+    GameObject* m_player;
+    GameObject* m_enemy;
+    vector<GameObject*> m_gameObjects;
 };
 
 #endif /* defined(__Game__) */
