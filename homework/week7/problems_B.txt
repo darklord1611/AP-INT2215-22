@@ -1,0 +1,10 @@
+1. B 0x5678
+   c 0x1234
+   d 0x1234
+
+2. *p = 5;
+
+3.  char c = ‘C';
+    double *p = &c;
+
+Lỗi do sử dụng con trỏ sai kiểu 'double' có thể gây nên các lỗi truy cập bộ nhớ trái phép hoặc không đúng cách.
