@@ -1,0 +1,24 @@
+1. bool majority(bool k1, bool k2, bool k3) 
+{
+    return ((k1 == 1 && k2 == 1) || (k2 == 1 && k3 == 1) || (k1 == 1 && k3 == 1)) ? 1 : 0;
+}
+2. bool eq(int arr1[], arr2[], n) 
+{
+    for(int i = 0; i < n;i++) 
+    {
+        if(arr1[i] != arr2[i]) return false;
+    }
+    return true;
+}
+3. 1000 lan
+4. 1717
+5. ca 5 doan code
+6. lỗi do không chỉ rõ kiểu của tham số truyền vào hàm f là double hay là int 
+7. D
+8. A
+9. B
+10. B
+11. C
+12. B
+13. D
+14. 
