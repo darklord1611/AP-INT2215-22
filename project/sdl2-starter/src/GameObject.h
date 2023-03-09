@@ -1,4 +1,4 @@
-#pragma once
+#include "LoaderParams.h"
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<map>
@@ -6,17 +6,14 @@
 
 using namespace std;
 
-class GameObject { 
-public:
-    virtual void load(int x, int y, int width, int height, string textureID, string fileName);
-    virtual void draw(SDL_Renderer* g_renderer);
-    virtual void update();
-    virtual void clean() {};  
+class GameObject 
+{
 protected:
-    string m_fileName;
-    string m_textureID;
-    int m_x; 
-    int m_y;
-    int m_width;
-    int m_height; 
+    GameObject() {}
+    virtual ~GameObject() {}
+public:
+    virtual void draw() = 0;
+    virtual void update() = 0;
+    virtual void clean() = 0;  
+    virtual void load(const LoaderParams* pParams) = 0;
 };

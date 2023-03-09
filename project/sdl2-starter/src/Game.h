@@ -12,23 +12,30 @@ using namespace std;
 
 class Game
 {
-public:
+private:
     Game() {};
-    ~ Game() {};
+    static Game* instance;
+    SDL_Window* g_window;
+    SDL_Renderer* g_renderer;
+    bool isRunning;
+    vector<GameObject*> m_gameObjects;
+public:
+    static Game* Instance() 
+        {
+            if(instance == 0) 
+            {
+                instance = new Game();
+            }
+            return instance;
+        }
     bool init(const char* title, int xpos, int ypos, int width, int height, int flags); 
     void render();
     void update();
     void handleEvents();
     void clean();
     bool running() { return isRunning; }
-private:
-    SDL_Window* g_window;
-    SDL_Renderer* g_renderer;
-    bool isRunning;
-    GameObject* m_go; 
-    GameObject* m_player;
-    GameObject* m_enemy;
-    vector<GameObject*> m_gameObjects;
+    SDL_Renderer* getRenderer() { return g_renderer; }
 };
+typedef Game theGame;
 
 #endif /* defined(__Game__) */

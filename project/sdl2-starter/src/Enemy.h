@@ -1,11 +1,12 @@
-#include "GameObject.h"
+#include "SDLGameObject.h"
 
 
-class Enemy : public GameObject 
+class Enemy: public SDLGameObject 
 {
-    public:
-        void load(int x, int y, int width, int height, string textureID, string fileName); 
-        void draw(SDL_Renderer* g_renderer); 
-        void update(); 
-        void clean() {};
+public:
+    Enemy();
+    virtual void load(const LoaderParams* pParams); 
+    virtual void draw(); 
+    virtual void update(); 
+    virtual void clean();
 };

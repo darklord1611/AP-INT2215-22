@@ -1,22 +1,19 @@
 #include<iostream>
 #include "Game.h" // our Game object
 
-Game* g_game = 0;
 
 int main(int argc, char* argv[]) 
 {
-    g_game = new Game(); 
-    g_game->init("SDL Create Window", 100, 100, 640, 480, SDL_WINDOW_OPENGL); 
-    while(g_game->running()) 
+    theGame::Instance()->init("SDL Create Window", 100, 100, 640, 480, SDL_WINDOW_OPENGL); 
+    while(theGame::Instance()->running()) 
     {
 
-        g_game->handleEvents();
+        theGame::Instance()->handleEvents();
 
-        g_game->update();
+        theGame::Instance()->update();
 
-        g_game->render(); 
+        theGame::Instance()->render(); 
     } 
-    g_game->clean(); 
-return 0;
-
+    theGame::Instance()->clean(); 
+    return 0;
 }
