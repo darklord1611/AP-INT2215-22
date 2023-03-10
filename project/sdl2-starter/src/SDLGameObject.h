@@ -15,9 +15,7 @@ protected:
     string m_textureID;
 
 public:
-    SDLGameObject();
-    
-    virtual void load(const LoaderParams* pParams);
+    SDLGameObject(const LoaderParams* pParams);
     virtual void draw(); 
     virtual void update(); 
     virtual void clean(); 

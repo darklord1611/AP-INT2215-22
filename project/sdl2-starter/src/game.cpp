@@ -16,10 +16,16 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_PRESENTVSYNC);
         if(g_renderer != 0) 
         {
-            SDL_SetRenderDrawColor(g_renderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 0);
         }
     }
-
+    if(_TextureManager::Instance()->load("assets/animate-alpha.png", "animate", g_renderer) == false) 
+    {
+        cout << SDL_GetError() << endl;
+        return false;
+    }
+    m_gameObjects.push_back(new Player(new LoaderParams(0, 0, 50, 50,"animate")));
+    m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82,"animate")));
     isRunning = true;
     return true;
 }
