@@ -24,7 +24,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         cout << SDL_GetError() << endl;
         return false;
     }
-    m_gameObjects.push_back(new Player(new LoaderParams(0, 0, 50, 50,"animate")));
+    m_gameObjects.push_back(new Player(new LoaderParams(50, 50, 128, 82,"animate")));
     m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82,"animate")));
     isRunning = true;
     return true;
@@ -55,21 +55,14 @@ void Game::clean()
     cout << "cleaning game\n";
     SDL_DestroyWindow(g_window);
     SDL_DestroyRenderer(g_renderer);
-    SDL_Quit();
 }
 
 void Game::handleEvents() 
 {
-    SDL_Event event;
-    if(SDL_PollEvent(&event)) 
-    {
-        switch(event.type) 
-        {
-            case SDL_QUIT:
-                isRunning = false;
-                break;
-            default:
-                break;
-        }
-    }
+    _InputHandler::Instance()->update();
+}
+
+void Game::quit() 
+{
+    SDL_Quit();
 }

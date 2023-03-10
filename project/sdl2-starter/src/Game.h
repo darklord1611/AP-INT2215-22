@@ -7,6 +7,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "InputHandler.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ public:
     void update();
     void handleEvents();
     void clean();
+    void quit();
     bool running() { return isRunning; }
     SDL_Renderer* getRenderer() { return g_renderer; }
 };
