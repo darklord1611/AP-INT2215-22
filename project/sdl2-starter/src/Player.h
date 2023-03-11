@@ -1,3 +1,7 @@
+
+#ifndef __Player__
+#define __Player__
+
 #include "SDLGameObject.h"
 
 
@@ -9,3 +13,4 @@ public:
     virtual void update(); 
     virtual void clean();
 };
+#endif // define __Player__

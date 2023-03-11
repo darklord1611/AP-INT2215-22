@@ -53,8 +53,10 @@ void Game::update()
 void Game::clean()
 {
     cout << "cleaning game\n";
+    _InputHandler::Instance()->clean();
     SDL_DestroyWindow(g_window);
     SDL_DestroyRenderer(g_renderer);
+    SDL_Quit();
 }
 
 void Game::handleEvents() 
@@ -64,5 +66,5 @@ void Game::handleEvents()
 
 void Game::quit() 
 {
-    SDL_Quit();
+    isRunning = false;
 }
