@@ -8,6 +8,10 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "InputHandler.h"
+#include "GameStateMachine.h"
+#include "TextureManager.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 using namespace std;
 
@@ -20,6 +24,8 @@ private:
     SDL_Renderer* g_renderer;
     bool isRunning;
     vector<GameObject*> m_gameObjects;
+    GameStateMachine* g_gameStateMachine;
+
 public:
     static Game* Instance() 
         {

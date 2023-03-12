@@ -1,6 +1,6 @@
 #include "PlayState.h"
 
-string PlayState::s_playID = "PLAY";
+const string PlayState::s_playID = "PLAY";
 
 void PlayState::update() {}
 

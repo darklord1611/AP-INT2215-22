@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "TextureManager.h"
 
 Game* Game::instance = 0;
 
@@ -24,6 +23,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         cout << SDL_GetError() << endl;
         return false;
     }
+    g_gameStateMachine = new GameStateMachine();
+    g_gameStateMachine->changeState(new MenuState());
     m_gameObjects.push_back(new Player(new LoaderParams(50, 50, 128, 82,"animate")));
     m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82,"animate")));
     isRunning = true;
@@ -39,6 +40,8 @@ void Game::render()
     {
         m_gameObjects[i]->draw();
     }
+    g_gameStateMachine->render();
+
     SDL_RenderPresent(g_renderer);
 }
 
@@ -48,6 +51,7 @@ void Game::update()
     {
         m_gameObjects[i]->update();
     }
+    g_gameStateMachine->update();
 }
 
 void Game::clean()
@@ -62,6 +66,10 @@ void Game::clean()
 void Game::handleEvents() 
 {
     _InputHandler::Instance()->update();
+    if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) 
+    {
+        g_gameStateMachine->changeState(new PlayState());
+    }
 }
 
 void Game::quit() 

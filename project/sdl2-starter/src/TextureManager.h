@@ -1,3 +1,6 @@
+#ifndef __TextureManager__
+#define __TextureManager__
+
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<map>
@@ -28,3 +31,5 @@ public:
     map<string, SDL_Texture*> g_textureMap;
 };
 typedef TextureManager _TextureManager;
+
+#endif // define __TextureManager__
