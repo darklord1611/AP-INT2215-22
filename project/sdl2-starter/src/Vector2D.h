@@ -1,5 +1,8 @@
 #include<math.h>
 
+#ifndef __Vector2D__
+#define __Vector2D__
+
 class Vector2D 
 {
 private:
@@ -32,3 +35,5 @@ public:
 	//normalizing a vector
 	void normalize();
 };
+
+#endif // define __Vector2D__

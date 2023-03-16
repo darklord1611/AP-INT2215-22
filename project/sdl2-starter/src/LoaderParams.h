@@ -1,4 +1,7 @@
 
+#ifndef __LoaderParams__
+#define __LoaderParams__
+
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<iostream>
@@ -23,3 +26,5 @@ public:
     int getHeight() const { return m_height; } 
     string getTextureID() const { return m_textureID; }
 };
+
+#endif // define __LoaderParams__
