@@ -2,12 +2,13 @@
 #ifndef __PlayState__
 #define __PlayState__
 
-#include "GameState.h"
+#include "Game.h"
 
 class PlayState : public GameState 
 {
 private:
     static const string s_playID;
+    vector<GameObject*> m_gameObjects;
 public:
     virtual void update();
     virtual void render();
