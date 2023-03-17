@@ -29,6 +29,7 @@ public:
     void draw(string id, int x, int y, int width, int height, SDL_Renderer* g_renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void drawFrame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* g_renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     map<string, SDL_Texture*> g_textureMap;
+    void clearFromTextureMap(string id);
 };
 typedef TextureManager _TextureManager;
 

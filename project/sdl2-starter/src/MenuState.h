@@ -7,6 +7,8 @@
 class MenuState : public GameState 
 {
 private:
+    static void s_menuToPlay();
+    static void s_exitFromMenu();
     vector<GameObject*> m_gameObjects;
     static const string s_menuID;
 public:

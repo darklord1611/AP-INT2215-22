@@ -31,8 +31,8 @@ bool MenuState::onEnter()
         cout << SDL_GetError() << endl;
         return false; 
     }
-    GameObject* button1 = new MenuButton(new LoaderParams(100, 100, 400, 100, "playbutton"));
-    GameObject* button2 = new MenuButton(new LoaderParams(100, 300, 400, 100, "exitbutton"));
+    GameObject* button1 = new MenuButton(new LoaderParams(100, 100, 400, 100, "playbutton"), s_menuToPlay);
+    GameObject* button2 = new MenuButton(new LoaderParams(100, 300, 400, 100, "exitbutton"), s_exitFromMenu);
     m_gameObjects.push_back(button1); 
     m_gameObjects.push_back(button2);
     cout << "entering menuState" << endl;
@@ -41,6 +41,24 @@ bool MenuState::onEnter()
 
 bool MenuState::onExit() 
 {
-    cout << "exiting MenuState" << endl;
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        m_gameObjects[i]->clean();
+    }
+    m_gameObjects.clear();
+    _TextureManager::Instance()->clearFromTextureMap("playbutton");
+    _TextureManager::Instance()->clearFromTextureMap("exitbutton");
+    cout << "exiting menuState" << endl;
     return true;
+}
+
+
+void MenuState::s_menuToPlay() 
+{
+    theGame::Instance()->getStateMachine()->changeState(new PlayState());
+}
+
+void MenuState::s_exitFromMenu() 
+{
+    theGame::Instance()->quit();
 }

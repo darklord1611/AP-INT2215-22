@@ -25,8 +25,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     }
     g_gameStateMachine = new GameStateMachine();
     g_gameStateMachine->changeState(new MenuState());
-    m_gameObjects.push_back(new Player(new LoaderParams(50, 50, 128, 82,"animate")));
-    m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82,"animate")));
+    // m_gameObjects.push_back(new Player(new LoaderParams(50, 50, 128, 82,"animate")));
+    // m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82,"animate")));
     isRunning = true;
     return true;
 }

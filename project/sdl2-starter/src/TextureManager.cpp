@@ -48,3 +48,9 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 
 	SDL_RenderCopyEx(g_renderer, g_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
+
+
+void TextureManager::clearFromTextureMap(string id) 
+{
+    g_textureMap.erase(id);
+}

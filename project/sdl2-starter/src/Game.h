@@ -44,6 +44,7 @@ public:
     void quit();
     bool running() { return isRunning; }
     SDL_Renderer* getRenderer() { return g_renderer; }
+    GameStateMachine* getStateMachine() { return g_gameStateMachine; }
 };
 typedef Game theGame;
 
