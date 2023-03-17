@@ -1,3 +1,7 @@
+
+#ifndef __GameObject__
+#define __GameObject__
+
 #include "LoaderParams.h"
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
@@ -16,3 +20,5 @@ public:
     virtual void update() = 0;
     virtual void clean() = 0;  
 };
+
+#endif // define __GameObject__

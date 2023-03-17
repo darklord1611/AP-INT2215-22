@@ -12,6 +12,7 @@
 #include "TextureManager.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "MenuButton.h"
 
 using namespace std;
 

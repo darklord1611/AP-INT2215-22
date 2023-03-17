@@ -19,9 +19,9 @@ private:
     InputHandler();
     ~InputHandler();
     //Pointer to the array returned by SDL_GetKeyboardState with "int* numkeys" arg
-	const Uint8* m_keystates;
+	const Uint8* m_keystates = NULL;
     vector<bool> m_mouseButtonStates;
-    Vector2D* m_mousePosition;
+    Vector2D* m_mousePosition = NULL;
     // handle mouse events
     void onMouseMove(SDL_Event &event);
     void onMouseButtonDown(SDL_Event &event);

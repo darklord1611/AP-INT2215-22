@@ -1,7 +1,8 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "new": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

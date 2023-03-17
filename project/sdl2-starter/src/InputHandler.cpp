@@ -13,7 +13,7 @@ InputHandler::InputHandler()
 }
 InputHandler::~InputHandler() 
 {
-    delete m_keystates;
+    // delete m_keystates;
     delete m_mousePosition;
     m_mouseButtonStates.clear();
 }
@@ -108,7 +108,7 @@ bool InputHandler::getMouseButtonState(int buttonNumber)
 
 bool InputHandler::isKeyDown(SDL_Scancode key) 
 {
-    if (m_keystates != NULL)
+    if (m_keystates != 0)
 	{
 		if (m_keystates[key] == 1)
 		{
@@ -124,10 +124,10 @@ bool InputHandler::isKeyDown(SDL_Scancode key)
 
 void InputHandler::onKeyDown()
 {
-	m_keystates = SDL_GetKeyboardState(NULL);
+	m_keystates = SDL_GetKeyboardState(0);
 }
 
 void InputHandler::onKeyUp()
 {
-	m_keystates = SDL_GetKeyboardState(NULL);
+	m_keystates = SDL_GetKeyboardState(0);
 }

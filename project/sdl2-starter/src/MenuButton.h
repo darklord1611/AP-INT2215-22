@@ -5,6 +5,7 @@
 
 #include "SDLGameObject.h"
 #include "LoaderParams.h"
+#include "InputHandler.h"
 
 class MenuButton : public SDLGameObject
 {
