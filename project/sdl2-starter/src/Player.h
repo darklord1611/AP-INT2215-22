@@ -7,10 +7,6 @@
 
 class Player: public SDLGameObject 
 {
-private:
-    void handleInput();
-
-    Vector2D* target;
 public:
     Player(const LoaderParams* pParams);
     virtual void draw(); 

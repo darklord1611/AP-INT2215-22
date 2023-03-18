@@ -131,3 +131,10 @@ void InputHandler::onKeyUp()
 {
 	m_keystates = SDL_GetKeyboardState(0);
 }
+
+void InputHandler::reset() 
+{
+    m_mouseButtonStates[LEFT] = false;
+    m_mouseButtonStates[MIDDLE] = false;
+    m_mouseButtonStates[RIGHT] = false;
+}

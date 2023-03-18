@@ -13,7 +13,7 @@
 #include "MenuState.h"
 #include "PlayState.h"
 #include "MenuButton.h"
-
+#include "PauseState.h"
 using namespace std;
 
 class Game

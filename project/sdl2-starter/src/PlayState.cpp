@@ -4,6 +4,10 @@ const string PlayState::s_playID = "PLAY";
 
 void PlayState::update() 
 {
+    if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) 
+    {
+        theGame::Instance()->getStateMachine()->pushState(new PauseState()); 
+    }
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->update();

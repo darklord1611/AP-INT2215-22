@@ -54,8 +54,8 @@ bool MenuState::onExit()
 
 
 void MenuState::s_menuToPlay() 
-{
-    theGame::Instance()->getStateMachine()->changeState(new PlayState());
+{ 
+     theGame::Instance()->getStateMachine()->changeState(new PlayState()); // segmentation fault
 }
 
 void MenuState::s_exitFromMenu() 

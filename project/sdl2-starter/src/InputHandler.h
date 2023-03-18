@@ -21,7 +21,7 @@ private:
     //Pointer to the array returned by SDL_GetKeyboardState with "int* numkeys" arg
 	const Uint8* m_keystates = NULL;
     vector<bool> m_mouseButtonStates;
-    Vector2D* m_mousePosition = NULL;
+    Vector2D* m_mousePosition;
     // handle mouse events
     void onMouseMove(SDL_Event &event);
     void onMouseButtonDown(SDL_Event &event);
@@ -43,6 +43,7 @@ public:
     bool isKeyDown(SDL_Scancode key);
     void update(); 
     void clean();
+    void reset();
 };
 typedef InputHandler _InputHandler;
 

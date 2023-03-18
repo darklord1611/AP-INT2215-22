@@ -68,8 +68,8 @@ void Game::handleEvents()
     _InputHandler::Instance()->update();
     if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) 
     {
-        g_gameStateMachine->changeState(new PlayState());
-    }
+        theGame::Instance()->getStateMachine()->changeState(new PlayState());
+    }  
 }
 
 void Game::quit() 

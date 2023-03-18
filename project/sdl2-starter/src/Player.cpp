@@ -6,15 +6,6 @@ Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
     
 }
 
-void Player::handleInput() 
-{
-    target = _InputHandler::Instance()->getMousePosition();
-
-    m_velocity = *target - m_position;
-
-    m_velocity /= 50;
-}
-
 
 void Player::draw() 
 { 
