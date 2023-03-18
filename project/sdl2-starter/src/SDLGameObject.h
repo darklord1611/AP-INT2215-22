@@ -11,7 +11,8 @@ protected:
     // Vector2D m_acceleration;
     int m_width; 
     int m_height;
-    int m_currentRow; 
+    int m_currentRow;
+    int m_numFrames;
     int m_currentFrame;
     string m_textureID;
 

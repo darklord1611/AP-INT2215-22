@@ -14,6 +14,9 @@
 #include "PlayState.h"
 #include "MenuButton.h"
 #include "PauseState.h"
+#include "GameOverState.h"
+#include "AnimatedGraphic.h"
+
 using namespace std;
 
 class Game
