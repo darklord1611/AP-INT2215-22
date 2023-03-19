@@ -17,6 +17,9 @@ protected:
     string m_textureID;
 
 public:
+    Vector2D& getPosition() { return m_position; }
+    int getWidth() { return m_width; }
+    int getHeight() { return m_height; }
     SDLGameObject(const LoaderParams* pParams);
     virtual void draw(); 
     virtual void update(); 

@@ -15,12 +15,18 @@ void GameOverState::s_restartPlay()
 
 void GameOverState::update() 
 {
-
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        m_gameObjects[i]->update();
+    }
 }
 
 void GameOverState::render() 
 {
-    
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        m_gameObjects[i]->draw();
+    }
 }
 
 bool GameOverState::onEnter() 
@@ -37,7 +43,7 @@ bool GameOverState::onEnter()
     {
         return false;
     }
-    GameObject* gameOverText = new AnimatedGraphic(new LoaderParams(200, 100, 190, 30, 2, "gameover"));
+    GameObject* gameOverText = new AnimatedGraphic(new LoaderParams(200, 100, 190, 30, 2, "gameover"), 2);
     GameObject* button1 = new MenuButton(new LoaderParams(200, 200, 200, 80, 3, "mainbutton"), s_gameOverToMain); 
     GameObject* button2 = new MenuButton(new LoaderParams(200, 300, 200, 80, 3, "restartbutton"), s_restartPlay);
     m_gameObjects.push_back(gameOverText);

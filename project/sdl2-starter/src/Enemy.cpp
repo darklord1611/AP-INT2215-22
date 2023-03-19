@@ -14,7 +14,7 @@ void Enemy::draw()
 
 void Enemy::update() 
 {
-    m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
     if(m_position.getY() < 0) 
     { 
         m_velocity.setY(2); 

@@ -14,7 +14,7 @@ void Player::draw()
 
 void Player::update() 
 {
-    m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % 5)); // using m_numFrames instead
     if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)) 
     { 
         m_velocity.setX(2); 
