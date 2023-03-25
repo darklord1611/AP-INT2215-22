@@ -13,6 +13,7 @@ protected:
     int m_height;
     int m_currentRow;
     int m_numFrames;
+    int m_callbackID;
     int m_currentFrame;
     string m_textureID;
 

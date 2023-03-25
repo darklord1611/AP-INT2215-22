@@ -1,5 +1,9 @@
 #include "AnimatedGraphic.h"
 
+AnimatedGraphic::AnimatedGraphic() : SDLGameObject() 
+{
+	
+}
 
 void AnimatedGraphic::load(const LoaderParams* pParams)
 {
