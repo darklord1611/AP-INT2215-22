@@ -21,10 +21,14 @@ private:
 
 	bool m_bReleased;
 public:
-	MenuButton(const LoaderParams* pParams, void (*callback) ());
+	MenuButton();
+	virtual void load(const LoaderParams* pParams);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+
+	void setCallback(void(*callback)()) { m_callback = callback; }
+	int getCallbackID() { return m_callbackID; }
 };
 
 #endif // define __MenuButton__

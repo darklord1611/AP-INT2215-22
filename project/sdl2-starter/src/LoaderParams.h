@@ -17,16 +17,22 @@ private:
     int m_width; 
     int m_height;
     int m_numFrames;
+    int m_callbackID;
+    int m_animSpeed;
     string m_textureID;
 
 public:
-    LoaderParams(int x, int y, int width, int height, int numFrames, std::string textureID) : 
-    m_x(x), m_y(y), m_width(width), m_height(height), m_numFrames(numFrames), m_textureID(textureID) {}
+    LoaderParams(int x, int y, int width, int height, int numFrames, int callbackID = 0, 
+    int animSpeed = 0, string textureID = "") : 
+    m_x(x), m_y(y), m_width(width), m_height(height), m_numFrames(numFrames), 
+    m_callbackID(callbackID), m_animSpeed(animSpeed), m_textureID(textureID)  {}
     int getX() const { return m_x; } 
     int getY() const { return m_y; } 
     int getWidth() const { return m_width; } 
     int getHeight() const { return m_height; }
     int getNumFrames() const { return m_numFrames; }
+    int getCallBackID() const { return m_callbackID; }
+    int getAnimSpeed() const { return m_animSpeed; }
     string getTextureID() const { return m_textureID; }
 };
 
