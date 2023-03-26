@@ -7,6 +7,8 @@
 #include <map>
 #include "GameObject.h"
 
+class GameObject;
+
 using namespace std;
 
 class BaseCreator 
@@ -20,36 +22,24 @@ public:
 class GameObjectFactory 
 {
 private:
+    GameObjectFactory() {}
+    ~GameObjectFactory() {}
+    static GameObjectFactory* instance;
     map<string, BaseCreator*> m_creators;
+
 public:
-    bool registerType(string typeID, BaseCreator* pCreator) 
+    static GameObjectFactory* Instance()
     {
-        map<string, BaseCreator*>::iterator it = m_creators.find(typeID);
-        // check if type already exist
-        if(it != m_creators.end()) 
+        if(instance == 0)
         {
-            delete pCreator;
-            return false;
+            instance = new GameObjectFactory();
+            return instance;
         }
-
-        m_creators[typeID] = pCreator;
-        return true;
+        return instance;
     }
-
-    GameObject* create(string typeID) 
-    {
-        map<string, BaseCreator*>::iterator it = m_creators.find(typeID);
-        // check if type already exist
-        if(it == m_creators.end()) 
-        {
-            cout << "type does not exist: " << typeID << endl;
-            return NULL;
-        }
-
-        BaseCreator* pCreator = (*it).second;
-        return pCreator->createGameObject();
-    }
+    bool registerType(string typeID, BaseCreator* pCreator);
+    GameObject* create(string typeID);
 };
 
-
+typedef GameObjectFactory _GameObjectFactory;
 #endif // define __GameObjectFactory__

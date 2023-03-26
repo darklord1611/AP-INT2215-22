@@ -27,8 +27,16 @@ public:
 	virtual void update();
 	virtual void clean();
 
-	void setCallback(void(*callback)()) { m_callback = callback; }
+	void setCallback(void(*callback)()) { m_callback = callback; } // take a pointer pointing to function as parameter
 	int getCallbackID() { return m_callbackID; }
+};
+
+class MenuButtonCreator : public BaseCreator
+{
+	GameObject* createGameObject() const
+	{
+		return new MenuButton();
+	}
 };
 
 #endif // define __MenuButton__

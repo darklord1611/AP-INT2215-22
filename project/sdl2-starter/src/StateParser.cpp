@@ -4,6 +4,20 @@
 #include "Game.h"
 #include "GameObjectFactory.h"
 
+/* 
+Parsing routine
+
+1. Load the XML file.
+
+2. Get the root element, <ROOT>.
+
+3. Get the first child of the root element, <ELEMENTS>.
+
+4. For each child, <ELEMENT> of <ELEMENTS>, get the content.
+
+5. Close the file. 
+*/
+
 bool StateParser::parseState(const char* stateFile, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs)
 {
 	//create the XML document
@@ -12,7 +26,7 @@ bool StateParser::parseState(const char* stateFile, string stateID, vector<GameO
 	//load the state file
 	if (!xmlDoc.LoadFile(stateFile))
 	{
-		cerr << xmlDoc.ErrorDesc() << "\n";
+		cerr << xmlDoc.ErrorDesc() << endl;
 		return false;
 	}
 
@@ -67,8 +81,8 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, vector<string> *pTextu
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		string  filenameAttribute = e->Attribute("filename");
-		string  idAttribute = e->Attribute("ID");
+		string filenameAttribute = e->Attribute("filename");
+		string idAttribute = e->Attribute("ID");
 		pTextureIDs->push_back(idAttribute);	//push into list
 
 		_TextureManager::Instance()->load(filenameAttribute, idAttribute, theGame::Instance()->getRenderer());
@@ -92,8 +106,8 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot, vector<GameObject*> *pO
 		
 		textureID = e->Attribute("textureID");
 
-		GameObject* pGameObject = _GameObjectFactory::instance()->create(e->Attribute("type"));
-		pGameObject->load(new LoaderParams(x, y, width, height,numFrames, callbackID, animSpeed, textureID));
+		GameObject* pGameObject = _GameObjectFactory::Instance()->create(e->Attribute("type"));
+		pGameObject->load(new LoaderParams(x, y, width, height, textureID, numFrames, callbackID, animSpeed));
 		pObjects->push_back(pGameObject);
 	}
 }

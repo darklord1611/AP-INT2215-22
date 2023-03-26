@@ -23,9 +23,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         cout << SDL_GetError() << endl;
         return false;
     }
-    g_gameStateMachine = new GameStateMachine();
-    g_gameStateMachine->changeState(new MenuState());
-    isRunning = true;
+    _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
+    _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+    _GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+    _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     return true;
 }
 

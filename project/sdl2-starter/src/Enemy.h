@@ -10,3 +10,11 @@ public:
     virtual void update(); 
     virtual void clean();
 };
+
+class EnemyCreator : public BaseCreator 
+{
+    GameObject* createGameObject() const
+    {
+        return new Enemy();
+    }
+};

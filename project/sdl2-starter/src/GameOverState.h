@@ -3,9 +3,11 @@
 
 #include "Game.h"
 
-class GameOverState : public GameState 
+class GameOverState : public MenuState 
 {
 private:
+    virtual void setCallbacks(const vector<Callback> &callbacks);
+    // callback functions
     static void s_gameOverToMain();
     static void s_restartPlay();
 

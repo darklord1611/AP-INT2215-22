@@ -31,24 +31,13 @@ void GameOverState::render()
 
 bool GameOverState::onEnter() 
 {
-    if(!_TextureManager::Instance()->load("assets/gameover.png", "gameover", theGame::Instance()->getRenderer())) 
-    {
-        return false;
-    }
-    if(!_TextureManager::Instance()->load("assets/main.png", "mainbutton", theGame::Instance()->getRenderer())) 
-    {
-        return false;
-    }
-    if(!_TextureManager::Instance()->load("assets/restart.png", "restartbutton", theGame::Instance()->getRenderer())) 
-    {
-        return false;
-    }
-    GameObject* gameOverText = new AnimatedGraphic::load(new LoaderParams(200, 100, 190, 30, 2, 0, 2, "gameover"));
-    GameObject* button1 = new MenuButton::load(new LoaderParams(200, 200, 200, 80, 3, 0, 0, "mainbutton"), s_gameOverToMain); 
-    GameObject* button2 = new MenuButton::load(new LoaderParams(200, 300, 200, 80, 3, 0, 0, "restartbutton"), s_restartPlay);
-    m_gameObjects.push_back(gameOverText);
-    m_gameObjects.push_back(button1);
-    m_gameObjects.push_back(button2);
+    StateParser stateParser;
+    stateParser.parseState("test.xml", s_pauseID, &m_gameObjects, &m_textureIDList);
+    m_callbacks.push_back(0);
+    m_callbacks.push_back(s_gameOverToMain);
+    m_callbacks.push_back(s_restartPlay);
+    // set the callbacks for menu items
+    setCallbacks(m_callbacks);
     cout << "entering PauseState" << endl;
     return true;
 }
@@ -57,11 +46,20 @@ bool GameOverState::onExit()
 {
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
-        m_gameObjects[i]->clean();
+        _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }
-    m_gameObjects.clear();
-    _TextureManager::Instance()->clearFromTextureMap("gameover");
-    _TextureManager::Instance()->clearFromTextureMap("mainbutton");
-    _TextureManager::Instance()->clearFromTextureMap("restartbutton");
+    cout << "leaving GameOverState" << endl;
     return true;
+}
+
+void GameOverState::setCallbacks(const vector<Callback> &callbacks) 
+{
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        if(dynamic_cast<MenuButton*>(m_gameObjects[i]) != nullptr) 
+        {
+            MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+            pButton->setCallback(callbacks[pButton->getCallbackID()]);
+        }
+    }
 }

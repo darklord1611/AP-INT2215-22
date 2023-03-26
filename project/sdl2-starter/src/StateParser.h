@@ -6,13 +6,16 @@
 #include <tinyxml/tinyxml.h>
 #include "GameObject.h"
 
+
 using namespace std;
+
+class GameObject;
 
 class StateParser
 {
 private:
-    void parseObjects(TiXmlElement* pStateRoot, vector<GameObject*> *pObjects) {};
-	void parseTextures(TiXmlElement* pStateRoot, vector<string> *pTextureIDs) {};
+    void parseObjects(TiXmlElement* pStateRoot, vector<GameObject*> *pObjects);
+	void parseTextures(TiXmlElement* pStateRoot, vector<string> *pTextureIDs);
 public:
 	bool parseState(const char* stateFile, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs);
 };

@@ -2,22 +2,23 @@
 #define __MenuState__
 
 #include "GameState.h"
-#include "GameObject.h"
-#include "Game.h"
-class MenuState : public GameState 
+#include <vector>
+
+using namespace std;
+
+class MenuState: public GameState
 {
-private:
-    static void s_menuToPlay();
-    static void s_exitFromMenu();
-    vector<GameObject*> m_gameObjects;
-    static const string s_menuID;
+protected:
+	typedef void(*Callback) ();
+	virtual void setCallbacks(const vector<Callback> &callbacks) = 0;
+	vector<Callback> m_callbacks;
 public:
-    virtual void update(); 
-    virtual void render(); 
-    virtual bool onEnter(); 
-    virtual bool onExit(); 
-    virtual string getStateID() const { return s_menuID; }
+	virtual void update() {};
+    virtual void render() {};
+    virtual bool onEnter() { return true; }; // similar to load function
+    virtual bool onExit() { return true; }; // need to optimize
+    virtual string getStateID() const { return " "; };
 };
 
-#endif // define __MenuState__
 
+#endif // define __MenuState__

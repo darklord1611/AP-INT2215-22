@@ -3,6 +3,8 @@
 #define __GameObject__
 
 #include "LoaderParams.h"
+#include "StateParser.h"
+#include "GameObjectFactory.h"
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
 #include<map>

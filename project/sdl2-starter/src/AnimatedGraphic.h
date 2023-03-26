@@ -6,6 +6,8 @@
 
 class AnimatedGraphic : public SDLGameObject
 {
+private:
+    int m_animSpeed;
 public:
     AnimatedGraphic();
     virtual void load(const LoaderParams* pParams);
@@ -14,4 +16,12 @@ public:
     virtual void clean();
 };
 
+
+class AnimatedGraphicCreator : public BaseCreator 
+{
+    GameObject* createGameObject() const 
+    {
+        return new AnimatedGraphic();
+    }
+};
 #endif // define __AnimatedGraphic__

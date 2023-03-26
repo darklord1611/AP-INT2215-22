@@ -4,12 +4,14 @@
 
 #include "Game.h"
 
-class PauseState : public GameState 
+class PauseState : public MenuState
 {
 private:
+    virtual void setCallbacks(const vector<Callback> &callbacks);
+    // callback functions
     static void s_pauseToMain();
     static void s_resumePlay();
-
+    
     static const string s_pauseID;
     vector<GameObject*> m_gameObjects;
 public:
