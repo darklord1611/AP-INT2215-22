@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include <tinyxml/tinyxml.h>
+#include <tinyxml2/tinyxml.h>
 #include "GameObject.h"
 
 

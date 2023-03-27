@@ -16,6 +16,7 @@ public:
     virtual bool onExit();
     virtual string getStateID() const { return s_playID; }
     bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
+    virtual ~PlayState() {}
 };
 
 #endif // define __PlayState__

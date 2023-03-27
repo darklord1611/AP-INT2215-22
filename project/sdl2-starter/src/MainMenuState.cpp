@@ -54,7 +54,7 @@ void MainMenuState::s_exitFromMenu()
 }
 
 
-bool MainMenuState::setCallbacks(const vector<Callback> &callbacks) 
+void MainMenuState::setCallbacks(const vector<Callback> &callbacks) 
 {
     for(int i = 0; i < m_gameObjects.size();i++) 
     {

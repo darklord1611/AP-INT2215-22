@@ -17,6 +17,8 @@
 #include "GameOverState.h"
 #include "AnimatedGraphic.h"
 #include "GameObjectFactory.h"
+#include "MainMenuState.h"
+
 using namespace std;
 
 class Game

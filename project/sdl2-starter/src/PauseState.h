@@ -21,6 +21,7 @@ public:
     virtual bool onExit();
 
     virtual string getStateID() const { return s_pauseID; }
+    virtual ~PauseState() {}
 };
 
 #endif // define __PauseState__

@@ -16,11 +16,10 @@ private:
     int m_y;
     int m_width; 
     int m_height;
+    string m_textureID;
     int m_numFrames;
     int m_callbackID;
     int m_animSpeed;
-    string m_textureID;
-
 public:
     LoaderParams(int x, int y, int width, int height, string textureID, int numFrames, int callbackID = 0, 
     int animSpeed = 0) : 

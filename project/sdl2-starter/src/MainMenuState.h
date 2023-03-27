@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Game.h"
 
-class MainMenuState : public GameState 
+class MainMenuState : public MenuState 
 {
 private:
     virtual void setCallbacks(const vector<Callback> &callbacks);
@@ -21,6 +21,7 @@ public:
     virtual bool onEnter(); 
     virtual bool onExit(); 
     virtual string getStateID() const { return s_menuID; }
+    virtual ~MainMenuState() {}
 };
 
 #endif // define __MainMenuState__

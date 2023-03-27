@@ -19,6 +19,7 @@ public:
     virtual bool onEnter(); 
     virtual bool onExit(); 
     virtual string getStateID() const {return s_gameOverID;}
+    virtual ~GameOverState() {}
 };
 
 #endif // define __GameOverState__
