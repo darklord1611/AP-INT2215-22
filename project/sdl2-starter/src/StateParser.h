@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include <tinyxml2/tinyxml.h>
+#include <string>
+#include "tinyxml.h"
 #include "GameObject.h"
 
 
@@ -17,7 +18,7 @@ private:
     void parseObjects(TiXmlElement* pStateRoot, vector<GameObject*> *pObjects);
 	void parseTextures(TiXmlElement* pStateRoot, vector<string> *pTextureIDs);
 public:
-	bool parseState(const char* stateFile, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs);
+	bool parseState(string fileName, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs);
 };
 
 #endif // define __StateParser__

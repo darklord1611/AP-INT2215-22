@@ -27,6 +27,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+    g_gameStateMachine = new GameStateMachine();
+	g_gameStateMachine->pushState(new MainMenuState());
     return true;
 }
 

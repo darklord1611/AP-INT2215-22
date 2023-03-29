@@ -32,7 +32,7 @@ void GameOverState::render()
 bool GameOverState::onEnter() 
 {
     StateParser stateParser;
-    stateParser.parseState("test.xml", s_gameOverID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("src/test.xml", s_gameOverID, &m_gameObjects, &m_textureIDList);
     m_callbacks.push_back(0);
     m_callbacks.push_back(s_gameOverToMain);
     m_callbacks.push_back(s_restartPlay);
@@ -44,7 +44,7 @@ bool GameOverState::onEnter()
 
 bool GameOverState::onExit() 
 {
-    for(int i = 0; i < m_gameObjects.size();i++) 
+    for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }

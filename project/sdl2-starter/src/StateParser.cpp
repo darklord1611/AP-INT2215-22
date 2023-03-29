@@ -1,5 +1,4 @@
 #include "StateParser.h"
-#include <iostream>
 #include "TextureManager.h"
 #include "Game.h"
 #include "GameObjectFactory.h"
@@ -18,15 +17,14 @@ Parsing routine
 5. Close the file. 
 */
 
-bool StateParser::parseState(const char* stateFile, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs)
+bool StateParser::parseState(string fileName, string stateID, vector<GameObject*> *pObjects, vector<string> *pTextureIDs)
 {
 	//create the XML document
 	TiXmlDocument xmlDoc;
-
 	//load the state file
-	if (!xmlDoc.LoadFile(stateFile))
+	if (!xmlDoc.LoadFile(fileName.c_str()))
 	{
-		cerr << xmlDoc.ErrorDesc() << endl;
+		cerr << xmlDoc.ErrorDesc() << " 123" << endl;
 		return false;
 	}
 

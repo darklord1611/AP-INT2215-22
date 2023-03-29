@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?> 
 <STATES>
   <MENU>
     <TEXTURES>
@@ -8,7 +8,7 @@
 
     <OBJECTS>
       <object type="MenuButton" x="100" y="100" width="400" height="100" textureID="playbutton" numFrames="3" callbackID="1"></object>
-      <object type="MenuButton" x="100" y="100" width="400" height="100" textureID="exitbutton" numFrames="3" callbackID="2"></object>
+      <object type="MenuButton" x="100" y="300" width="400" height="100" textureID="exitbutton" numFrames="3" callbackID="2"></object>
     </OBJECTS>
   </MENU>
 
@@ -26,21 +26,21 @@
 
   <PAUSE> 
     <TEXTURES>
-      <texture filename="resume.png" ID="resumebutton"/>
-      <texture filename="main.png" ID="mainbutton"/>
+      <texture filename="assets/resume.png" ID="resumebutton"/>
+      <texture filename="assets/main.png" ID="mainbutton"/>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="MenuButton" x="200" y="100" width="200"height="80" textureID="mainbutton" numFrames="0"callbackID="1"/>
-      <object type="MenuButton" x="200" y="300" width="200"height="80" textureID="resumebutton" numFrames="0"callbackID="2"/>
+      <object type="MenuButton" x="200" y="100" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
+      <object type="MenuButton" x="200" y="300" width="200" height="80" textureID="resumebutton" numFrames="0" callbackID="2"/>
     </OBJECTS>
   </PAUSE>
 
   <GAMEOVER>
     <TEXTURES>
-      <texture filename="gameover.png" ID="gameovertext"/>
-      <texture filename="main.png" ID="mainbutton"/>
-      <texture filename="restart.png" ID="restartbutton"/>
+      <texture filename="assets/gameover.png" ID="gameovertext"/>
+      <texture filename="assets/main.png" ID="mainbutton"/>
+      <texture filename="assets/restart.png" ID="restartbutton"/>
     </TEXTURES>
 
     <OBJECTS>

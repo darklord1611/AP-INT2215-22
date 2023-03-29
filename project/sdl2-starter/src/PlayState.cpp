@@ -31,7 +31,7 @@ void PlayState::render()
 bool PlayState::onEnter() 
 {
     StateParser stateParser;
-    stateParser.parseState("test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
     cout << "entering PlayState" << endl;
     return true;
 }
