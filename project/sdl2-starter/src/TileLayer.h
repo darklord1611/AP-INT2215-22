@@ -11,10 +11,10 @@ private:
     int m_tileSize; 
     Vector2D m_position; 
     Vector2D m_velocity; 
-    const vector<Tileset> &m_tileSets; 
+    const vector<Tileset> &m_tilesets; 
     vector<vector<int>> m_tileIDs;
 public:
-    TileLayer(int tileSize, const vector<tileSet> &tileSets);
+    TileLayer(int tileSize, const vector<Tileset> &tilesets);
     virtual void update();
     virtual void render();
     void setTileIDs(const vector<vector<int>> &data) { m_tileIDs = data; }

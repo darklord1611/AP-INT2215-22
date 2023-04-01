@@ -6,7 +6,7 @@
 #include "LevelParser.h"
 using namespace std;
 
-struct tileSet 
+struct Tileset 
 {
     int firstGridID; 
     int tileWidth; 
@@ -23,12 +23,12 @@ class Level
 {
 private:
     vector<Layer*> m_layers;
-    vector<tileSet> m_tileSets;
+    vector<Tileset> m_tilesets;
     friend class LevelParser; // allow levelparser to create new level
     Level();
 public:
     ~Level() {}
-    vector<tileSet>* getTileSets() { return &m_tileSets; }
+    vector<tileSet>* getTilesets() { return &m_tilesets; }
     vector<Layer*>* getLayers() { return &m_layers; }
     void update();
     void render();    

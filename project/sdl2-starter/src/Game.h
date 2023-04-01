@@ -31,7 +31,8 @@ private:
     bool isRunning;
     vector<GameObject*> m_gameObjects;
     GameStateMachine* g_gameStateMachine;
-
+    int m_gameHeight;
+    int m_gameWidth;
 public:
     static Game* Instance() 
         {
@@ -50,6 +51,8 @@ public:
     bool running() { return isRunning; }
     SDL_Renderer* getRenderer() { return g_renderer; }
     GameStateMachine* getStateMachine() { return g_gameStateMachine; }
+    int getGameHeight() const { return m_gameHeight; }
+    int getGameWidth() const { return m_gameWidth; }
 };
 typedef Game theGame;
 

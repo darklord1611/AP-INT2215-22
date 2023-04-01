@@ -49,6 +49,20 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
 	SDL_RenderCopyEx(g_renderer, g_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 
+// draw tiles with margin and spacing
+void TextureManager::drawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* g_renderer) 
+{
+    SDL_Rect srcRect, desRect;
+    srcRect.x = margin + (spacing + width) * currentFrame;
+    srcRect.y = margin + (spacing + height) * currentFrame;
+    srcRect.w = width;
+    srcRect.h = height;
+    desRect.w = width;
+    desRect.h = height;
+    desRect.x = x;
+    desRect.y = y;
+    SDL_RenderCopyEx(g_renderer, m_textureMap[id], &srcRect, &desRect, 0, 0, SDL_FLIP_NONE);
+}
 
 void TextureManager::clearFromTextureMap(string id) 
 {

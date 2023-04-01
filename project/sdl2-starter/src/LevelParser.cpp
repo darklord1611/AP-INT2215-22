@@ -21,7 +21,7 @@ Level* LevelParser::parseLevel(string levelFile)
     // parse the tilesets
     for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
     {
-        if(e->Value() == std::string("tileset"))
+        if(e->Value() == string("tileset"))
         {
             parseTilesets(e, pLevel->getTilesets());
         }
@@ -29,11 +29,78 @@ Level* LevelParser::parseLevel(string levelFile)
     // parse any object layers 
     for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) 
     { 
-        if(e->Value() == std::string("layer")) 
+        if(e->Value() == string("layer")) 
         { 
             parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets()); 
         } 
     }
 
     return pLevel;
+}
+
+
+void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, vector<Tileset>* pTileSets) 
+{
+    // first add the tileset to texture manager
+    _TexutureManager::Instance()->load(pTilesetRoot->FirstChildElement()->Attribute("source"),pTilesetRoot->Attribute("name"), theGame::Instance()->getRenderer());
+
+    // create a tileset object
+    Tileset tileset; pTilesetRoot->FirstChildElement()->Attribute("width",&tileset.width); 
+    pTilesetRoot->FirstChildElement()->Attribute("height",&tileset.height); 
+    pTilesetRoot->Attribute("firstgid", &tileset.firstGridID); 
+    pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth); 
+    pTilesetRoot->Attribute("tileheight", &tileset.tileHeight); 
+    pTilesetRoot->Attribute("spacing", &tileset.spacing); 
+    pTilesetRoot->Attribute("margin", &tileset.margin); 
+    tileset.name = pTilesetRoot->Attribute("name");
+    tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
+    pTilesets->push_back(tileset);
+}
+
+void LevelParser::parseTileLayer(TiXmlElement* pTileElement, vector<Layer*> *pLayers, const vector<Tileset>* pTileSets) 
+{
+    // create new tileLayer 
+    TileLayer* pTileLayer = new TileLayer(m_tileSize, *pTileSets);
+    
+    // tile data
+    vector<vector<int>> data;
+    string decodedIDs;
+    TiXmlElement* pDataNode;
+
+    // get data node to handle
+    for(TiXmlElement* e = pTileElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) 
+    {
+        if(e->Value() == string("data")) 
+        {
+            pDataNode = e;
+        }
+    }
+    
+    // use base64 to decode
+    for(TiXmlNode* e = pDataNode->FirstChild(); e != NULL; e = e->NextSibling()) 
+    {
+        TiXmlText* text = e->ToText();
+        string t = text->Value(); 
+        decodedIDs = base64_decode(t);
+    }
+
+    // uncompress zlib compression
+    uLongf sizeOfIDs = m_width * m_height * sizeof(int); 
+    vector<unsigned> IDs(m_width * m_height);
+    uncompress((Bytef*)&IDs[0], &sizeOfIDs,(const Bytef*)decodedIDs.c_str(), decodedIDs.size());
+
+    vector<int> layerRow(m_width);
+    for(int i = 0; i < m_height;i++) 
+    {
+        data.push_back(layerRow);
+    }
+    for(int rows =  0; rows < m_height; rows++) 
+    {
+        for(int cols = 0; cols < m_width; cols++) 
+        {
+            data[rows][cols] = IDs[rows * m_wdith + cols];
+        }
+    }
+    pTileLayer->setTileIDs(data);
+    pLayers->push_back(pTileLayer);
 }
