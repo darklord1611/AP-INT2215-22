@@ -1,7 +1,8 @@
 #include <string>
 #include <vector>
-
 #include <iostream>
+
+using namespace std;
 
 string base64_encode(unsigned char const* , unsigned int len);
 

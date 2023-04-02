@@ -1,12 +1,12 @@
 #ifndef __LevelParser__
 #define __LevelParser__
-#include "Level.h"
 #include "tinyxml.h"
-#include "Game.h"
-#include "TileLayer.h"
+#include "Level.h"
 #include "Base64.h"
-#include <zlib/zconf.h>
-#include <string>
+#include "TileLayer.h"
+#include "TextureManager.h"
+#include <zlib/zlib.h>
+
 class LevelParser 
 {
 private:

@@ -18,6 +18,9 @@
 #include "AnimatedGraphic.h"
 #include "GameObjectFactory.h"
 #include "MainMenuState.h"
+#include "LevelParser.h"
+#include "Level.h"
+#include "Layer.h"
 
 using namespace std;
 

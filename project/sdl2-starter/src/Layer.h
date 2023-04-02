@@ -1,6 +1,5 @@
 #ifndef __Layer__
 #define __Layer__
-#include "Level.h"
 
 class Layer 
 {

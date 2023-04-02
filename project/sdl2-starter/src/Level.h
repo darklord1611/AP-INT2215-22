@@ -1,9 +1,9 @@
 #ifndef __Level__
 #define __Level__
+#include "Layer.h"
 #include <iostream>
 #include <vector>
-#include "Layer.h"
-#include "LevelParser.h"
+
 using namespace std;
 
 struct Tileset 
@@ -17,18 +17,18 @@ struct Tileset
     int height; 
     int numColumns; 
     string name;
-}
+};
 
-class Level 
+class Level     
 {
 private:
     vector<Layer*> m_layers;
     vector<Tileset> m_tilesets;
     friend class LevelParser; // allow levelparser to create new level
-    Level();
+    Level() {}
 public:
     ~Level() {}
-    vector<tileSet>* getTilesets() { return &m_tilesets; }
+    vector<Tileset>* getTilesets() { return &m_tilesets; }
     vector<Layer*>* getLayers() { return &m_layers; }
     void update();
     void render();    

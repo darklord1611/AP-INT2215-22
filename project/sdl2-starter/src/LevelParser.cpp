@@ -42,10 +42,10 @@ Level* LevelParser::parseLevel(string levelFile)
 void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, vector<Tileset>* pTileSets) 
 {
     // first add the tileset to texture manager
-    _TexutureManager::Instance()->load(pTilesetRoot->FirstChildElement()->Attribute("source"),pTilesetRoot->Attribute("name"), theGame::Instance()->getRenderer());
-
+    _TextureManager::Instance()->load("assets/" + (string)pTilesetRoot->FirstChildElement()->Attribute("source"),pTilesetRoot->Attribute("name"), theGame::Instance()->getRenderer());
     // create a tileset object
-    Tileset tileset; pTilesetRoot->FirstChildElement()->Attribute("width",&tileset.width); 
+    Tileset tileset; 
+    pTilesetRoot->FirstChildElement()->Attribute("width",&tileset.width); 
     pTilesetRoot->FirstChildElement()->Attribute("height",&tileset.height); 
     pTilesetRoot->Attribute("firstgid", &tileset.firstGridID); 
     pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth); 
@@ -53,8 +53,8 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, vector<Tileset>* pTi
     pTilesetRoot->Attribute("spacing", &tileset.spacing); 
     pTilesetRoot->Attribute("margin", &tileset.margin); 
     tileset.name = pTilesetRoot->Attribute("name");
-    tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
-    pTilesets->push_back(tileset);
+    pTilesetRoot->Attribute("columns", &tileset.numColumns);
+    pTileSets->push_back(tileset);
 }
 
 void LevelParser::parseTileLayer(TiXmlElement* pTileElement, vector<Layer*> *pLayers, const vector<Tileset>* pTileSets) 
@@ -86,7 +86,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, vector<Layer*> *pLa
 
     // uncompress zlib compression
     uLongf sizeOfIDs = m_width * m_height * sizeof(int); 
-    vector<unsigned> IDs(m_width * m_height);
+    vector<int> IDs(m_width * m_height);
     uncompress((Bytef*)&IDs[0], &sizeOfIDs,(const Bytef*)decodedIDs.c_str(), decodedIDs.size());
 
     vector<int> layerRow(m_width);
@@ -98,7 +98,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, vector<Layer*> *pLa
     {
         for(int cols = 0; cols < m_width; cols++) 
         {
-            data[rows][cols] = IDs[rows * m_wdith + cols];
+            data[rows][cols] = IDs[rows * m_width + cols];
         }
     }
     pTileLayer->setTileIDs(data);

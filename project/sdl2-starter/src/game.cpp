@@ -17,13 +17,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_PRESENTVSYNC);
         if(g_renderer != 0) 
         {
-            SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 0);
+            SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
-    }
-    if(_TextureManager::Instance()->load("assets/animate-alpha.png", "animate", g_renderer) == false) 
-    {
-        cout << SDL_GetError() << endl;
-        return false;
     }
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
@@ -33,7 +28,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	g_gameStateMachine->pushState(new MainMenuState());
     return true;
 }
-
 
 
 void Game::render() 

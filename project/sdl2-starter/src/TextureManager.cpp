@@ -8,7 +8,7 @@ bool TextureManager::load(string fileName, string id, SDL_Renderer* g_renderer)
 
     if(g_temp_surface == 0) 
     {
-        cout << SDL_GetError();
+        cout << SDL_GetError() << endl;
         return false;
     }
     SDL_Texture* g_texture = SDL_CreateTextureFromSurface(g_renderer, g_temp_surface);
@@ -61,7 +61,7 @@ void TextureManager::drawTile(string id, int margin, int spacing, int x, int y, 
     desRect.h = height;
     desRect.x = x;
     desRect.y = y;
-    SDL_RenderCopyEx(g_renderer, m_textureMap[id], &srcRect, &desRect, 0, 0, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(g_renderer, g_textureMap[id], &srcRect, &desRect, 0, 0, SDL_FLIP_NONE);
 }
 
 void TextureManager::clearFromTextureMap(string id) 
