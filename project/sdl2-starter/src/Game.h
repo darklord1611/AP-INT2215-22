@@ -18,18 +18,20 @@
 #include "AnimatedGraphic.h"
 #include "GameObjectFactory.h"
 #include "MainMenuState.h"
+#include "Gilder.h"
 
 using namespace std;
 
 class Game
 {
 private:
-    Game() {};
+    Game();
+    ~Game();
+    int m_playerLives;
     static Game* instance;
     SDL_Window* g_window;
     SDL_Renderer* g_renderer;
     bool isRunning;
-    vector<GameObject*> m_gameObjects;
     GameStateMachine* g_gameStateMachine;
     int m_gameHeight;
     int m_gameWidth;
@@ -54,6 +56,6 @@ public:
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
 };
-typedef Game TheGame;
+typedef Game theGame;
 
 #endif /* defined(__Game__) */

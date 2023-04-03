@@ -24,13 +24,7 @@ void ShooterObject::load(unique_ptr<LoaderParams> const &pParams)
 
 void ShooterObject::draw() 
 {
-    if(m_velocity.getX() > 0) 
-    { 
-        TextureManager::Instance()->drawFrame(m_textureID, (int) m_position.getX(), (int) m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, theGame::Instance()->getRenderer(),SDL_FLIP_HORIZONTAL); 
-    } else 
-    {
-        TextureManager::Instance()->drawFrame(m_textureID, (int) m_position.getX(), (int) m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, theGame::Instance()->getRenderer());
-    }
+        _TextureManager::Instance()->drawFrame(m_textureID, (int) m_position.getX(), (int) m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, theGame::Instance()->getRenderer());
 }
 
 void ShooterObject::update() 

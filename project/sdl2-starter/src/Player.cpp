@@ -110,30 +110,29 @@ void Player::handleInput()
     if(!m_bDead)
     {
         // handle keys
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) && m_position.getY() > 0)
+        if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) && m_position.getY() > 0)
         {
             m_velocity.setY(-m_moveSpeed);
         }
-        else if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) && (m_position.getY() + m_height) < TheGame::Instance()->getGameHeight() - 10)
+        else if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN) && (m_position.getY() + m_height) < theGame::Instance()->getGameHeight() - 10)
         {
             m_velocity.setY(m_moveSpeed);
         }
         
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && m_position.getX() > 0)
+        if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && m_position.getX() > 0)
         {
             m_velocity.setX(-m_moveSpeed);
         }
-        else if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT) && (m_position.getX() + m_width) < TheGame::Instance()->getGameWidth())
+        else if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT) && (m_position.getX() + m_width) < theGame::Instance()->getGameWidth())
         {
             m_velocity.setX(m_moveSpeed);
         }
         
-        if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+        if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
         {
             if(m_bulletCounter == m_bulletFiringSpeed)
             {
-                // TheSoundManager::Instance()->playSound("shoot", 0);
-                // TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet1", 1, Vector2D(10,0));
+                TheBulletHandler::Instance()->addPlayerBullet(m_position.getX() + 90, m_position.getY() + 12, 11, 11, "bullet1", 1, Vector2D(10,0));
                 m_bulletCounter = 0;
             }
             

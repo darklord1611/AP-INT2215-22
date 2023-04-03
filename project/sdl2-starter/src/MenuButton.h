@@ -3,11 +3,11 @@
 #ifndef __MenuButton__
 #define __MenuButton__
 
-#include "SDLGameObject.h"
+#include "ShooterObject.h"
 #include "LoaderParams.h"
 #include "InputHandler.h"
 
-class MenuButton : public SDLGameObject
+class MenuButton : public ShooterObject
 {
 private:
 	enum button_state

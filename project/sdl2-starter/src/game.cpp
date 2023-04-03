@@ -20,9 +20,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
     }
+    _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-    _GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
@@ -33,10 +33,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 void Game::render() 
 {
     SDL_RenderClear(g_renderer);
-    for(vector<GameObject*>::size_type i = 0; i < m_gameObjects.size();i++) 
-    {
-        m_gameObjects[i]->draw();
-    }
     g_gameStateMachine->render();
 
     SDL_RenderPresent(g_renderer);
@@ -44,10 +40,6 @@ void Game::render()
 
 void Game::update() 
 {
-    for(vector<GameObject*>::size_type i = 0; i < m_gameObjects.size();i++) 
-    {
-        m_gameObjects[i]->update();
-    }
     g_gameStateMachine->update();
 }
 

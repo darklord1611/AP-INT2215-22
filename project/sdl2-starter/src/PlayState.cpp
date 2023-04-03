@@ -12,22 +12,15 @@ void PlayState::update()
     {
         m_gameObjects[i]->update();
     }
-    for(int i = 1; i < m_gameObjects.size(); i++) 
-    {
-        if(checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[i]))) 
-        {
-            cout << "collision detected " << endl;
-            theGame::Instance()->getStateMachine()->pushState(new GameOverState()); 
-        }
-    }
 }
 
 void PlayState::render() 
 {
-    for(int i = 0; i < m_gameObjects.size();i++) 
-    {
-        m_gameObjects[i]->draw();
-    }
+    // for(int i = 0; i < TheGame::Instance()->getPlayerLives(); i++)
+    // {
+    //     _TextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, TheGame::Instance()->getRenderer(), 0.0, 255);
+    // }
+    TheBulletHandler::Instance()->drawBullets();
 }
 
 
@@ -46,28 +39,5 @@ bool PlayState::onExit()
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }
     cout << "exiting PlayState" << endl;
-    return true;
-}
-
-
-bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2) 
-{
-    int topA, bottomA, leftA, rightA;
-    int topB, bottomB, leftB, rightB;
-
-    leftA = p1->getPosition().getX();
-    rightA = p1->getPosition().getX() + p1->getWidth();
-    topA = p1->getPosition().getY();
-    bottomA = p1->getPosition().getY() + p1->getHeight();
-    
-    leftB = p2->getPosition().getX();
-    rightB = p2->getPosition().getX() + p2->getWidth();
-    topB = p2->getPosition().getY();
-    bottomB = p2->getPosition().getY() + p2->getHeight();
-
-    if(leftA >= rightB || rightA <= leftB || topA >= bottomB || bottomA <= topB) 
-    {
-        return false;
-    }
     return true;
 }
