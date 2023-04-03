@@ -8,7 +8,6 @@ class Level;
 class PlayState : public GameState 
 {
 private:
-    Level* pLevel;
     static const string s_playID;
     vector<GameObject*> m_gameObjects;
 public:

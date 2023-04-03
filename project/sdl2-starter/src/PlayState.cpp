@@ -8,32 +8,30 @@ void PlayState::update()
     {
         theGame::Instance()->getStateMachine()->pushState(new PauseState()); 
     }
-    pLevel->update();
-    // for(int i = 0; i < m_gameObjects.size();i++) 
-    // {
-    //     m_gameObjects[i]->update();
-    // }
-    // if(checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) 
-    // {
-    //     cout << "collision detected " << endl;
-    //     theGame::Instance()->getStateMachine()->pushState(new GameOverState()); 
-    // }
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        m_gameObjects[i]->update();
+    }
+    if(checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) 
+    {
+        cout << "collision detected " << endl;
+        theGame::Instance()->getStateMachine()->pushState(new GameOverState()); 
+    }
 }
 
 void PlayState::render() 
 {
-    // for(int i = 0; i < m_gameObjects.size();i++) 
-    // {
-    //     m_gameObjects[i]->draw();
-    // }
-    pLevel->render();
+    for(int i = 0; i < m_gameObjects.size();i++) 
+    {
+        m_gameObjects[i]->draw();
+    }
 }
 
 
 bool PlayState::onEnter() 
 {
-    LevelParser levelParser;
-    pLevel = levelParser.parseLevel("assets/map1.tmx");
+    StateParser stateParser; 
+    stateParser.parseState("test.xml", s_playID, &m_gameObjects, &m_textureIDList);
     cout << "entering PlayState" << endl;
     return true;
 }
