@@ -54,6 +54,6 @@ public:
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
 };
-typedef Game theGame;
+typedef Game TheGame;
 
 #endif /* defined(__Game__) */

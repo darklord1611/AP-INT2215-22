@@ -12,10 +12,13 @@ void PlayState::update()
     {
         m_gameObjects[i]->update();
     }
-    if(checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) 
+    for(int i = 1; i < m_gameObjects.size(); i++) 
     {
-        cout << "collision detected " << endl;
-        theGame::Instance()->getStateMachine()->pushState(new GameOverState()); 
+        if(checkCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]), dynamic_cast<SDLGameObject*>(m_gameObjects[i]))) 
+        {
+            cout << "collision detected " << endl;
+            theGame::Instance()->getStateMachine()->pushState(new GameOverState()); 
+        }
     }
 }
 
@@ -31,7 +34,7 @@ void PlayState::render()
 bool PlayState::onEnter() 
 {
     StateParser stateParser; 
-    stateParser.parseState("test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
     cout << "entering PlayState" << endl;
     return true;
 }

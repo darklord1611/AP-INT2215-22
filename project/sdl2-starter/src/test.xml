@@ -16,11 +16,13 @@
     <TEXTURES>
       <texture filename="assets/helicopter.png" ID="helicopter"></texture>
       <texture filename="assets/helicopter2.png" ID="helicopter2"></texture>
+      <texture filename="assets/helicopter2.png" ID="helicopter3"></texture>
     </TEXTURES>
 
     <OBJECTS>
       <object type="Player" x="500" y="100" width="128" height="55" textureID="helicopter" numFrames="4"/>
       <object type="Enemy" x="100" y="100" width="128" height="55" textureID="helicopter2" numFrames="4"/>
+      <object type="Enemy" x="200" y="200" width="128" height="55" textureID="helicopter3" numFrames="4"/>
     </OBJECTS>
   </PLAY>
 
