@@ -20,6 +20,7 @@
 #include "MainMenuState.h"
 #include "Glider.h"
 #include "BulletHandler.h"
+#include "ShotGlider.h"
 
 using namespace std;
 

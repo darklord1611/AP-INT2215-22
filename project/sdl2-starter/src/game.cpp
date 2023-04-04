@@ -21,6 +21,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         }
     }
     _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
+    _GameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
