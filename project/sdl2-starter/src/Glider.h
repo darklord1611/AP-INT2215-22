@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "GameObjectFactory.h"
-#include "BulletHandler.h"
 #include <math.h>
 #include "Enemy.h"
 
@@ -19,7 +18,7 @@ public:
         m_dyingTime = 25;
         m_health = 1;
         m_moveSpeed = 3;
-        m_gap = 60;
+        m_gap = 40;
     }
     virtual ~Glider() {}
     virtual void load(unique_ptr<LoaderParams> const &pParams)

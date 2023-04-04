@@ -36,9 +36,10 @@ public:
     void drawBullets();
     void clearBullets();
     
-    const std::vector<PlayerBullet*> getPlayerBullets() { return m_playerBullets; }
-    const std::vector<EnemyBullet*> getEnemyBullets() { return m_enemyBullets; }
+    const vector<PlayerBullet*> getPlayerBullets() { return m_playerBullets; }
+    const vector<EnemyBullet*> getEnemyBullets() { return m_enemyBullets; }
 };
 
 typedef BulletHandler TheBulletHandler;
+
 #endif

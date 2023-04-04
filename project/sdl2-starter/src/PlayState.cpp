@@ -83,6 +83,7 @@ bool PlayState::onEnter()
     _TextureManager::Instance()->load("assets/lives.png", "lives", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/smallexplosion.png", "smallexplosion", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/largeexplosion.png", "largeexplosion", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
     cout << "entering PlayState" << endl;
     return true;
 }
