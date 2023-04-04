@@ -10,14 +10,18 @@ class PlayerBullet : public ShooterObject
 private:
     Vector2D m_heading;
 public:
-    PlayerBullet() : ShooterObject(), m_bDying(5) {}
+    PlayerBullet() : ShooterObject() 
+    {
+        m_dyingTime = 5;
+    }
     virtual ~PlayerBullet() {}
     virtual string type() { return "PlayerBullet"; }
-    virtual void load(unique_ptr<LoaderParams> pParams, Vector2D heading)
+    virtual void loadBullet(unique_ptr<LoaderParams> const &pParams, Vector2D heading)
     {
         ShooterObject::load(move(pParams));
         m_heading = heading;
     }
+    virtual void load(unique_ptr<LoaderParams> const &pParams) {}
     virtual void draw() { ShooterObject::draw(); }
     virtual void collision()
     {

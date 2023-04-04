@@ -16,10 +16,9 @@ private:
 	MOUSE_OVER = 1,
 	CLICKED = 2
 	};
+
 	int m_callbackID;
-
 	void (*m_callback) ();
-
 	bool m_bReleased;
 public:
 	MenuButton();

@@ -2,7 +2,7 @@
 #include "Game.h"
 
 
-BulletHandler* BulletHandler::instance = new BulletHandler();
+BulletHandler* BulletHandler::instance = 0;
 
 BulletHandler::BulletHandler()
 {
@@ -11,7 +11,7 @@ BulletHandler::BulletHandler()
 void BulletHandler::addPlayerBullet(int x, int y, int width, int height, string textureID, int numFrames, Vector2D heading)
 {
     PlayerBullet* pPlayerBullet = new PlayerBullet();
-    pPlayerBullet->load(unique_ptr<LoaderParams>(new LoaderParams(x, y, width, height, textureID, numFrames)), heading);
+    pPlayerBullet->loadBullet(unique_ptr<LoaderParams>(new LoaderParams(x, y, width, height, textureID, numFrames)), heading);
     
     m_playerBullets.push_back(pPlayerBullet);
 }
@@ -19,7 +19,7 @@ void BulletHandler::addPlayerBullet(int x, int y, int width, int height, string 
 void BulletHandler::addEnemyBullet(int x, int y, int width, int height, string textureID, int numFrames, Vector2D heading)
 {
     EnemyBullet* pEnemyBullet = new EnemyBullet();
-    pEnemyBullet->load(unique_ptr<LoaderParams>(new LoaderParams(x, y, width, height, textureID, numFrames)), heading);
+    pEnemyBullet->loadBullet(unique_ptr<LoaderParams>(new LoaderParams(x, y, width, height, textureID, numFrames)), heading);
     
     m_enemyBullets.push_back(pEnemyBullet);
 }
@@ -35,8 +35,8 @@ void BulletHandler::updateBullets()
     for (vector<PlayerBullet*>::iterator p_it = m_playerBullets.begin(); p_it != m_playerBullets.end();)
     {
         // delete out-of-screen or dead bullets
-        if((*p_it)->getPosition().getX() < 0 || (*p_it)->getPosition().getX() > TheGame::Instance()->getGameWidth()
-           || (*p_it)->getPosition().getY() < 0 || (*p_it)->getPosition().getY() > TheGame::Instance()->getGameHeight() || (*p_it)->dead())
+        if((*p_it)->getPosition().getX() < 0 || (*p_it)->getPosition().getX() > theGame::Instance()->getGameWidth()
+           || (*p_it)->getPosition().getY() < 0 || (*p_it)->getPosition().getY() > theGame::Instance()->getGameHeight() || (*p_it)->dead())
         {
             delete * p_it;
             p_it = m_playerBullets.erase(p_it);
@@ -50,8 +50,8 @@ void BulletHandler::updateBullets()
     
     for (vector<EnemyBullet*>::iterator e_it = m_enemyBullets.begin(); e_it != m_enemyBullets.end();)
     {
-        if((*e_it)->getPosition().getX() < 0 || (*e_it)->getPosition().getX() > TheGame::Instance()->getGameWidth()
-           || (*e_it)->getPosition().getY() < 0 || (*e_it)->getPosition().getY() > TheGame::Instance()->getGameHeight() || (*e_it)->dead())
+        if((*e_it)->getPosition().getX() < 0 || (*e_it)->getPosition().getX() > theGame::Instance()->getGameWidth()
+           || (*e_it)->getPosition().getY() < 0 || (*e_it)->getPosition().getY() > theGame::Instance()->getGameHeight() || (*e_it)->dead())
         {
             delete * e_it;
             e_it = m_enemyBullets.erase(e_it);

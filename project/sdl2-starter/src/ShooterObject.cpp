@@ -31,12 +31,12 @@ void ShooterObject::update()
 {
     // m_velocity += m_acceleration;
     m_position += m_velocity;
-    m_currentFrame = int(((SDL_GetTicks() / (1000 / 3)) % m_numFrames));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 }
 
 void ShooterObject::doDyingAnimation()
 {
-    m_currentFrame = int(((SDL_GetTicks() / (1000/ 10)) % m_numFrames));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
     
     if(m_dyingCounter == m_dyingTime)
     {

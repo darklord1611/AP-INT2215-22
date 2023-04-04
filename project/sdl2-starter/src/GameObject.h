@@ -4,6 +4,7 @@
 
 #include "LoaderParams.h"
 #include "StateParser.h"
+#include "Vector2D.h"
 #include "GameObjectFactory.h"
 #include<SDL2/SDL.h>
 #include<SDL2_image/SDL_image.h>
@@ -19,7 +20,6 @@ protected:
     // movement variables
     Vector2D m_position;
     Vector2D m_velocity;
-    Vector2D m_acceleration;
     
     // size variables
     int m_width;
@@ -39,8 +39,8 @@ protected:
     // blending
     int m_alpha;
 
-    GameObject() : m_position(0,0), m_velocity(0,0), m_acceleration(0,0), m_width(0), m_height(0),
-    m_currentRow(0), m_currentFrame(0), m_numFrames(0), m_bUpdating(false), m_bDead(false), m_bDying(false), m_alpha(255)
+    GameObject() : m_position(0,0), m_velocity(0,0), m_width(0), m_height(0),
+    m_currentRow(0), m_currentFrame(0), m_numFrames(0), m_bUpdating(true), m_bDead(false), m_bDying(false), m_alpha(255)
     { }
 public:
     virtual ~GameObject() {}
@@ -48,6 +48,7 @@ public:
     virtual void update() = 0;
     virtual void clean() = 0;
     virtual void load(unique_ptr<LoaderParams> const &pParams) = 0;
+    virtual void loadBullet(unique_ptr<LoaderParams> const &pParams, Vector2D heading) = 0;
     virtual void collision() = 0;
     virtual string type() = 0;
 

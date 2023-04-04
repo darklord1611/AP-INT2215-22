@@ -1,7 +1,9 @@
+#ifndef __Glider__
+#define __Glider__
+
 #include <iostream>
 #include "GameObjectFactory.h"
 #include "BulletHandler.h"
-#include "SoundManager.h"
 #include <math.h>
 #include "Enemy.h"
 
@@ -60,7 +62,7 @@ public:
         {
             m_velocity.setX(0);
             m_velocity.setY(0);
-            // doDyingAnimation();
+            doDyingAnimation();
         }
         ShooterObject::update();
     }
@@ -73,3 +75,5 @@ class GliderCreator : public BaseCreator
         return new Glider();
     }
 };
+
+#endif 

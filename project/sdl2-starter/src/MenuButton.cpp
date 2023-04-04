@@ -3,8 +3,7 @@
 
 MenuButton::MenuButton() : ShooterObject() 
 {
-    m_callback = 0;
-    m_bReleased = true;
+    
 }
 
 void MenuButton::load(unique_ptr<LoaderParams> const &pParams)
@@ -28,10 +27,7 @@ void MenuButton::update()
         if(_InputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased) 
         {
             m_currentFrame = CLICKED;
-            if(m_callback != 0) 
-            {
-                m_callback();
-            }
+            m_callback();
             m_bReleased = false;
         } 
         else if(!_InputHandler::Instance()->getMouseButtonState(LEFT)) 

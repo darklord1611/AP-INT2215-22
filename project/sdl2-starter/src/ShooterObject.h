@@ -18,11 +18,12 @@ protected:
     int m_dyingCounter;
 
 public:
+    virtual ~ShooterObject() {}
     virtual void clean() {}
     virtual void collision() {}
     virtual void load(unique_ptr<LoaderParams> const &pParams);
+    virtual void loadBullet(unique_ptr<LoaderParams> const &pParams, Vector2D heading) {}
     virtual void draw(); 
     virtual void update(); 
-    virtual void clean(); 
     virtual string type() { return "SDLGameObject"; }
 };

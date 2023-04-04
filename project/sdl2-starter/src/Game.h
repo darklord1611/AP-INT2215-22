@@ -6,7 +6,7 @@
 #include<vector>
 
 #include "Player.h"
-#include "Enemy.h"
+#include "GameObject.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "TextureManager.h"
@@ -18,14 +18,15 @@
 #include "AnimatedGraphic.h"
 #include "GameObjectFactory.h"
 #include "MainMenuState.h"
-#include "Gilder.h"
+#include "Glider.h"
+#include "BulletHandler.h"
 
 using namespace std;
 
 class Game
 {
 private:
-    Game();
+    Game() {}
     ~Game();
     int m_playerLives;
     static Game* instance;
@@ -55,6 +56,8 @@ public:
     GameStateMachine* getStateMachine() { return g_gameStateMachine; }
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
+    void setPlayerLives() { m_playerLives = 3; }
+    int getPlayerLives() { return m_playerLives; }
 };
 typedef Game theGame;
 

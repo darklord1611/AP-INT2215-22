@@ -1,17 +1,19 @@
 #include "Player.h"
 #include "InputHandler.h"
+#include "BulletHandler.h"
+#include "Game.h"
 
-Player::Player() : SDLGameObject() 
+Player::Player() : ShooterObject() 
 {
     m_invulnerable = false;
     m_invulnerableTime = 200;
     m_invulnerableCounter = 0;
 }
 
-void Player::load(const LoaderParams* pParams)
+void Player::load(unique_ptr<LoaderParams> const &pParams)
 {
     // inherited load function
-    ShooterObject::load(std::move(pParams));
+    ShooterObject::load(move(pParams));
     
     // can set up the players inherited values here
     
@@ -29,7 +31,7 @@ void Player::load(const LoaderParams* pParams)
 
 void Player::draw() 
 { 
-    ShooterObject::draw(); 
+    _TextureManager::Instance()->drawFrame(m_textureID, (int) m_position.getX(), (int) m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, theGame::Instance()->getRenderer(), SDL_FLIP_HORIZONTAL);
 }
 
 void Player::update() 
@@ -61,30 +63,30 @@ void Player::update()
 
 void Player::handleAnimation() 
 {
-    // if the player is invulnerable we can flash its alpha to let people know
-    if(m_invulnerable)
-    {
-        // invulnerability is finished, set values back
-        if(m_invulnerableCounter == m_invulnerableTime)
-        {
-            m_invulnerable = false;
-            m_invulnerableCounter = 0;
-            m_alpha = 255;
-        }
-        else // otherwise, flash the alpha on and off
-        {
-            if(m_alpha == 255)
-            {
-                m_alpha = 0;
-            }
-            else
-            {
-                m_alpha = 255;
-            }
-        }
-        // increment our counter
-        m_invulnerableCounter++;
-    }
+    // // if the player is invulnerable we can flash its alpha to let people know
+    // if(m_invulnerable)
+    // {
+    //     // invulnerability is finished, set values back
+    //     if(m_invulnerableCounter == m_invulnerableTime)
+    //     {
+    //         m_invulnerable = false;
+    //         m_invulnerableCounter = 0;
+    //         m_alpha = 255;
+    //     }
+    //     else // otherwise, flash the alpha on and off
+    //     {
+    //         if(m_alpha == 255)
+    //         {
+    //             m_alpha = 0;
+    //         }
+    //         else
+    //         {
+    //             m_alpha = 255;
+    //         }
+    //     }
+    //     // increment our counter
+    //     m_invulnerableCounter++;
+    // }
     m_currentFrame = int(((SDL_GetTicks() / (100)) % m_numFrames));
 }
 
@@ -150,4 +152,14 @@ void Player::handleInput()
 void Player::clean() 
 {
     ShooterObject::clean();
+}
+
+void Player::collision()
+{
+        m_textureID = "largeexplosion";
+        m_currentFrame = 0;
+        m_numFrames = 9;
+        m_width = 60;
+        m_height = 60;
+        m_bDying = true;
 }
