@@ -14,15 +14,13 @@
 
   <PLAY>
     <TEXTURES>
-      <texture filename="assets/helicopter.png" ID="helicopter"></texture>
-      <texture filename="assets/helicopter2.png" ID="helicopter2"></texture>
-      <texture filename="assets/helicopter2.png" ID="helicopter3"></texture>
+      <texture filename="assets/helicopter.png" ID="player"></texture>
+      <texture filename="assets/enemy1.png" ID="glider"></texture>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="Player" x="500" y="100" width="128" height="55" textureID="helicopter" numFrames="4"/>
-      <object type="Enemy" x="100" y="100" width="128" height="55" textureID="helicopter2" numFrames="4"/>
-      <object type="Enemy" x="200" y="200" width="128" height="55" textureID="helicopter3" numFrames="4"/>
+      <object type="Glider" x="500" y="100" width="50" height="50" textureID="glider" numFrames="0"/>
+      <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
     </OBJECTS>
   </PLAY>
 

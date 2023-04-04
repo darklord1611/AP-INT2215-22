@@ -16,13 +16,14 @@ private:
 	MOUSE_OVER = 1,
 	CLICKED = 2
 	};
+	int m_callbackID;
 
 	void (*m_callback) ();
 
 	bool m_bReleased;
 public:
 	MenuButton();
-	virtual void load(const LoaderParams* pParams);
+	virtual void load(unique_ptr<LoaderParams> const &pParams);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();

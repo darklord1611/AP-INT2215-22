@@ -54,3 +54,8 @@ void TextureManager::clearFromTextureMap(string id)
 {
     g_textureMap.erase(id);
 }
+
+void TextureManager::clearTextureMap() 
+{
+    g_textureMap.clear();
+}

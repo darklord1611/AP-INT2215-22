@@ -44,6 +44,12 @@ bool GameOverState::onEnter()
 
 bool GameOverState::onExit() 
 {
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+        m_gameObjects[i]->clean();
+        delete m_gameObjects[i];
+    }
+    m_gameObjects.clear();
     for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);

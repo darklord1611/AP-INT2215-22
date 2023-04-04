@@ -14,6 +14,7 @@ public:
     void popState();
     void update();
     void render();
+    // void clean();
 };
 
 #endif // define __GameStateMachine__

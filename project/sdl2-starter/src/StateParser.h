@@ -6,7 +6,7 @@
 #include <string>
 #include "tinyxml.h"
 #include "GameObject.h"
-
+#include <memory>
 
 using namespace std;
 

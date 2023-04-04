@@ -34,6 +34,12 @@ bool MainMenuState::onEnter()
 
 bool MainMenuState::onExit() 
 {
+    // if(!m_gameObjects.empty())
+    // {
+	// 	m_gameObjects.back()->clean();
+	// 	m_gameObjects.pop_back();
+    // }
+	// m_gameObjects.clear();
     for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
