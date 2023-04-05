@@ -1,5 +1,5 @@
 #include<iostream>
-#include "Game.h" // our Game object
+#include "Game.h"
 
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
@@ -7,7 +7,7 @@ const int DELAY_TIME = 1000.0f / FPS;
 int main(int argc, char* argv[]) 
 {
     Uint32 frameStart, frameTime;
-    theGame::Instance()->init("SDL Create Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL); 
+    theGame::Instance()->init("Alien Attack", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL); 
     while(theGame::Instance()->running()) 
     {
         frameStart = SDL_GetTicks();

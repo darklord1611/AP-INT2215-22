@@ -39,10 +39,10 @@ void PlayState::update()
     {
         if(m_gameObjects[i]->type() == "Player") 
         {
-        // if(checkPlayerEnemyBulletCollision(dynamic_cast<Player*>(m_gameObjects[i]))) 
-        // {
-        //     cout << "collision detected " << endl;
-        // }
+            if(checkPlayerEnemyBulletCollision(dynamic_cast<Player*>(m_gameObjects[i]))) 
+            {
+                theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+            }
             if(checkPlayerEnemyCollision(dynamic_cast<Player*>(m_gameObjects[i]), m_gameObjects)) 
             {
                 theGame::Instance()->getStateMachine()->changeState(new GameOverState()); 
