@@ -4,7 +4,7 @@
 #include<SDL2_image/SDL_image.h>
 #include<iostream>
 #include<vector>
-
+#include<fstream>
 #include "Player.h"
 #include "GameObject.h"
 #include "InputHandler.h"
@@ -21,6 +21,7 @@
 #include "Glider.h"
 #include "BulletHandler.h"
 #include "ShotGlider.h"
+#include "Eskeletor.h"
 #include "ScrollingBackground.h"
 
 using namespace std;
@@ -38,6 +39,7 @@ private:
     bool isRunning;
     GameStateMachine* g_gameStateMachine;
     int m_gameHeight;
+    double m_scrollSpeed;
     int m_gameWidth;
 public:
     static Game* Instance() 
@@ -63,6 +65,7 @@ public:
     //void setScore(int score) { m_Score = score; }
     int getScore() { return m_Score; }
     int getPlayerLives() { return m_playerLives; }
+    double getScrollSpeed() { return m_scrollSpeed; }
 };
 typedef Game theGame;
 

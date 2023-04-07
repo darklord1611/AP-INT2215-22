@@ -44,13 +44,16 @@ void PlayState::update()
         if(m_gameObjects[i]->type() == "Player") 
         {
             Player* player = dynamic_cast<Player*>(m_gameObjects[i]);
-            if(checkPlayerEnemyBulletCollision(player) && player->isSafe()) 
+            if(player->isSafe() == false)
             {
-                theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
-            }
-            if(checkPlayerEnemyCollision(player, m_gameObjects) && player->isSafe()) 
-            {
-                theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
+                if(checkPlayerEnemyBulletCollision(player)) 
+                {
+                    theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
+                }
+                if(checkPlayerEnemyCollision(player, m_gameObjects)) 
+                {
+                    theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
+                }
             }
         }
         if(m_gameObjects[i]->type() == "Enemy") 

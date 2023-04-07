@@ -52,6 +52,13 @@ public:
     virtual void collision() = 0;
     virtual string type() = 0;
 
+    void scroll(float scrollSpeed)
+    {
+        if(type() != "Player") // player is never scrolled
+        {
+            m_position.setX(m_position.getX() - scrollSpeed);
+        }
+    }
     // getter functions for some variable
     Vector2D& getPosition() { return m_position; }
     Vector2D& getVelocity() { return m_velocity; }

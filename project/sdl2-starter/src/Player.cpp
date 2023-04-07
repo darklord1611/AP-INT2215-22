@@ -25,7 +25,7 @@ void Player::load(unique_ptr<LoaderParams> const &pParams)
     m_bulletCounter = m_bulletFiringSpeed;
     
     // time it takes for death explosion
-    m_dyingTime = 100;
+    m_dyingTime = 50;
 
 }
 
@@ -52,12 +52,13 @@ void Player::update()
         {
             m_currentFrame = int(((SDL_GetTicks() / (100)) % m_numFrames));
             // if the death animation has completed
-            if(m_dyingCounter == m_dyingTime)
-            {
-                // ressurect the player
-                ressurect();
-            }
-            m_dyingCounter++;
+            ressurect();
+            // if(m_dyingCounter == m_dyingTime)
+            // {
+            //     // ressurect the player
+            //     ressurect();
+            // }
+            // m_dyingCounter++;
         }
 }
 

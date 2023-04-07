@@ -4,6 +4,7 @@ Game* Game::instance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
+    m_scrollSpeed = 0.8;
     m_Score = 0;
     m_gameHeight = height;
     m_gameWidth = width;
@@ -22,6 +23,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         }
     }
     _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
+    _GameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     _GameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
@@ -74,3 +76,18 @@ Game::~Game()
     g_renderer = 0;
     g_window = 0;
 }
+
+
+// void Game::displayHighScore() 
+// {
+//     ifstream file("highscore.txt");
+//     if(file.is_open()) 
+//     {
+//         int value;
+//         file >> value;
+//         m_Score = value;
+//         file.close();
+//     } else return;
+//     _TextureManager::Instance()->loadFont(to_string(m_Score), "highscore", g_renderer);
+//     _TextureManager::Instance()->draw("highscore", m_gameWidth - 50, 0, 50, 50, g_renderer);
+// }

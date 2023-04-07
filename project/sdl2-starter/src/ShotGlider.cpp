@@ -28,6 +28,8 @@ void ShotGlider::update()
     {
         m_velocity.setX(0);
         doDyingAnimation();
+        m_position.setX(-1000);
+        m_position.setY(-1000);
     }
     ShooterObject::update();
 }
