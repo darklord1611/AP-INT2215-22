@@ -7,10 +7,12 @@
 class Enemy: public ShooterObject 
 {
 protected:
+    int m_score;
     int m_health;
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}
 public:
+    int getScore() { return m_score; }
     virtual string type() { return "Enemy"; }
 };
 

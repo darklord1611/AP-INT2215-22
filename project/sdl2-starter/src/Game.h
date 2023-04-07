@@ -21,6 +21,7 @@
 #include "Glider.h"
 #include "BulletHandler.h"
 #include "ShotGlider.h"
+#include "ScrollingBackground.h"
 
 using namespace std;
 
@@ -30,6 +31,7 @@ private:
     Game() {}
     ~Game();
     int m_playerLives;
+    int m_Score;
     static Game* instance;
     SDL_Window* g_window;
     SDL_Renderer* g_renderer;
@@ -57,7 +59,9 @@ public:
     GameStateMachine* getStateMachine() { return g_gameStateMachine; }
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
-    void setPlayerLives() { m_playerLives = 3; }
+    void setPlayerLives(int lives) { m_playerLives = lives; }
+    //void setScore(int score) { m_Score = score; }
+    int getScore() { return m_Score; }
     int getPlayerLives() { return m_playerLives; }
 };
 typedef Game theGame;

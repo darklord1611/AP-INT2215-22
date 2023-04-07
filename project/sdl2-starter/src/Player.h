@@ -17,7 +17,7 @@ private:
     void handleAnimation();
 
     // player can be invulnerable for a time
-    int m_invulnerable;
+    bool m_invulnerable;
     int m_invulnerableTime;
     int m_invulnerableCounter;
 public:
@@ -29,7 +29,7 @@ public:
     virtual void clean();
     virtual void collision();
     virtual string type() { return "Player"; }
-
+    bool isSafe() { return m_invulnerable; }
 };
 
 class PlayerCreator : public BaseCreator 

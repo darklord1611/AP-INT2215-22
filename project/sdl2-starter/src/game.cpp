@@ -4,6 +4,7 @@ Game* Game::instance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
+    m_Score = 0;
     m_gameHeight = height;
     m_gameWidth = width;
     if (SDL_Init(SDL_INIT_EVERYTHING) > 0) 
@@ -25,7 +26,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
-    
+    _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
     return true;

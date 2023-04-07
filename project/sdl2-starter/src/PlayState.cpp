@@ -34,18 +34,23 @@ void PlayState::update()
     {
         theGame::Instance()->getStateMachine()->pushState(new PauseState()); 
     }
+    if(theGame::Instance()->getPlayerLives() == 0)
+    {
+        theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+    }
     TheBulletHandler::Instance()->updateBullets();
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         if(m_gameObjects[i]->type() == "Player") 
         {
-            if(checkPlayerEnemyBulletCollision(dynamic_cast<Player*>(m_gameObjects[i]))) 
+            Player* player = dynamic_cast<Player*>(m_gameObjects[i]);
+            if(checkPlayerEnemyBulletCollision(player) && player->isSafe()) 
             {
-                theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+                theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
             }
-            if(checkPlayerEnemyCollision(dynamic_cast<Player*>(m_gameObjects[i]), m_gameObjects)) 
+            if(checkPlayerEnemyCollision(player, m_gameObjects) && player->isSafe()) 
             {
-                theGame::Instance()->getStateMachine()->changeState(new GameOverState()); 
+                theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
             }
         }
         if(m_gameObjects[i]->type() == "Enemy") 
@@ -59,17 +64,16 @@ void PlayState::update()
 
 void PlayState::render() 
 {
-    theGame::Instance()->setPlayerLives();
-
-    for(int i = 0; i < theGame::Instance()->getPlayerLives(); i++)
-    {
-        _TextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, theGame::Instance()->getRenderer());
-    }
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->draw();
     }
     TheBulletHandler::Instance()->drawBullets();
+
+    for(int i = 0; i < theGame::Instance()->getPlayerLives(); i++)
+    {
+        _TextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, theGame::Instance()->getRenderer());
+    }
 }
 
 
@@ -84,6 +88,7 @@ bool PlayState::onEnter()
     _TextureManager::Instance()->load("assets/smallexplosion.png", "smallexplosion", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/largeexplosion.png", "largeexplosion", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
+    theGame::Instance()->setPlayerLives(3);
     cout << "entering PlayState" << endl;
     return true;
 }

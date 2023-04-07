@@ -2,6 +2,7 @@
 
 ShotGlider::ShotGlider() : Glider()
 {
+    m_score = 20;
     m_bulletFiringSpeed = 15;
     m_moveSpeed = 3;
 }

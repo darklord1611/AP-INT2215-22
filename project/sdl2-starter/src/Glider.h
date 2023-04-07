@@ -15,6 +15,7 @@ private:
 public:
     Glider() : Enemy()
     {
+        m_score = 10;
         m_dyingTime = 25;
         m_health = 1;
         m_moveSpeed = 3;
