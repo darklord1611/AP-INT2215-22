@@ -27,12 +27,12 @@ void Eskeletor::update()
 {
     if(!m_bDying)
     {
-        scroll(theGame::Instance()->getScrollSpeed());
+        scroll(theGame::Instance()->getScrollSpeed() - 0.5);
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
-            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, 5));
-            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, 0));
-            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, -5));
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-1 * (rand() % 5 + 1), rand() % 10 - 5));
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-1 * (rand() % 5 + 1), rand() % 10 - 5));
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-1 * (rand() % 5 + 1), rand() % 10 - 5));
             m_bulletCounter = 0;
         }
         m_bulletCounter++;

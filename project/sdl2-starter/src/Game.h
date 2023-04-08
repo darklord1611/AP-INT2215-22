@@ -4,6 +4,7 @@
 #include<SDL2_image/SDL_image.h>
 #include<iostream>
 #include<vector>
+#include<cstdlib>
 #include<fstream>
 #include "Player.h"
 #include "GameObject.h"
