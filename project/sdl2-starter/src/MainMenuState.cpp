@@ -26,7 +26,6 @@ bool MainMenuState::onEnter()
     m_callbacks.push_back(0);
     m_callbacks.push_back(s_menuToPlay);
     m_callbacks.push_back(s_exitFromMenu);
-    // theGame::Instance()->displayHighScore();
     // set the callbacks for menu items
     setCallbacks(m_callbacks);
     cout << "entering MenuState" << endl;

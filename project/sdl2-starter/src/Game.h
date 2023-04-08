@@ -25,6 +25,7 @@
 #include "Eskeletor.h"
 #include "Turret.h"
 #include "RoofTurret.h"
+#include "Boss.h"
 #include "ScrollingBackground.h"
 
 using namespace std;
@@ -62,12 +63,17 @@ public:
     bool running() { return isRunning; }
     SDL_Renderer* getRenderer() { return g_renderer; }
     GameStateMachine* getStateMachine() { return g_gameStateMachine; }
+
+    // setter and getter
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
     void setPlayerLives(int lives) { m_playerLives = lives; }
-    //void setScore(int score) { m_Score = score; }
-    int getScore() { return m_Score; }
+    // int getScore() { return m_Score; }
+    void setScore(int score) { m_Score = score; }
     int getPlayerLives() { return m_playerLives; }
+    void upgradeCurrentScore(int score);
+    void loadHighScore();
+    void compareScore();
     double getScrollSpeed() { return m_scrollSpeed; }
 };
 typedef Game theGame;

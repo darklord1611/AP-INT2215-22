@@ -2,7 +2,7 @@
 
 Eskeletor::Eskeletor() : Enemy() 
 {
-    m_velocity.setY(3);
+    m_score = 30;
     m_dyingTime = 50;
     m_health = 3;
     m_moveSpeed = 3;

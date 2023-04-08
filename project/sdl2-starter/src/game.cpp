@@ -27,11 +27,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
     _GameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     _GameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
+    _GameObjectFactory::Instance()->registerType("Boss", new BossCreator());
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
 
+    theGame::Instance()->loadHighScore();
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
     return true;
@@ -81,16 +83,59 @@ Game::~Game()
 }
 
 
-// void Game::displayHighScore() 
-// {
-//     ifstream file("highscore.txt");
-//     if(file.is_open()) 
-//     {
-//         int value;
-//         file >> value;
-//         m_Score = value;
-//         file.close();
-//     } else return;
-//     _TextureManager::Instance()->loadFont(to_string(m_Score), "highscore", g_renderer);
-//     _TextureManager::Instance()->draw("highscore", m_gameWidth - 50, 0, 50, 50, g_renderer);
-// }
+void Game::loadHighScore() 
+{
+    string fileName = "assets/highscore.txt";
+    int value;
+    ifstream file(fileName.c_str());
+    if(file) 
+    {
+        file >> value;
+        file.close();
+    } else 
+    {
+        cout << "cant open file" << endl;
+        return;
+    }
+    if(!_TextureManager::Instance()->loadFont(to_string(value), "highscore", g_renderer, {255, 0, 0})) 
+    {
+        cout << "something wrong" << endl;
+        return;
+    }
+}
+
+void Game::upgradeCurrentScore(int score) 
+{
+    m_Score += score;
+    _TextureManager::Instance()->clearFromTextureMap("current_score");
+    _TextureManager::Instance()->loadFont(to_string(m_Score), "current_score", g_renderer);
+}
+
+void Game::compareScore() 
+{
+    string fileName = "assets/highscore.txt";
+    int highScore;
+    ifstream file(fileName.c_str());
+    if(file) 
+    {
+        file >> highScore;
+        file.close();
+    } else 
+    {
+        cout << "cant open file" << endl;
+        return;
+    }
+    if(m_Score > highScore) 
+    {
+        ofstream file(fileName.c_str());
+        if(file) 
+        {
+            file << m_Score;
+            file.close();
+        } else 
+        {
+            cout << "cant open file" << endl;
+            return;
+        }
+    }
+}

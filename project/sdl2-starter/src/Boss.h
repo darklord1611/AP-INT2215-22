@@ -1,6 +1,8 @@
 #ifndef __Boss__
 #define __Boss__
 
+#include "Game.h"
+
 class Boss : public Enemy 
 {
 private:
@@ -8,8 +10,17 @@ private:
 public:
     virtual ~Boss() {}
     Boss();
+    virtual void load(unique_ptr<LoaderParams> const &pParams);
     virtual void collision();
     virtual void update();
-    virtual void 
 };
+
+class BossCreator : public BaseCreator
+{
+    GameObject* createGameObject() const
+    {
+        return new Boss();
+    }
+};
+
 #endif 

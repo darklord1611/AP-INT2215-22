@@ -27,7 +27,7 @@ public:
         }
         
     bool load(string fileName, string id, SDL_Renderer* g_renderer);
-    // bool loadFont(string message, string id, SDL_Renderer* g_renderer);
+    bool loadFont(string message, string id, SDL_Renderer* g_renderer, SDL_Color textColor = {255, 255, 255});
     void draw(string id, int x, int y, int width, int height, SDL_Renderer* g_renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void drawFrame(string id, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* g_renderer, int alpha = 255, SDL_RendererFlip flip = SDL_FLIP_NONE);
     map<string, SDL_Texture*> g_textureMap;

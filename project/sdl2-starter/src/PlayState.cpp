@@ -77,6 +77,9 @@ void PlayState::render()
     {
         _TextureManager::Instance()->drawFrame("lives", i * 30, 0, 32, 30, 0, 0, theGame::Instance()->getRenderer());
     }
+
+    _TextureManager::Instance()->draw("highscore",theGame::Instance()->getGameWidth() - 100, 0, 100, 25, theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->draw("current_score",theGame::Instance()->getGameWidth() - 100, 25, 100, 25, theGame::Instance()->getRenderer());
 }
 
 
@@ -107,6 +110,8 @@ bool PlayState::onExit()
         m_gameObjects[i]->clean();
     }
     m_gameObjects.clear();
+    theGame::Instance()->setScore(0);
+    theGame::Instance()->compareScore();
     TheBulletHandler::Instance()->clearBullets();
     cout << "exiting PlayState" << endl;
     return true;
@@ -179,6 +184,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
                 {
                     pPlayerBullet->collision();
                     pObject->collision();
+                    theGame::Instance()->upgradeCurrentScore(dynamic_cast<Enemy*>(pObject)->getScore());
                 }
             }
             delete pRect1;
