@@ -19,12 +19,16 @@
       <texture filename="assets/enemy2.png" ID="shotglider"></texture>
       <texture filename="assets/clouds.png" ID="background"></texture>
       <texture filename="assets/enemy3.png" ID="eskeletor"></texture>
+      <texture filename="assets/turret.png" ID="turret"></texture>
     </TEXTURES>
 
     <OBJECTS>
       <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
        <object type="Glider" x="700" y="100" width="50" height="50" textureID="glider" numFrames="1"/>
+       <object type="ShotGlider" x="1000" y="250" width="50" height="50" textureID="shotglider" numFrames="1"/>
        <object type="Glider" x="1500" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
+       <object type="RoofTurret" x="1500" y="100" width="50" height="50" textureID="turret" numFrames="1"/>
+       <object type="Turret" x="1500" y="500" width="50" height="50" textureID="turret" numFrames="1"/>
        <object type="Eskeletor" x="500" y="250" width="100" height="50" textureID="eskeletor" numFrames="1"/>
        <object type="Glider" x="2500" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
       <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>

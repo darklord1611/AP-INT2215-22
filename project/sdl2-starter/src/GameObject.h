@@ -52,7 +52,7 @@ public:
     virtual void collision() = 0;
     virtual string type() = 0;
 
-    void scroll(float scrollSpeed)
+    void scroll(double scrollSpeed)
     {
         if(type() != "Player") // player is never scrolled
         {

@@ -2,13 +2,13 @@
 #define __ShotGlider__
 
 #include "Glider.h"
-#include "BulletHandler.h"
+#include "Game.h"
 
 class ShotGlider : public Glider
 {
 public:
-    virtual ~ShotGlider() {}
     ShotGlider();
+    virtual ~ShotGlider() {}
     virtual void load(unique_ptr<LoaderParams> const &pParams);
     virtual void update();
 };

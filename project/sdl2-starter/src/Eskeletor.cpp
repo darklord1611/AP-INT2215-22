@@ -28,14 +28,6 @@ void Eskeletor::update()
     if(!m_bDying)
     {
         scroll(theGame::Instance()->getScrollSpeed());
-        if(m_position.getY() >= theGame::Instance()->getGameWidth()) 
-        {
-            m_velocity.setY(-m_moveSpeed);
-        } else if(m_position.getY() <= 0) 
-        {
-            m_velocity.setY(m_moveSpeed);
-        }
-        
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-3, 5));
@@ -49,6 +41,7 @@ void Eskeletor::update()
     else
     {
         m_velocity.setY(0);
+        scroll(theGame::Instance()->getScrollSpeed());
         doDyingAnimation();
     }
     ShooterObject::update();

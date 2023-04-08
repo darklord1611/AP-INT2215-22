@@ -22,6 +22,8 @@
 #include "BulletHandler.h"
 #include "ShotGlider.h"
 #include "Eskeletor.h"
+#include "Turret.h"
+#include "RoofTurret.h"
 #include "ScrollingBackground.h"
 
 using namespace std;

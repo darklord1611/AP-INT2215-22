@@ -7,7 +7,7 @@ const int DELAY_TIME = 1000.0f / FPS;
 int main(int argc, char* argv[]) 
 {
     Uint32 frameStart, frameTime;
-    theGame::Instance()->init("Alien Attack", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL); 
+    theGame::Instance()->init("Alien Attack", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL); 
     while(theGame::Instance()->running()) 
     {
         frameStart = SDL_GetTicks();

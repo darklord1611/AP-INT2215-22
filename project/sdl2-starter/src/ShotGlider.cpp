@@ -27,9 +27,8 @@ void ShotGlider::update()
     else
     {
         m_velocity.setX(0);
+        scroll(theGame::Instance()->getScrollSpeed());
         doDyingAnimation();
-        m_position.setX(-1000);
-        m_position.setY(-1000);
     }
     ShooterObject::update();
 }

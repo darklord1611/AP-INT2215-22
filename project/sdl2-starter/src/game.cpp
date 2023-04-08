@@ -23,12 +23,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         }
     }
     _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
+    _GameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
+    _GameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());
     _GameObjectFactory::Instance()->registerType("Eskeletor", new EskeletorCreator());
     _GameObjectFactory::Instance()->registerType("ShotGlider", new ShotGliderCreator());
     _GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
+
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
     return true;
