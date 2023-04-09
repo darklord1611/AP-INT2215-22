@@ -1,4 +1,10 @@
 #include "GameOverState.h"
+#include "MainMenuState.h"
+#include "PlayState.h"
+#include "TextureManager.h"
+#include "StateParser.h"
+#include "Game.h"
+#include "MenuButton.h"
 
 const string GameOverState::s_gameOverID = "GAMEOVER";
 

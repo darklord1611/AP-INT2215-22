@@ -1,4 +1,9 @@
 #include "PauseState.h"
+#include "Game.h"
+#include "MainMenuState.h"
+#include "StateParser.h"
+#include "TextureManager.h"
+#include "MenuButton.h"
 
 const string PauseState::s_pauseID = "PAUSE";
 

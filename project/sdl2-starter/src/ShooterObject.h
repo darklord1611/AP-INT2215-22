@@ -1,7 +1,7 @@
-#pragma once
-#include "Vector2D.h"
+#ifndef __ShooterObject__
+#define __ShooterObject__
+
 #include "GameObject.h"
-#include "GameObjectFactory.h"
 
 class ShooterObject : public GameObject 
 {
@@ -17,6 +17,8 @@ protected:
     int m_dyingTime;
     int m_dyingCounter;
 
+    bool m_bPlayedDeathSound;
+
 public:
     virtual ~ShooterObject() {}
     virtual void clean() {}
@@ -27,3 +29,5 @@ public:
     virtual void update(); 
     virtual string type() { return "SDLGameObject"; }
 };
+
+#endif

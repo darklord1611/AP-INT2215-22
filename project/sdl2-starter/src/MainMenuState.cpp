@@ -1,5 +1,9 @@
 #include "MainMenuState.h"
-
+#include "Game.h"
+#include "StateParser.h"
+#include "TextureManager.h"
+#include "PlayState.h"
+#include "MenuButton.h"
 
 const string MainMenuState::s_menuID = "MENU";
 

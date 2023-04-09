@@ -1,4 +1,7 @@
 #include "Turret.h"
+#include "SoundManager.h"
+#include "Game.h"
+#include "BulletHandler.h"
 
 Turret::Turret() 
 {
@@ -13,12 +16,16 @@ void Turret::collision()
     m_health -= 1;
     if(m_health == 0)
     {
-        m_textureID = "largeexplosion";
-        m_currentFrame = 0;
-        m_numFrames = 9;
-        m_width = 60;
-        m_height = 60;
-        m_bDying = true;
+        if(!m_bPlayedDeathSound) 
+        {
+            TheSoundManager::Instance()->playSound("explode", 0);
+            m_textureID = "largeexplosion";
+            m_currentFrame = 0;
+            m_numFrames = 9;
+            m_width = 60;
+            m_height = 60;
+            m_bDying = true;
+        }
     }
 }
 

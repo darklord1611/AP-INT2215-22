@@ -1,13 +1,8 @@
-
-
 #ifndef __GameObjectFactory__
 #define __GameObjectFactory__
 
-#include <string>
 #include <map>
 #include "GameObject.h"
-
-class GameObject;
 
 using namespace std;
 

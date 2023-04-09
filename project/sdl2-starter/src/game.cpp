@@ -1,4 +1,26 @@
 #include "Game.h"
+#include "MainMenuState.h"
+// inputs
+#include "GameObjectFactory.h"
+#include "SoundManager.h"
+#include "TextureManager.h"
+#include "InputHandler.h"
+// objects
+#include "ScrollingBackground.h"
+#include "AnimatedGraphic.h"
+#include "MenuButton.h"
+#include "Player.h"
+#include "Glider.h"
+#include "Turret.h"
+#include "ShotGlider.h"
+#include "Eskeletor.h"
+#include "RoofTurret.h"
+#include "Boss.h"
+
+// utility
+#include<cstdlib>
+#include<fstream>
+
 
 Game* Game::instance = 0;
 
@@ -22,6 +44,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
     }
+    // music
+    TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
+    TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
+    TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
+    TheSoundManager::Instance()->playMusic("music1", -1);
+    // register type
+
     _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
     _GameObjectFactory::Instance()->registerType("Turret", new TurretCreator());
     _GameObjectFactory::Instance()->registerType("RoofTurret", new RoofTurretCreator());

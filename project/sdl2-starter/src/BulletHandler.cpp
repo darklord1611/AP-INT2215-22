@@ -1,5 +1,4 @@
 #include "BulletHandler.h"
-#include "Game.h"
 
 
 BulletHandler* BulletHandler::instance = 0;

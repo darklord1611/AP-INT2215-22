@@ -5,6 +5,7 @@
 #include "GameObjectFactory.h"
 #include <math.h>
 #include "Enemy.h"
+#include "SoundManager.h"
 
 class Glider : public Enemy
 {
@@ -37,12 +38,17 @@ public:
         m_health -= 1;
         if(m_health == 0)
         {
+            if(!m_bPlayedDeathSound) 
+            {
+                TheSoundManager::Instance()->playSound("explode", 0);
                 m_textureID = "explosion";
                 m_currentFrame = 0;
                 m_numFrames = 9;
                 m_width = 40;
                 m_height = 40;
                 m_bDying = true;
+                
+            }
         }
     }
     virtual void update()

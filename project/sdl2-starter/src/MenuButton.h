@@ -4,8 +4,7 @@
 #define __MenuButton__
 
 #include "ShooterObject.h"
-#include "LoaderParams.h"
-#include "InputHandler.h"
+#include "GameObjectFactory.h"
 
 class MenuButton : public ShooterObject
 {

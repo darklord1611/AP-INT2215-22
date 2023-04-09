@@ -1,16 +1,13 @@
 #ifndef __StateParser__
 #define __StateParser__
 
-#include <iostream>
 #include <vector>
-#include <string>
 #include "tinyxml.h"
 #include "GameObject.h"
 #include <memory>
 
 using namespace std;
 
-class GameObject;
 
 class StateParser
 {

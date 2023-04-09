@@ -1,32 +1,11 @@
 #ifndef __Game__
 #define __Game__
+
+
 #include<SDL2/SDL.h>
-#include<SDL2_image/SDL_image.h>
 #include<iostream>
 #include<vector>
-#include<cstdlib>
-#include<fstream>
-#include "Player.h"
-#include "GameObject.h"
-#include "InputHandler.h"
 #include "GameStateMachine.h"
-#include "TextureManager.h"
-#include "MenuState.h"
-#include "PlayState.h"
-#include "MenuButton.h"
-#include "PauseState.h"
-#include "GameOverState.h"
-#include "AnimatedGraphic.h"
-#include "GameObjectFactory.h"
-#include "MainMenuState.h"
-#include "Glider.h"
-#include "BulletHandler.h"
-#include "ShotGlider.h"
-#include "Eskeletor.h"
-#include "Turret.h"
-#include "RoofTurret.h"
-#include "Boss.h"
-#include "ScrollingBackground.h"
 
 using namespace std;
 

@@ -2,7 +2,8 @@
 #ifndef __PauseState__
 #define __PauseState__
 
-#include "Game.h"
+#include "MenuState.h"
+#include "GameObject.h"
 
 class PauseState : public MenuState
 {

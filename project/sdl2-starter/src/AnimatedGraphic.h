@@ -2,7 +2,8 @@
 #ifndef __AnimatedGraphic__
 #define __AnimatedGraphic__
 
-#include "Game.h"
+#include "ShooterObject.h"
+#include "GameObjectFactory.h"
 
 class AnimatedGraphic : public ShooterObject
 {

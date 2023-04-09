@@ -1,9 +1,7 @@
 #ifndef __Bullet__
 #define __Bullet__
+
 #include "ShooterObject.h"
-#include "TextureManager.h"
-#include "Game.h"
-#include <iostream>
 
 class PlayerBullet : public ShooterObject
 {

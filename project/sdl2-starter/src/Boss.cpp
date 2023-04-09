@@ -1,4 +1,7 @@
 #include "Boss.h"
+#include "Game.h"
+#include "BulletHandler.h"
+#include "SoundManager.h"
 
 Boss::Boss() : Enemy() 
 {
@@ -24,6 +27,7 @@ void Boss::collision()
         {
             m_position.setX(m_position.getX() + 30);
             m_position.setY(m_position.getY() + 70);
+            TheSoundManager::Instance()->playSound("explode", 0);
             m_textureID = "bossexplosion";
             m_currentFrame = 0;
             m_numFrames = 9;

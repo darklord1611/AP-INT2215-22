@@ -1,9 +1,12 @@
-
 #ifndef __InputHandler__
 #define __InputHandler__
+
 #include<SDL2/SDL.h>
-#include "Vector2D.h"
+#include"Vector2D.h"
 #include<vector>
+#include<iostream>
+
+using namespace std;
 
 enum mouse_buttons 
 {

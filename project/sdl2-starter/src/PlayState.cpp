@@ -1,4 +1,11 @@
 #include "PlayState.h"
+#include "BulletHandler.h"
+#include "GameOverState.h"
+#include "InputHandler.h"
+#include "PauseState.h"
+#include "TextureManager.h"
+#include "Enemy.h"
+#include "StateParser.h"
 
 const static int s_buffer = 4;
 const string PlayState::s_playID = "PLAY";

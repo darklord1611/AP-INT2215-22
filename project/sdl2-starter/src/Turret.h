@@ -1,7 +1,8 @@
 #ifndef __Turret__
 #define __Turret__
 
-#include "Game.h"
+#include "Enemy.h"
+#include "GameObjectFactory.h"
 
 class Turret : public Enemy 
 {

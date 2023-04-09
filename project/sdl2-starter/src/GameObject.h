@@ -3,13 +3,9 @@
 #define __GameObject__
 
 #include "LoaderParams.h"
-#include "StateParser.h"
 #include "Vector2D.h"
-#include "GameObjectFactory.h"
-#include<SDL2/SDL.h>
-#include<SDL2_image/SDL_image.h>
 #include<memory>
-#include<map>
+#include<string>
 #include<iostream>
 
 using namespace std;

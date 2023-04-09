@@ -2,9 +2,6 @@
 #define __MenuState__
 
 #include "GameState.h"
-#include <vector>
-
-using namespace std;
 
 class MenuState: public GameState
 {

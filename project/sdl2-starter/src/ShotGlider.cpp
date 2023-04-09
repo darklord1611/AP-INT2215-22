@@ -1,4 +1,6 @@
 #include "ShotGlider.h"
+#include "BulletHandler.h"
+#include "Game.h"
 
 ShotGlider::ShotGlider() : Glider()
 {

@@ -1,5 +1,6 @@
 #include "ScrollingBackground.h"
-
+#include "TextureManager.h"
+#include "Game.h"
 
 ScrollingBackground::ScrollingBackground() : ShooterObject()
 {

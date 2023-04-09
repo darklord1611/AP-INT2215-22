@@ -2,7 +2,6 @@
 #define __ShotGlider__
 
 #include "Glider.h"
-#include "Game.h"
 
 class ShotGlider : public Glider
 {

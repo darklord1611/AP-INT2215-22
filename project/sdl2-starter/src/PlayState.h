@@ -2,7 +2,10 @@
 #ifndef __PlayState__
 #define __PlayState__
 
+#include "Player.h"
 #include "Game.h"
+#include "GameState.h"
+#include "GameObject.h"
 
 class PlayState : public GameState 
 {

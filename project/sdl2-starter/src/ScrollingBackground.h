@@ -1,8 +1,8 @@
 #ifndef __ScrollingBackground__
 #define __ScrollingBackground__
 
-#include <iostream>
-#include "Game.h"
+#include "ShooterObject.h"
+#include "GameObjectFactory.h"
 
 class ScrollingBackground : public ShooterObject
 {

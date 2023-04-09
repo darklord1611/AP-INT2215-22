@@ -1,4 +1,8 @@
 #include "Eskeletor.h"
+#include "SoundManager.h"
+#include "BulletHandler.h"
+#include "Game.h"
+#include<cstdlib>
 
 Eskeletor::Eskeletor() : Enemy() 
 {
@@ -14,12 +18,16 @@ void Eskeletor::collision()
     m_health -= 1;
     if(m_health == 0)
     {
-        m_textureID = "largeexplosion";
-        m_currentFrame = 0;
-        m_numFrames = 9;
-        m_width = 60;
-        m_height = 60;
-        m_bDying = true;
+        if(!m_bPlayedDeathSound) 
+        {
+            TheSoundManager::Instance()->playSound("explode", 0);
+            m_textureID = "largeexplosion";
+            m_currentFrame = 0;
+            m_numFrames = 9;
+            m_width = 60;
+            m_height = 60;
+            m_bDying = true;
+        }
     }
 }
 

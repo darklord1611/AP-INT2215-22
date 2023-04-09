@@ -1,7 +1,8 @@
 #ifndef __RoofTurret__
 #define __RoofTurret__
 
-#include "Game.h"
+#include "Enemy.h"
+#include "GameObjectFactory.h"
 
 class RoofTurret : public Enemy
 {

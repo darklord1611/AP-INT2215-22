@@ -1,7 +1,8 @@
 #ifndef __GameOverState__
 #define __GameOverState__
 
-#include "Game.h"
+#include "MenuState.h"
+#include "GameObject.h"
 
 class GameOverState : public MenuState 
 {

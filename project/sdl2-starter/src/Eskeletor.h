@@ -2,7 +2,8 @@
 #define __Eskeletor__
 
 #include "Enemy.h"
-#include "Game.h"
+#include "GameObjectFactory.h"
+
 class Eskeletor : public Enemy
 {
 public:

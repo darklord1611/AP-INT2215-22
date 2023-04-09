@@ -3,6 +3,7 @@
 #define __Player__
 
 #include "ShooterObject.h"
+#include "GameObjectFactory.h"
 
 class Player: public ShooterObject 
 {
@@ -23,7 +24,7 @@ private:
 public:
     Player();
     virtual ~Player() {}
-    virtual void load(std::unique_ptr<LoaderParams> const &pParams);
+    virtual void load(unique_ptr<LoaderParams> const &pParams);
     virtual void draw();
     virtual void update();
     virtual void clean();

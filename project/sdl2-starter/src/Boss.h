@@ -1,7 +1,8 @@
 #ifndef __Boss__
 #define __Boss__
 
-#include "Game.h"
+#include "Enemy.h"
+#include "GameObjectFactory.h"
 
 class Boss : public Enemy 
 {

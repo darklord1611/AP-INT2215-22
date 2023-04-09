@@ -9,7 +9,7 @@ ShooterObject::ShooterObject() : GameObject()
     m_moveSpeed = 0;
     m_dyingTime = 0;
     m_dyingCounter = 0;
-    
+    m_bPlayedDeathSound = false;
 }
 
 void ShooterObject::load(unique_ptr<LoaderParams> const &pParams)
