@@ -12,6 +12,7 @@ protected:
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}
 public:
+    int getHealth() { return m_health; }
     int getScore() { return m_score; }
     virtual string type() { return "Enemy"; }
 };

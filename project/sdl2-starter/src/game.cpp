@@ -33,7 +33,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
 
-    theGame::Instance()->loadHighScore();
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
     return true;
@@ -97,6 +96,7 @@ void Game::loadHighScore()
         cout << "cant open file" << endl;
         return;
     }
+    _TextureManager::Instance()->clearFromTextureMap("highscore");
     if(!_TextureManager::Instance()->loadFont(to_string(value), "highscore", g_renderer, {255, 0, 0})) 
     {
         cout << "something wrong" << endl;

@@ -1,6 +1,3 @@
-#include "Player.h"
-#include "InputHandler.h"
-#include "BulletHandler.h"
 #include "Game.h"
 
 Player::Player() : ShooterObject() 
