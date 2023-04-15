@@ -70,7 +70,7 @@ bool TextureManager::loadFont(string message, string id, SDL_Renderer* g_rendere
         return false;
     }
     // Load the font
-    TTF_Font* font = TTF_OpenFont("assets/prstartk.ttf", 24);
+    TTF_Font* font = TTF_OpenFont("assets/prstartk.ttf", 12);
     if (font == nullptr) {
         cerr << "Failed to load font: " << TTF_GetError() << endl;
         return false;

@@ -43,7 +43,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         {
             SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
+        cout << SDL_GetError() << endl;
     }
+    cout << SDL_GetError() << endl;
     // music
     TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
@@ -62,8 +64,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
 
+    // initial
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
+    cout << SDL_GetError() << endl;
     return true;
 }
 
@@ -85,9 +89,9 @@ void Game::clean()
 {
     cout << "cleaning game\n";
     _InputHandler::Instance()->clean();
-    // g_gameStateMachine->clean();
+    g_gameStateMachine->clean();
     // g_gameStateMachine = 0;
-    // delete g_gameStateMachine;
+    delete g_gameStateMachine;
     _TextureManager::Instance()->clearTextureMap();
     SDL_DestroyWindow(g_window);
     SDL_DestroyRenderer(g_renderer);
@@ -125,8 +129,13 @@ void Game::loadHighScore()
         cout << "cant open file" << endl;
         return;
     }
+    string high_score = to_string(value);
+    for(int i = 0; i < 5 - high_score.size();i++) 
+    {
+        high_score = "0" + high_score;
+    }
     _TextureManager::Instance()->clearFromTextureMap("highscore");
-    if(!_TextureManager::Instance()->loadFont(to_string(value), "highscore", g_renderer, {255, 0, 0})) 
+    if(!_TextureManager::Instance()->loadFont(high_score, "highscore", g_renderer, {255, 0, 0})) 
     {
         cout << "something wrong" << endl;
         return;
@@ -136,8 +145,13 @@ void Game::loadHighScore()
 void Game::upgradeCurrentScore(int score) 
 {
     m_Score += score;
+    string str_score = to_string(m_Score);
+    for(int i = 0; i < 5 - str_score.size();i++) 
+    {
+        str_score = "0" + str_score;
+    }
     _TextureManager::Instance()->clearFromTextureMap("current_score");
-    _TextureManager::Instance()->loadFont(to_string(m_Score), "current_score", g_renderer);
+    _TextureManager::Instance()->loadFont(str_score, "current_score", g_renderer);
 }
 
 void Game::compareScore() 

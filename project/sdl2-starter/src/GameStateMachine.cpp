@@ -28,12 +28,14 @@ void GameStateMachine::changeState(GameState* pState)
         }
         if(m_gameStates.back()->onExit()) 
         {
+            cout << m_gameStates.back()->getStateID() << endl;
             // delete m_gameStates.back(); // leaking memory problems still there
             m_gameStates.pop_back();
         }
     }
-    pState->onEnter();
+    cout << pState->getStateID() << endl;
     m_gameStates.push_back(pState);
+    m_gameStates.back()->onEnter(); 
 }
 
 
@@ -54,15 +56,15 @@ void GameStateMachine::render()
 }
 
 
-// void GameStateMachine::clean()
-// {
-//     if(!m_gameStates.empty())
-//     {
-//         m_gameStates.back()->onExit();
+void GameStateMachine::clean()
+{
+    if(!m_gameStates.empty())
+    {
+        m_gameStates.back()->onExit();
 
-//         delete m_gameStates.back();
+        delete m_gameStates.back();
         
-//         m_gameStates.clear();
-//     }
-// }
+        m_gameStates.clear();
+    }
+}
 
