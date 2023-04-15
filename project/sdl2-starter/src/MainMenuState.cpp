@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "StateParser.h"
 #include "TextureManager.h"
+#include "InputHandler.h"
 #include "PlayState.h"
 #include "MenuButton.h"
 
@@ -9,6 +10,7 @@ const string MainMenuState::s_menuID = "MENU";
 
 void MainMenuState::update() 
 {
+    if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->update();
@@ -41,12 +43,14 @@ bool MainMenuState::onExit()
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->clean();
+        delete m_gameObjects[i];
     }
     m_gameObjects.clear();
     for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }
+    _InputHandler::Instance()->reset();
     cout << "exiting MenuState" << endl;
     return true;
 }

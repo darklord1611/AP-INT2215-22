@@ -28,12 +28,10 @@ void GameStateMachine::changeState(GameState* pState)
         }
         if(m_gameStates.back()->onExit()) 
         {
-            cout << m_gameStates.back()->getStateID() << endl;
             // delete m_gameStates.back(); // leaking memory problems still there
             m_gameStates.pop_back();
         }
     }
-    cout << pState->getStateID() << endl;
     m_gameStates.push_back(pState);
     m_gameStates.back()->onEnter(); 
 }

@@ -43,9 +43,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         {
             SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
-        cout << SDL_GetError() << endl;
     }
-    cout << SDL_GetError() << endl;
     // music
     TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
@@ -67,7 +65,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     // initial
     g_gameStateMachine = new GameStateMachine();
 	g_gameStateMachine->pushState(new MainMenuState());
-    cout << SDL_GetError() << endl;
     return true;
 }
 

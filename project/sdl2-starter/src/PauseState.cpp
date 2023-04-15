@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "MainMenuState.h"
 #include "StateParser.h"
+#include "InputHandler.h"
 #include "TextureManager.h"
 #include "MenuButton.h"
 
@@ -19,6 +20,7 @@ void PauseState::s_resumePlay()
 
 void PauseState::update() 
 {
+    if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->update();
@@ -49,10 +51,18 @@ bool PauseState::onEnter()
 
 bool PauseState::onExit() 
 {
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+        m_gameObjects[i]->clean();
+        delete m_gameObjects[i];
+    }
+    m_gameObjects.clear();
+    
     for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }
+    _InputHandler::Instance()->reset();
     cout << "exiting PauseState" << endl;
     return true;
 }

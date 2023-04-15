@@ -22,6 +22,8 @@ public:
     bool checkPlayerEnemyCollision(Player* pPlayer, const std::vector<GameObject*> &objects);
     void checkEnemyPlayerBulletCollision(const std::vector<GameObject*> &objects);
     bool RectRect(SDL_Rect* A, SDL_Rect* B);
+    void saveGame();
+    string getEnemyType(GameObject* object);
     virtual ~PlayState() {}
 };
 

@@ -5,6 +5,7 @@ InputHandler* InputHandler::instance = 0;
 
 InputHandler::InputHandler()
 {
+    quit = false;
     for(int i = 0; i < 3; i++) 
     {
         m_mouseButtonStates.push_back(false);
@@ -26,7 +27,7 @@ void InputHandler::update()
         switch(event.type) 
         {
             case SDL_QUIT:
-                theGame::Instance()->quit();
+                quit = true;
                 break;
             case SDL_KEYDOWN:
                 onKeyDown();

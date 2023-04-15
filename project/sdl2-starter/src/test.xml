@@ -4,11 +4,11 @@
     <TEXTURES>
       <texture filename="assets/button.png" ID="playbutton"></texture>
       <texture filename="assets/exit.png" ID="exitbutton"></texture>
-      <texture filename="assets/clouds.png" ID="background"></texture>
+      <texture filename="assets/clouds.png" ID="background2"></texture>
     </TEXTURES>
 
     <OBJECTS>
-    <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
+    <object type="Background" x="0" y="0" width="800" height="600" textureID="background2" numFrames="1" animSpeed="0.5"/>
       <object type="MenuButton" x="100" y="100" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="1"></object>
       <object type="MenuButton" x="100" y="300" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="2"></object>
     </OBJECTS>
@@ -17,15 +17,16 @@
   <PLAY>
     <TEXTURES>
       <texture filename="assets/helicopter.png" ID="player"></texture>
-      <texture filename="assets/enemy1.png" ID="glider"></texture>
-      <texture filename="assets/enemy2.png" ID="shotglider"></texture>
+      <texture filename="assets/glider.png" ID="glider"></texture>
+      <texture filename="assets/shotglider.png" ID="shotglider"></texture>
       <texture filename="assets/clouds.png" ID="background"></texture>
-      <texture filename="assets/enemy3.png" ID="eskeletor"></texture>
+      <texture filename="assets/eskeletor.png" ID="eskeletor"></texture>
       <texture filename="assets/turret.png" ID="turret"></texture>
     </TEXTURES>
 
     <OBJECTS>
-      <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
+       <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
+       <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
        <object type="Glider" x="700" y="100" width="50" height="50" textureID="glider" numFrames="1"/>
        <object type="ShotGlider" x="1000" y="250" width="50" height="50" textureID="shotglider" numFrames="1"/>
        <object type="Glider" x="1500" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
@@ -36,7 +37,6 @@
        <object type="Glider" x="2500" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
        <object type="RoofTurret" x="2000" y="50" width="50" height="50" textureID="turret" numFrames="1"/>
        <object type="Turret" x="2000" y="550" width="50" height="50" textureID="turret" numFrames="1"/>
-      <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
     </OBJECTS>
   </PLAY>
 
@@ -59,11 +59,11 @@
       <texture filename="assets/gameover.png" ID="gameovertext"/>
       <texture filename="assets/main.png" ID="mainbutton"/>
       <texture filename="assets/restart.png" ID="restartbutton"/>
-      <texture filename="assets/clouds.png" ID="background"></texture>
+      <texture filename="assets/clouds.png" ID="background3"></texture>
     </TEXTURES>
 
     <OBJECTS>
-    <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
+    <object type="Background" x="0" y="0" width="800" height="600" textureID="background3" numFrames="1" animSpeed="0.5"/>
       <object type="AnimatedGraphic" x="200" y="100" width="190" height="30" textureID="gameovertext" numFrames="2" animSpeed="2"/>
       <object type="MenuButton" x="200" y="200" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="1"/>
       <object type="MenuButton" x="200" y="300" width="200" height="80" textureID="restartbutton" numFrames="0" callbackID="2"/>

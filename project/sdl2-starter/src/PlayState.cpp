@@ -37,6 +37,11 @@ bool PlayState::RectRect(SDL_Rect* A, SDL_Rect* B)
 
 void PlayState::update() 
 {
+    if(_InputHandler::Instance()->isQuit()) 
+    {
+        saveGame();
+        theGame::Instance()->quit();
+    }
     if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) 
     {
         theGame::Instance()->getStateMachine()->pushState(new PauseState()); 
@@ -120,6 +125,7 @@ bool PlayState::onExit()
         m_gameObjects[i]->clean();
     }
     m_gameObjects.clear();
+    _InputHandler::Instance()->reset();
     theGame::Instance()->compareScore();
     TheBulletHandler::Instance()->clearBullets();
     cout << "exiting PlayState" << endl;
@@ -239,3 +245,135 @@ bool PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObje
 }
 
 
+void PlayState::saveGame() 
+{
+    TiXmlDocument doc;
+    TiXmlDeclaration* decl = new TiXmlDeclaration("1.0", "", "");
+    doc.LinkEndChild(decl);
+    
+
+    // create root element
+    TiXmlElement* root = new TiXmlElement("STATES");
+    doc.LinkEndChild(root);
+
+    // create play element
+    TiXmlElement* play = new TiXmlElement("PLAY");
+    root->LinkEndChild(play);
+
+    // create texture element
+    TiXmlElement* textures = new TiXmlElement("TEXTURES");
+    play->LinkEndChild(textures);
+
+    // save textures
+    TiXmlElement* texture1 = new TiXmlElement("texture");
+    texture1->SetAttribute("filename", "assets/clouds.png");
+    texture1->SetAttribute("ID", "background");
+    texture1->LinkEndChild(texture1);
+
+
+    TiXmlElement* texture2 = new TiXmlElement("texture");
+    texture2->SetAttribute("filename", "assets/helicopter.png");
+    texture2->SetAttribute("ID", "player");
+    texture2->LinkEndChild(texture2);
+
+    TiXmlElement* texture3 = new TiXmlElement("texture");
+    texture3->SetAttribute("filename", "assets/glider.png");
+    texture3->SetAttribute("ID", "glider");
+    texture3->LinkEndChild(texture3);
+
+    TiXmlElement* texture4 = new TiXmlElement("texture");
+    texture4->SetAttribute("filename", "assets/shotglider.png");
+    texture4->SetAttribute("ID", "shotglider");
+    texture4->LinkEndChild(texture4);
+
+    TiXmlElement* texture5 = new TiXmlElement("texture");
+    texture5->SetAttribute("filename", "assets/eskeletor.png");
+    texture5->SetAttribute("ID", "eskeletor");
+    texture5->LinkEndChild(texture5);
+
+    TiXmlElement* texture6 = new TiXmlElement("texture");
+    texture6->SetAttribute("filename", "assets/turret.png");
+    texture6->SetAttribute("ID", "turret");
+    texture6->LinkEndChild(texture6);
+
+    // create object element
+    TiXmlElement* object = new TiXmlElement("OBJECTS");
+    play->LinkEndChild(object);
+
+    // save background
+    TiXmlElement* background = new TiXmlElement("object");
+    background->SetAttribute("type", "Background");
+    background->SetAttribute("x", "0");
+    background->SetAttribute("y", "0");
+    background->SetAttribute("width", "800");
+    background->SetAttribute("height", "600");
+    background->SetAttribute("textureID", "background");
+    background->SetAttribute("numFrames", "1");
+    background->SetAttribute("animSpeed", "0.5");
+    object->LinkEndChild(background);
+
+    // save player
+    TiXmlElement* player = new TiXmlElement("object");
+    player->SetAttribute("type", "Player");
+    player->SetAttribute("x", m_gameObjects[1]->getPosition().getX());
+    player->SetAttribute("y", m_gameObjects[1]->getPosition().getY());
+    player->SetAttribute("width", m_gameObjects[1]->getWidth());
+    player->SetAttribute("height", m_gameObjects[1]->getHeight());
+    player->SetAttribute("textureID", m_gameObjects[1]->getTextureID());
+    player->SetAttribute("numFrames", "4");
+    object->LinkEndChild(player);
+
+    // save enemy
+    int size = m_gameObjects.size();
+    TiXmlElement** objects = new TiXmlElement*[size];
+    for(int i = 2; i < size; i++) 
+    {
+        objects[i] = new TiXmlElement("object");
+        objects[i]->SetAttribute("type", getEnemyType(m_gameObjects[i]));
+        objects[i]->SetAttribute("x", m_gameObjects[i]->getPosition().getX());
+        objects[i]->SetAttribute("y", m_gameObjects[i]->getPosition().getY());
+        objects[i]->SetAttribute("width", m_gameObjects[i]->getWidth());
+        objects[i]->SetAttribute("height", m_gameObjects[i]->getHeight());
+        objects[i]->SetAttribute("textureID", m_gameObjects[i]->getTextureID());
+        objects[i]->SetAttribute("numFrames", 1);
+        object->LinkEndChild(objects[i]);
+    }
+    // Save the file
+    bool success = doc.SaveFile("assets/pause.xml");
+    if(success) 
+    {
+        cout << "XML file saved successfully." << endl;
+    }
+    else 
+    {
+        cerr << "Failed to save XML file." << endl;
+    }
+
+    for(int i = 2; i < size; i++) 
+    {
+        delete objects[i];
+    }
+    delete[] objects;
+    delete decl;
+    delete root;
+    delete play;
+    delete textures;
+    delete texture1;
+    delete texture2;
+    delete texture3;
+    delete texture4;
+    delete texture5;
+    delete texture6;
+    delete background;
+    delete player;
+}
+
+
+string PlayState::getEnemyType(GameObject* object) 
+{
+    Enemy* enemy = dynamic_cast<Enemy*>(object);
+    if(enemy->getScore() == 10) return "Glider";
+    if(enemy->getScore() == 20) return "ShotGlider";
+    if(enemy->getScore() == 30) return "Eskeletor";
+    return "Turret";
+}

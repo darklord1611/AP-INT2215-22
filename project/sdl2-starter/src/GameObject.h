@@ -58,7 +58,7 @@ public:
     // getter functions for some variable
     Vector2D& getPosition() { return m_position; }
     Vector2D& getVelocity() { return m_velocity; }
-    
+    string getTextureID() { return m_textureID; }
     int getWidth() { return m_width; }
     int getHeight() { return m_height; }
     

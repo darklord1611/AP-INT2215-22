@@ -18,6 +18,7 @@ enum mouse_buttons
 class InputHandler 
 {
 private:
+    bool quit;
     static InputHandler* instance;
     InputHandler();
     ~InputHandler();
@@ -47,6 +48,7 @@ public:
     void update(); 
     void clean();
     void reset();
+    bool isQuit() { return quit; }
 };
 typedef InputHandler _InputHandler;
 
