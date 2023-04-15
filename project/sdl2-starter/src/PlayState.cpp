@@ -58,14 +58,8 @@ void PlayState::update()
             Player* player = dynamic_cast<Player*>(m_gameObjects[i]);
             if(player->isSafe() == false)
             {
-                if(checkPlayerEnemyBulletCollision(player)) 
-                {
-                    theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
-                }
-                if(checkPlayerEnemyCollision(player, m_gameObjects)) 
-                {
-                    theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
-                }
+                checkPlayerEnemyBulletCollision(player);
+                checkPlayerEnemyCollision(player, m_gameObjects);
             }
         }
         if(m_gameObjects[i]->type() == "Enemy") 
@@ -138,7 +132,7 @@ bool PlayState::onExit()
     return true;
 }
 
-bool PlayState::checkPlayerEnemyBulletCollision(Player* pPlayer)
+void PlayState::checkPlayerEnemyBulletCollision(Player* pPlayer)
 {
     SDL_Rect* pRect1 = new SDL_Rect();
     pRect1->x = pPlayer->getPosition().getX();
@@ -163,13 +157,11 @@ bool PlayState::checkPlayerEnemyBulletCollision(Player* pPlayer)
             {
                 pEnemyBullet->collision();
                 pPlayer->collision();
-                return true;
             }
         }
         delete pRect2;
     }
     delete pRect1;
-    return false;
 }
 
 void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objects)
@@ -217,7 +209,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
     }
 }
 
-bool PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObject*> &objects)
+void PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObject*> &objects)
 {
     SDL_Rect* pRect1 = new SDL_Rect();
     pRect1->x = pPlayer->getPosition().getX();
@@ -241,13 +233,12 @@ bool PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObje
             if(!objects[i]->dead() && !objects[i]->dying())
             {
                 pPlayer->collision();
-                return true;
+                objects[i]->collision();
             }
         }
         delete pRect2;
     }
     delete pRect1;
-    return false;
 }
 
 

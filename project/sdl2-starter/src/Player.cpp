@@ -160,6 +160,7 @@ void Player::clean()
 
 void Player::collision()
 {
+        theGame::Instance()->setPlayerLives(theGame::Instance()->getPlayerLives() - 1);
         m_textureID = "largeexplosion";
         m_currentFrame = 0;
         m_numFrames = 9;

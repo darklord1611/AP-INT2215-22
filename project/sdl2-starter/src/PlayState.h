@@ -18,8 +18,8 @@ public:
     virtual bool onEnter();
     virtual bool onExit();
     virtual string getStateID() const { return s_playID; }
-    bool checkPlayerEnemyBulletCollision(Player* pPlayer);
-    bool checkPlayerEnemyCollision(Player* pPlayer, const std::vector<GameObject*> &objects);
+    void checkPlayerEnemyBulletCollision(Player* pPlayer);
+    void checkPlayerEnemyCollision(Player* pPlayer, const std::vector<GameObject*> &objects);
     void checkEnemyPlayerBulletCollision(const std::vector<GameObject*> &objects);
     bool RectRect(SDL_Rect* A, SDL_Rect* B);
     void saveGame();
