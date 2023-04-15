@@ -20,7 +20,7 @@ void PauseState::s_resumePlay()
 
 void PauseState::update() 
 {
-    if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
+    // if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->update();

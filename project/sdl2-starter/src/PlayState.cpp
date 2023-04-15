@@ -97,8 +97,14 @@ void PlayState::render()
 
 bool PlayState::onEnter() 
 {
-    StateParser stateParser; 
-    stateParser.parseState("src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+    StateParser stateParser;
+    if(theGame::Instance()->resumeGame() == true) 
+    {
+        stateParser.parseState("assets/pause.xml", s_playID, &m_gameObjects, &m_textureIDList);
+    } else 
+    {
+        stateParser.parseState("src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+    }
     _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/bullet2.png", "bullet2", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/bullet3.png", "bullet3", theGame::Instance()->getRenderer());
@@ -268,33 +274,33 @@ void PlayState::saveGame()
     TiXmlElement* texture1 = new TiXmlElement("texture");
     texture1->SetAttribute("filename", "assets/clouds.png");
     texture1->SetAttribute("ID", "background");
-    texture1->LinkEndChild(texture1);
+    textures->LinkEndChild(texture1);
 
 
     TiXmlElement* texture2 = new TiXmlElement("texture");
     texture2->SetAttribute("filename", "assets/helicopter.png");
     texture2->SetAttribute("ID", "player");
-    texture2->LinkEndChild(texture2);
+    textures->LinkEndChild(texture2);
 
     TiXmlElement* texture3 = new TiXmlElement("texture");
     texture3->SetAttribute("filename", "assets/glider.png");
     texture3->SetAttribute("ID", "glider");
-    texture3->LinkEndChild(texture3);
+    textures->LinkEndChild(texture3);
 
     TiXmlElement* texture4 = new TiXmlElement("texture");
     texture4->SetAttribute("filename", "assets/shotglider.png");
     texture4->SetAttribute("ID", "shotglider");
-    texture4->LinkEndChild(texture4);
+    textures->LinkEndChild(texture4);
 
     TiXmlElement* texture5 = new TiXmlElement("texture");
     texture5->SetAttribute("filename", "assets/eskeletor.png");
     texture5->SetAttribute("ID", "eskeletor");
-    texture5->LinkEndChild(texture5);
+    textures->LinkEndChild(texture5);
 
     TiXmlElement* texture6 = new TiXmlElement("texture");
     texture6->SetAttribute("filename", "assets/turret.png");
     texture6->SetAttribute("ID", "turret");
-    texture6->LinkEndChild(texture6);
+    textures->LinkEndChild(texture6);
 
     // create object element
     TiXmlElement* object = new TiXmlElement("OBJECTS");
@@ -354,18 +360,18 @@ void PlayState::saveGame()
         delete objects[i];
     }
     delete[] objects;
-    delete decl;
-    delete root;
-    delete play;
-    delete textures;
     delete texture1;
     delete texture2;
     delete texture3;
     delete texture4;
     delete texture5;
     delete texture6;
+    delete textures;
     delete background;
     delete player;
+    delete play;
+    delete root;
+    delete decl;
 }
 
 

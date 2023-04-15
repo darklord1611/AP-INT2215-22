@@ -22,7 +22,7 @@ void GameOverState::s_restartPlay()
 
 void GameOverState::update() 
 {
-    if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
+    // if(_InputHandler()::Instance()->isQuit()) theGame::Instance()->quit();
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
         m_gameObjects[i]->update();

@@ -24,6 +24,7 @@ private:
     int m_gameHeight;
     double m_scrollSpeed;
     int m_gameWidth;
+    bool m_continue;
 public:
     static Game* Instance() 
         {
@@ -54,6 +55,7 @@ public:
     void loadHighScore();
     void compareScore();
     double getScrollSpeed() { return m_scrollSpeed; }
+    bool resumeGame() { return m_continue; }
 };
 typedef Game theGame;
 

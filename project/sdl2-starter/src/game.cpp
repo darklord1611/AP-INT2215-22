@@ -1,10 +1,13 @@
 #include "Game.h"
 #include "MainMenuState.h"
+#include "PlayState.h"
+#include "PauseState.h"
 // inputs
 #include "GameObjectFactory.h"
 #include "SoundManager.h"
 #include "TextureManager.h"
 #include "InputHandler.h"
+#include "StateParser.h"
 // objects
 #include "ScrollingBackground.h"
 #include "AnimatedGraphic.h"
@@ -26,6 +29,7 @@ Game* Game::instance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
+    m_continue = false;
     m_scrollSpeed = 0.8;
     m_Score = 0;
     m_gameHeight = height;
@@ -64,7 +68,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
     // initial
     g_gameStateMachine = new GameStateMachine();
-	g_gameStateMachine->pushState(new MainMenuState());
+    TiXmlDocument doc;
+    if(!doc.LoadFile("assets/pause.xml")) 
+    {
+        g_gameStateMachine->pushState(new MainMenuState());
+    }
+	else 
+    {
+        m_continue = true;
+        g_gameStateMachine->pushState(new PlayState());
+        g_gameStateMachine->pushState(new PauseState());
+    }
     return true;
 }
 
