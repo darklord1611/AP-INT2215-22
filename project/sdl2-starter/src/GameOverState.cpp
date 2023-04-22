@@ -11,11 +11,13 @@ const string GameOverState::s_gameOverID = "GAMEOVER";
 
 void GameOverState::s_gameOverToMain() 
 {
+    theGame::Instance()->resetGame();
     theGame::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
 
 void GameOverState::s_restartPlay() 
 {
+    theGame::Instance()->resetGame();
     theGame::Instance()->getStateMachine()->changeState(new PlayState());
 }
 

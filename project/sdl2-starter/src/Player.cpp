@@ -47,9 +47,7 @@ void Player::update()
             if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
             {
                 theGame::Instance()->getStateMachine()->changeState(new GameOverState());
-            }
-            theGame::Instance()->setCurrentLevel(nextLevel);
-
+            } else theGame::Instance()->setCurrentLevel(nextLevel);
         } else 
         {
             m_velocity.setY(0);

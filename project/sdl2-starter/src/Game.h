@@ -54,19 +54,22 @@ public:
     void setPlayerLives(int lives) { m_playerLives = lives; }
     int getPlayerLives() { return m_playerLives; }
     int getScore() { return m_Score; }
-    void setScore(int score);
     void setCurrentLevel(int currentLevel);
     int getCurrentLevel() { return m_currentLevel; }
     void setLevelComplete(bool completed) { m_levelComplete = completed; }
     bool getLevelComplete() { return m_levelComplete; }
-    vector<string> getLevelFiles() { return m_levelFiles; } 
-
+    vector<string> getLevelFiles() { return m_levelFiles; }
+    void saveGameStats();
+    void loadGameStats(); 
+    double getScrollSpeed() { return m_scrollSpeed; }
     // score
     void upgradeCurrentScore(int score);
     void loadHighScore();
     void compareScore();
-    double getScrollSpeed() { return m_scrollSpeed; }
+
+    // gameplay
     bool resumeGame() { return m_continue; }
+    void resetGame();
 };
 typedef Game theGame;
 

@@ -2,7 +2,7 @@
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
-#include "GameOverState.h"
+#include "TransitionState.h"
 // inputs
 #include "GameObjectFactory.h"
 #include "SoundManager.h"
@@ -35,11 +35,12 @@ Game::Game()
     m_Score = 0;
     g_window = 0;
     g_renderer = 0;
-    isRunning = false;
     m_playerLives = 3;
+    isRunning = false;
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
-    m_currentLevel = 1;    
+    m_currentLevel = 1;
+    upgradeCurrentScore(m_Score);
 }
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
@@ -149,15 +150,6 @@ void Game::loadHighScore()
     _TextureManager::Instance()->loadFont(modify(high_score), "highscore", g_renderer, {255, 0, 0});
 }
 
-void Game::setScore(int score) 
-{
-    if(score == 0) 
-    {
-        upgradeCurrentScore(score);
-    }
-    m_Score = score;
-}
-
 void Game::upgradeCurrentScore(int score) 
 {
     m_Score += score;
@@ -173,6 +165,28 @@ void Game::compareScore()
 void Game::setCurrentLevel(int currentLevel) 
 {
     m_currentLevel = currentLevel;
-    g_gameStateMachine->changeState(new GameOverState());
+    g_gameStateMachine->changeState(new TransitionState());
     m_levelComplete = false;
+}
+
+void Game::resetGame() 
+{
+    m_currentLevel = 1;
+    m_levelComplete = false;
+    m_Score = 0;
+    m_playerLives = 3;
+    upgradeCurrentScore(0);
+}
+
+void Game::saveGameStats() 
+{
+    saveStats("assets/stats.txt", m_Score, m_playerLives);
+}
+
+void Game::loadGameStats() 
+{
+    m_playerLives = getStats("assets/stats.txt")[1];
+    m_Score = getStats("assets/stats.txt")[0];
+    upgradeCurrentScore(m_Score);
+    cout << m_Score << endl;
 }

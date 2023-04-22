@@ -1,25 +1,26 @@
-#include "PauseState.h"
-#include "Game.h"
+#include "TransitionState.h"
 #include "MainMenuState.h"
-#include "StateParser.h"
+#include "PlayState.h"
 #include "InputHandler.h"
 #include "TextureManager.h"
+#include "StateParser.h"
+#include "Game.h"
 #include "MenuButton.h"
 
-const string PauseState::s_pauseID = "PAUSE";
+const string TransitionState::s_transitionID = "TRANSITION";
 
-void PauseState::s_pauseToMain() 
+void TransitionState::s_gameOverToMain() 
 {
-    theGame::Instance()->resetGame();
     theGame::Instance()->getStateMachine()->changeState(new MainMenuState());
 }
 
-void PauseState::s_resumePlay() 
+void TransitionState::s_nextLevel() 
 {
-    theGame::Instance()->getStateMachine()->popState();
+    theGame::Instance()->getStateMachine()->changeState(new PlayState());
 }
 
-void PauseState::update() 
+
+void TransitionState::update() 
 {
     if(_InputHandler::Instance()->isQuit()) theGame::Instance()->quit();
     for(int i = 0; i < m_gameObjects.size();i++) 
@@ -28,7 +29,7 @@ void PauseState::update()
     }
 }
 
-void PauseState::render() 
+void TransitionState::render() 
 {
     for(int i = 0; i < m_gameObjects.size();i++) 
     {
@@ -36,21 +37,20 @@ void PauseState::render()
     }
 }
 
-bool PauseState::onEnter() 
+bool TransitionState::onEnter() 
 {
     StateParser stateParser;
-    stateParser.parseState("assets/states.xml", s_pauseID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("assets/states.xml", s_transitionID, &m_gameObjects, &m_textureIDList);
     m_callbacks.push_back(0);
-    m_callbacks.push_back(s_pauseToMain);
-    m_callbacks.push_back(s_resumePlay);
+    m_callbacks.push_back(s_gameOverToMain);
+    m_callbacks.push_back(s_nextLevel);
     // set the callbacks for menu items
     setCallbacks(m_callbacks);
-    cout << "entering PauseState" << endl; 
+    cout << "transition to next level" << endl;
     return true;
 }
 
-
-bool PauseState::onExit() 
+bool TransitionState::onExit() 
 {
     for(int i = 0; i < m_gameObjects.size(); i++)
     {
@@ -58,18 +58,16 @@ bool PauseState::onExit()
         delete m_gameObjects[i];
     }
     m_gameObjects.clear();
-    
     for(int i = 0; i < m_textureIDList.size();i++) 
     {
         _TextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
     }
     _InputHandler::Instance()->reset();
-    cout << "exiting PauseState" << endl;
+    cout << "leaving transition state" << endl;
     return true;
 }
 
-
-void PauseState::setCallbacks(const vector<Callback> &callbacks) 
+void TransitionState::setCallbacks(const vector<Callback> &callbacks) 
 {
     for(int i = 0; i < m_gameObjects.size();i++) 
     {

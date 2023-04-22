@@ -54,3 +54,36 @@ string modify(int value)
     return str_score;
 }
 
+void saveStats(string path, int current_score, int lives) 
+{
+    ofstream file(path.c_str());
+    if(file) 
+    {
+        file << current_score;
+        file << lives;
+        file.close();
+    } else 
+    {
+        cout << "cant open file" << endl;
+    }
+}
+
+vector<int> getStats(string path) 
+{
+    vector<int> stat;
+    ifstream file(path.c_str());
+    if(file) 
+    {
+        int score;
+        int lives;
+        file >> score;
+        file >> lives;
+        stat.push_back(score);
+        stat.push_back(lives);
+        file.close();
+    } else 
+    {
+        cout << "cant open file" << endl;
+    }
+    return stat;
+}

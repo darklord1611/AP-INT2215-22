@@ -40,6 +40,7 @@ void PlayState::update()
     if(_InputHandler::Instance()->isQuit()) 
     {
         saveGame();
+        theGame::Instance()->saveGameStats();
         theGame::Instance()->quit();
     }
     if(isLevelComplete(m_gameObjects) == true) 
@@ -98,6 +99,7 @@ bool PlayState::onEnter()
     StateParser stateParser;
     if(theGame::Instance()->resumeGame() == true) 
     {
+        theGame::Instance()->loadGameStats();
         stateParser.parseState("assets/pause.xml", s_playID, &m_gameObjects, &m_textureIDList);
     } else 
     {
@@ -112,7 +114,7 @@ bool PlayState::onEnter()
     _TextureManager::Instance()->load("assets/largeexplosion.png", "largeexplosion", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
     theGame::Instance()->loadHighScore();
-    theGame::Instance()->setScore(0);
+    
     cout << "entering PlayState" << endl;
     return true;
 }
