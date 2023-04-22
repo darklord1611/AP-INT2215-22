@@ -42,6 +42,10 @@ void PlayState::update()
         saveGame();
         theGame::Instance()->quit();
     }
+    if(isLevelComplete(m_gameObjects) == true) 
+    {
+        theGame::Instance()->setLevelComplete(true);
+    }
     if(_InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE)) 
     {
         theGame::Instance()->getStateMachine()->pushState(new PauseState()); 
@@ -97,7 +101,8 @@ bool PlayState::onEnter()
         stateParser.parseState("assets/pause.xml", s_playID, &m_gameObjects, &m_textureIDList);
     } else 
     {
-        stateParser.parseState("src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+        string level = theGame::Instance()->getLevelFiles()[theGame::Instance()->getCurrentLevel() - 1];
+        stateParser.parseState(level, s_playID, &m_gameObjects, &m_textureIDList);
     }
     _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/bullet2.png", "bullet2", theGame::Instance()->getRenderer());
@@ -108,8 +113,6 @@ bool PlayState::onEnter()
     _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
     theGame::Instance()->loadHighScore();
     theGame::Instance()->setScore(0);
-    theGame::Instance()->upgradeCurrentScore(0);
-    theGame::Instance()->setPlayerLives(3);
     cout << "entering PlayState" << endl;
     return true;
 }
@@ -365,6 +368,14 @@ void PlayState::saveGame()
     delete decl;
 }
 
+bool PlayState::isLevelComplete(const vector<GameObject*> &objects) 
+{
+    for(int i = 0; i < objects.size(); i++) 
+    {
+        if(objects[i]->type() == "Enemy" && !objects[i]->dying()) return false;
+    }
+    return true;
+}
 
 string PlayState::getEnemyType(GameObject* object) 
 {

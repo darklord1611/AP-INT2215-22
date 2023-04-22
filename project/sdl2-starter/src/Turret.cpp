@@ -47,7 +47,9 @@ void Turret::update()
     }
     else
     {
+        m_velocity.setY(5);
         scroll(theGame::Instance()->getScrollSpeed());
         doDyingAnimation();
     }
+    ShooterObject::update();
 }

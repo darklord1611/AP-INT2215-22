@@ -2,6 +2,7 @@
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
+#include "GameOverState.h"
 // inputs
 #include "GameObjectFactory.h"
 #include "SoundManager.h"
@@ -22,10 +23,24 @@
 
 // utility
 #include<cstdlib>
-#include<fstream>
+#include "Utility.h"
 
 
 Game* Game::instance = 0;
+
+Game::Game() 
+{
+    m_continue = false;
+    m_scrollSpeed = 0.8;
+    m_Score = 0;
+    g_window = 0;
+    g_renderer = 0;
+    isRunning = false;
+    m_playerLives = 3;
+    m_levelFiles.push_back("assets/level1.xml");
+    m_levelFiles.push_back("assets/level2.xml");
+    m_currentLevel = 1;    
+}
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
@@ -66,7 +81,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
 
-    // initial
+    // initialize
     g_gameStateMachine = new GameStateMachine();
     TiXmlDocument doc;
     if(!doc.LoadFile("assets/pause.xml")) 
@@ -79,6 +94,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
         g_gameStateMachine->pushState(new PlayState());
         g_gameStateMachine->pushState(new PauseState());
     }
+    isRunning = true;
     return true;
 }
 
@@ -128,68 +144,35 @@ Game::~Game()
 
 void Game::loadHighScore() 
 {
-    string fileName = "assets/highscore.txt";
-    int value;
-    ifstream file(fileName.c_str());
-    if(file) 
-    {
-        file >> value;
-        file.close();
-    } else 
-    {
-        cout << "cant open file" << endl;
-        return;
-    }
-    string high_score = to_string(value);
-    for(int i = 0; i < 5 - high_score.size();i++) 
-    {
-        high_score = "0" + high_score;
-    }
+    int high_score = getHighScore("assets/highscore.txt");
     _TextureManager::Instance()->clearFromTextureMap("highscore");
-    if(!_TextureManager::Instance()->loadFont(high_score, "highscore", g_renderer, {255, 0, 0})) 
+    _TextureManager::Instance()->loadFont(modify(high_score), "highscore", g_renderer, {255, 0, 0});
+}
+
+void Game::setScore(int score) 
+{
+    if(score == 0) 
     {
-        cout << "something wrong" << endl;
-        return;
+        upgradeCurrentScore(score);
     }
+    m_Score = score;
 }
 
 void Game::upgradeCurrentScore(int score) 
 {
     m_Score += score;
-    string str_score = to_string(m_Score);
-    for(int i = 0; i < 5 - str_score.size();i++) 
-    {
-        str_score = "0" + str_score;
-    }
     _TextureManager::Instance()->clearFromTextureMap("current_score");
-    _TextureManager::Instance()->loadFont(str_score, "current_score", g_renderer);
+    _TextureManager::Instance()->loadFont(modify(m_Score), "current_score", g_renderer);
 }
 
 void Game::compareScore() 
 {
-    string fileName = "assets/highscore.txt";
-    int highScore;
-    ifstream file(fileName.c_str());
-    if(file) 
-    {
-        file >> highScore;
-        file.close();
-    } else 
-    {
-        cout << "cant open file" << endl;
-        return;
-    }
-    if(m_Score > highScore) 
-    {
-        ofstream file(fileName.c_str());
-        if(file) 
-        {
-            file << m_Score;
-            file.close();
-        } else 
-        {
-            cout << "cant open file" << endl;
-            return;
-        }
-    }
+    replaceHighScore(m_Score, "assets/highscore.txt");
+}
+
+void Game::setCurrentLevel(int currentLevel) 
+{
+    m_currentLevel = currentLevel;
+    g_gameStateMachine->changeState(new GameOverState());
+    m_levelComplete = false;
 }

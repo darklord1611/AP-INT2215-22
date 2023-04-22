@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameOverState.h"
 #include "InputHandler.h"
 #include "SoundManager.h"
 #include "BulletHandler.h"
@@ -38,30 +39,51 @@ void Player::draw()
 
 void Player::update() 
 {
-    if(!m_bDying)
+    if(theGame::Instance()->getLevelComplete()) 
+    {
+        if(m_position.getX() >= theGame::Instance()->getGameWidth()) 
         {
-            // reset velocity
-            m_velocity.setX(0);
+            int nextLevel = theGame::Instance()->getCurrentLevel() + 1;
+            if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
+            {
+                theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+            }
+            theGame::Instance()->setCurrentLevel(nextLevel);
+
+        } else 
+        {
             m_velocity.setY(0);
-            // get input
-            handleInput();
-            // do normal position += velocity update
+            m_velocity.setX(3);
             ShooterObject::update();
-            // update the animation
             handleAnimation();
         }
-        else // if the player is doing the death animation
-        {
-            m_currentFrame = int(((SDL_GetTicks() / (100)) % m_numFrames));
-            // if the death animation has completed
-            ressurect();
-            // if(m_dyingCounter == m_dyingTime)
-            // {
-            //     // ressurect the player
-            //     ressurect();
-            // }
-            // m_dyingCounter++;
-        }
+    } else 
+    {
+        if(!m_bDying)
+            {
+                // reset velocity
+                m_velocity.setX(0);
+                m_velocity.setY(0);
+                // get input
+                handleInput();
+                // do normal position += velocity update
+                ShooterObject::update();
+                // update the animation
+                handleAnimation();
+            }
+            else // if the player is doing the death animation
+            {
+                m_currentFrame = int(((SDL_GetTicks() / (100)) % m_numFrames));
+                // if the death animation has completed
+
+                if(m_dyingCounter == m_dyingTime)
+                {
+                    // ressurect the player
+                    ressurect();
+                }
+                m_dyingCounter++;
+            }
+    }
 }
 
 void Player::handleAnimation() 

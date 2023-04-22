@@ -67,7 +67,7 @@ public:
         else
         {
             m_velocity.setX(0);
-            m_velocity.setY(0);
+            m_velocity.setY(5);
             doDyingAnimation();
             scroll(0.8);
         }

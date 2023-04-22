@@ -12,7 +12,7 @@ using namespace std;
 class Game
 {
 private:
-    Game() {}
+    Game();
     ~Game();
     int m_playerLives;
     int m_Score;
@@ -25,6 +25,10 @@ private:
     double m_scrollSpeed;
     int m_gameWidth;
     bool m_continue;
+    int m_currentLevel;
+    bool m_levelComplete;
+
+    vector<string> m_levelFiles;
 public:
     static Game* Instance() 
         {
@@ -48,9 +52,16 @@ public:
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
     void setPlayerLives(int lives) { m_playerLives = lives; }
-    // int getScore() { return m_Score; }
-    void setScore(int score) { m_Score = score; }
     int getPlayerLives() { return m_playerLives; }
+    int getScore() { return m_Score; }
+    void setScore(int score);
+    void setCurrentLevel(int currentLevel);
+    int getCurrentLevel() { return m_currentLevel; }
+    void setLevelComplete(bool completed) { m_levelComplete = completed; }
+    bool getLevelComplete() { return m_levelComplete; }
+    vector<string> getLevelFiles() { return m_levelFiles; } 
+
+    // score
     void upgradeCurrentScore(int score);
     void loadHighScore();
     void compareScore();

@@ -28,7 +28,7 @@ void MainMenuState::render()
 bool MainMenuState::onEnter() 
 {
     StateParser stateParser;
-    stateParser.parseState("src/test.xml", s_menuID, &m_gameObjects, &m_textureIDList);
+    stateParser.parseState("assets/states.xml", s_menuID, &m_gameObjects, &m_textureIDList);
     m_callbacks.push_back(0);
     m_callbacks.push_back(s_menuToPlay);
     m_callbacks.push_back(s_exitFromMenu);

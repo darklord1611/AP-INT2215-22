@@ -24,6 +24,7 @@ public:
     bool RectRect(SDL_Rect* A, SDL_Rect* B);
     void saveGame();
     string getEnemyType(GameObject* object);
+    bool isLevelComplete(const vector<GameObject*> &objects);
     virtual ~PlayState() {}
 };
 

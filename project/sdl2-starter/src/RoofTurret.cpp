@@ -42,23 +42,25 @@ void RoofTurret::draw()
 void RoofTurret::update() 
 {
     if(!m_bDying)
+    {
+        scroll(theGame::Instance()->getScrollSpeed());
+    
+        if(m_bulletCounter == m_bulletFiringSpeed)
         {
-            scroll(theGame::Instance()->getScrollSpeed());
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(-3, 3));
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 20, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(0, 3));
+            TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 40, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(3, 3));
+            m_bulletCounter = 0;
+        }
         
-            if(m_bulletCounter == m_bulletFiringSpeed)
-            {
-                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(-3, 3));
-                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 20, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(0, 3));
-                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 40, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(3, 3));
-                m_bulletCounter = 0;
-            }
-            
-            m_bulletCounter++;
-        }
-        else
-        {
-            scroll(theGame::Instance()->getScrollSpeed());
-            doDyingAnimation();
-        }
+        m_bulletCounter++;
+    }
+    else
+    {
+        m_velocity.setY(5);
+        scroll(theGame::Instance()->getScrollSpeed());
+        doDyingAnimation();
+    }
+    ShooterObject::update();
 }
 

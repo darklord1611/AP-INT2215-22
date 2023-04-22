@@ -48,7 +48,7 @@ void Eskeletor::update()
     }
     else
     {
-        m_velocity.setY(0);
+        m_velocity.setY(5);
         scroll(theGame::Instance()->getScrollSpeed());
         doDyingAnimation();
     }
