@@ -8,6 +8,7 @@ class Enemy: public ShooterObject
 {
 protected:
     int m_score;
+    bool specialEffect = false;
     int m_health;
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}

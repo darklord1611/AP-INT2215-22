@@ -11,7 +11,7 @@ const static int s_buffer = 4;
 const string PlayState::s_playID = "PLAY";
 
 
-bool PlayState::RectRect(SDL_Rect* A, SDL_Rect* B)
+bool PlayState::Collided(SDL_Rect* A, SDL_Rect* B)
 {
     int aHBuf = A->h / s_buffer;
     int aWBuf = A->w / s_buffer;
@@ -39,8 +39,8 @@ void PlayState::update()
 {
     if(_InputHandler::Instance()->isQuit()) 
     {
-        saveGame();
         theGame::Instance()->saveGameStats();
+        saveGame();
         theGame::Instance()->quit();
     }
     if(isLevelComplete(m_gameObjects) == true) 
@@ -156,7 +156,7 @@ void PlayState::checkPlayerEnemyBulletCollision(Player* pPlayer)
         pRect2->w = pEnemyBullet->getWidth();
         pRect2->h = pEnemyBullet->getHeight();
         
-        if(RectRect(pRect1, pRect2))
+        if(Collided(pRect1, pRect2))
         {
             if(!pPlayer->dying() && !pEnemyBullet->dying())
             {
@@ -196,7 +196,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
             pRect2->w = pPlayerBullet->getWidth();
             pRect2->h = pPlayerBullet->getHeight();
             
-            if(RectRect(pRect1, pRect2))
+            if(Collided(pRect1, pRect2))
             {
                 if(!pObject->dying() && !pPlayerBullet->dying())
                 {
@@ -205,6 +205,15 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
                     if(dynamic_cast<Enemy*>(pObject)->getHealth() == 0) 
                     {
                         theGame::Instance()->upgradeCurrentScore(dynamic_cast<Enemy*>(pObject)->getScore());
+                        if(getEnemyType(pObject) == "Eskeletor") 
+                        {
+                            for(int i = -100; i <= 100; i += 100) 
+                            {
+                            GameObject* pGameObject = _GameObjectFactory::Instance()->create("SmallEskeletor");
+                            pGameObject->load(unique_ptr<LoaderParams>(new LoaderParams(pObject->getPosition().getX(), pObject->getPosition().getY() + i , 50, 50, "small_eskeletor", 1)));
+                            m_gameObjects.push_back(pGameObject);
+                            }
+                        }
                     }
                 }
             }
@@ -233,7 +242,7 @@ void PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObje
         pRect2->w = objects[i]->getWidth();
         pRect2->h = objects[i]->getHeight();
         
-        if(RectRect(pRect1, pRect2))
+        if(Collided(pRect1, pRect2))
         {
             if(!objects[i]->dead() && !objects[i]->dying())
             {

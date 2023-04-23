@@ -11,6 +11,7 @@ public:
     Eskeletor();
     virtual void collision();
     virtual void update();
+    void split();
 };
 
 class EskeletorCreator : public BaseCreator

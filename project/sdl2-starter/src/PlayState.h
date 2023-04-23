@@ -21,7 +21,7 @@ public:
     void checkPlayerEnemyBulletCollision(Player* pPlayer);
     void checkPlayerEnemyCollision(Player* pPlayer, const std::vector<GameObject*> &objects);
     void checkEnemyPlayerBulletCollision(const std::vector<GameObject*> &objects);
-    bool RectRect(SDL_Rect* A, SDL_Rect* B);
+    bool Collided(SDL_Rect* A, SDL_Rect* B);
     void saveGame();
     string getEnemyType(GameObject* object);
     bool isLevelComplete(const vector<GameObject*> &objects);

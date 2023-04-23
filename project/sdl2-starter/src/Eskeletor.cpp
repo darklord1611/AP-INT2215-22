@@ -1,6 +1,7 @@
 #include "Eskeletor.h"
 #include "SoundManager.h"
 #include "BulletHandler.h"
+#include "GameObjectFactory.h"
 #include "Game.h"
 #include<cstdlib>
 

@@ -6,6 +6,8 @@
     <texture filename="assets/glider.png" ID="glider"></texture>
     <texture filename="assets/shotglider.png" ID="shotglider"></texture>
     <texture filename="assets/clouds.png" ID="background"></texture>
+    <texture filename="assets/smaller_eskeletor.png" ID="small_eskeletor"></texture>
+    <texture filename="assets/eskeletor.png" ID="eskeletor"></texture>
     </TEXTURES>
 
     <OBJECTS>
@@ -13,6 +15,7 @@
     <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
     <object type="Glider" x="700" y="100" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="ShotGlider" x="1000" y="250" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="Eskeletor" x="1200" y="250" width="100" height="50" textureID="eskeletor" numFrames="1"/>
     </OBJECTS>
 </PLAY>
 </STATES>

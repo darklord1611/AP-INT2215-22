@@ -57,9 +57,9 @@ string modify(int value)
 void saveStats(string path, int current_score, int lives) 
 {
     ofstream file(path.c_str());
-    if(file) 
+    if(file.is_open()) 
     {
-        file << current_score;
+        file << current_score << endl;
         file << lives;
         file.close();
     } else 

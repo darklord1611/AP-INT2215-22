@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<STATES>
+    <PLAY>
+        <TEXTURES>
+            <texture filename="assets/clouds.png" ID="background" />
+            <texture filename="assets/helicopter.png" ID="player" />
+            <texture filename="assets/glider.png" ID="glider" />
+            <texture filename="assets/shotglider.png" ID="shotglider" />
+            <texture filename="assets/eskeletor.png" ID="eskeletor" />
+            <texture filename="assets/turret.png" ID="turret" />
+        </TEXTURES>
+        <OBJECTS>
+            <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5" />
+            <object type="Player" x="10" y="200" width="128" height="55" textureID="player" numFrames="4" />
+            <object type="Glider" x="-936" y="8908" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="ShotGlider" x="344" y="1264" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Eskeletor" x="548" y="1245" width="60" height="60" textureID="largeexplosion" numFrames="1" />
+            <object type="Glider" x="-686" y="150" width="50" height="50" textureID="small_eskeletor" numFrames="1" />
+            <object type="Glider" x="-834" y="1180" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="-773" y="900" width="40" height="40" textureID="explosion" numFrames="1" />
+        </OBJECTS>
+    </PLAY>
+</STATES>

@@ -6,7 +6,7 @@
 #include <math.h>
 #include "Enemy.h"
 #include "SoundManager.h"
-
+#include "BulletHandler.h"
 class Glider : public Enemy
 {
 private:
@@ -38,6 +38,16 @@ public:
         m_health -= 1;
         if(m_health == 0)
         {
+            if(specialEffect == true) 
+            {
+                for (int i = 0; i < 360; i += 20) 
+                {
+                    double angle = i * (M_PI / 180);
+                    double x = 3 * cos(angle);
+                    double y = 3 * sin(angle);
+                    TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(x, y));
+                }
+            }
             if(!m_bPlayedDeathSound) 
             {
                 TheSoundManager::Instance()->playSound("explode", 0);

@@ -20,7 +20,7 @@
 #include "Eskeletor.h"
 #include "RoofTurret.h"
 #include "Boss.h"
-
+#include "SmallEskeletor.h"
 // utility
 #include<cstdlib>
 #include "Utility.h"
@@ -81,7 +81,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     _GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     _GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
     _GameObjectFactory::Instance()->registerType("Background", new ScrollingBackgroundCreator());
-
+    _GameObjectFactory::Instance()->registerType("SmallEskeletor", new SmallEskeletorCreator());
+    
     // initialize
     g_gameStateMachine = new GameStateMachine();
     TiXmlDocument doc;
