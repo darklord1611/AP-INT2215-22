@@ -7,7 +7,7 @@ SmallEskeletor::SmallEskeletor() : Enemy()
     m_score = 10;
     m_dyingTime = 50;
     m_health = 1;
-    m_moveSpeed = 7;
+    m_moveSpeed = 3;
     m_bulletFiringSpeed = 0;
 }
 void SmallEskeletor::load(unique_ptr<LoaderParams> const &pParams) 

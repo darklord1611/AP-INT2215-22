@@ -62,7 +62,7 @@ void TextureManager::clearTextureMap()
     g_textureMap.clear();
 }
 
-bool TextureManager::loadFont(string message, string id, SDL_Renderer* g_renderer, SDL_Color textColor) 
+bool TextureManager::loadFont(string message, string id, SDL_Renderer* g_renderer, int size, SDL_Color textColor) 
 {
     if (TTF_Init() < 0) 
     {
@@ -70,7 +70,7 @@ bool TextureManager::loadFont(string message, string id, SDL_Renderer* g_rendere
         return false;
     }
     // Load the font
-    TTF_Font* font = TTF_OpenFont("assets/prstartk.ttf", 12);
+    TTF_Font* font = TTF_OpenFont("assets/prstartk.ttf", size);
     if (font == nullptr) {
         cerr << "Failed to load font: " << TTF_GetError() << endl;
         return false;

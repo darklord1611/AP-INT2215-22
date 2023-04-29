@@ -5,9 +5,15 @@
 
 class ShotGlider : public Glider
 {
+private:
+    int m_invisibleTime;
+    int m_invisibleCounter;
+    bool isInvisible;
+    void handleAnimation();
 public:
     ShotGlider();
     virtual ~ShotGlider() {}
+    virtual void draw();
     virtual void load(unique_ptr<LoaderParams> const &pParams);
     virtual void update();
 };

@@ -13,6 +13,7 @@ protected:
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}
 public:
+    void setEffect() { specialEffect = true; }
     int getHealth() { return m_health; }
     int getScore() { return m_score; }
     virtual string type() { return "Enemy"; }

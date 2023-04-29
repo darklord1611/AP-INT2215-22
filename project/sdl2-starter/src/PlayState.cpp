@@ -91,6 +91,9 @@ void PlayState::render()
 
     _TextureManager::Instance()->draw("highscore",theGame::Instance()->getGameWidth() - 100, 0, 100, 25, theGame::Instance()->getRenderer());
     _TextureManager::Instance()->draw("current_score",theGame::Instance()->getGameWidth() - 100, 25, 100, 25, theGame::Instance()->getRenderer());
+    string message = "ROUND" + to_string(theGame::Instance()->getCurrentLevel());
+    _TextureManager::Instance()->loadFont(message, "round", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->draw("round", 350, 0, 100, 25, theGame::Instance()->getRenderer());
 }
 
 
@@ -105,6 +108,17 @@ bool PlayState::onEnter()
     {
         string level = theGame::Instance()->getLevelFiles()[theGame::Instance()->getCurrentLevel() - 1];
         stateParser.parseState(level, s_playID, &m_gameObjects, &m_textureIDList);
+    }
+    if(theGame::Instance()->getCurrentLevel() >= 2) 
+    {
+        for(int i = 0; i < m_gameObjects.size(); i++) 
+        {
+            if(m_gameObjects[i]->type() == "Enemy") 
+            {
+                Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i]);
+                enemy->setEffect();
+            }
+        }
     }
     _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());
     _TextureManager::Instance()->load("assets/bullet2.png", "bullet2", theGame::Instance()->getRenderer());
@@ -210,7 +224,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
                             for(int i = -100; i <= 100; i += 100) 
                             {
                             GameObject* pGameObject = _GameObjectFactory::Instance()->create("SmallEskeletor");
-                            pGameObject->load(unique_ptr<LoaderParams>(new LoaderParams(pObject->getPosition().getX(), pObject->getPosition().getY() + i , 50, 50, "small_eskeletor", 1)));
+                            pGameObject->load(unique_ptr<LoaderParams>(new LoaderParams(pObject->getPosition().getX(), pObject->getPosition().getY() + i , 35, 40, "eskeletor", 1)));
                             m_gameObjects.push_back(pGameObject);
                             }
                         }

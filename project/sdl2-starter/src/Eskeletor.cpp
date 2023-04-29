@@ -17,6 +17,7 @@ Eskeletor::Eskeletor() : Enemy()
 void Eskeletor::collision()
 {
     m_health -= 1;
+    
     if(m_health == 0)
     {
         if(!m_bPlayedDeathSound) 

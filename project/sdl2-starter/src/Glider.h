@@ -21,6 +21,7 @@ public:
         m_health = 1;
         m_moveSpeed = 3;
         m_gap = 40;
+        m_bulletFiringSpeed = 30;
     }
     virtual ~Glider() {}
     virtual void load(unique_ptr<LoaderParams> const &pParams)
@@ -72,6 +73,15 @@ public:
             else if(m_position.getY() <= m_minHeight)
             {
                 m_velocity.setY(m_moveSpeed);
+            }
+            if(specialEffect == true) 
+            {
+                if(m_bulletCounter == m_bulletFiringSpeed)
+                {
+                    TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 15, 16, 16, "bullet2", 1, Vector2D(-10, 0));
+                    m_bulletCounter = 0;
+                }
+                m_bulletCounter++;
             }
         }
         else

@@ -2,7 +2,6 @@
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
-#include "TransitionState.h"
 // inputs
 #include "GameObjectFactory.h"
 #include "SoundManager.h"
@@ -25,6 +24,7 @@
 #include<cstdlib>
 #include "Utility.h"
 
+const int score_size = 12;
 
 Game* Game::instance = 0;
 
@@ -39,6 +39,7 @@ Game::Game()
     isRunning = false;
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
+     m_levelFiles.push_back("assets/level3.xml");
     m_currentLevel = 1;
     upgradeCurrentScore(m_Score);
 }
@@ -69,6 +70,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);
     TheSoundManager::Instance()->load("assets/phaser.wav", "shoot", SOUND_SFX);
     TheSoundManager::Instance()->playMusic("music1", -1);
+
     // register type
 
     _GameObjectFactory::Instance()->registerType("Glider", new GliderCreator());
@@ -148,7 +150,7 @@ void Game::loadHighScore()
 {
     int high_score = getHighScore("assets/highscore.txt");
     _TextureManager::Instance()->clearFromTextureMap("highscore");
-    _TextureManager::Instance()->loadFont(modify(high_score), "highscore", g_renderer, {255, 0, 0});
+    _TextureManager::Instance()->loadFont(modify(high_score), "highscore", g_renderer, score_size, {255, 0, 0});
 }
 
 void Game::upgradeCurrentScore(int score) 
@@ -166,7 +168,7 @@ void Game::compareScore()
 void Game::setCurrentLevel(int currentLevel) 
 {
     m_currentLevel = currentLevel;
-    g_gameStateMachine->changeState(new TransitionState());
+    g_gameStateMachine->changeState(new PlayState());
     m_levelComplete = false;
 }
 
@@ -175,6 +177,7 @@ void Game::resetGame()
     m_currentLevel = 1;
     m_levelComplete = false;
     m_Score = 0;
+    m_continue = false;
     m_playerLives = 3;
     upgradeCurrentScore(0);
 }
