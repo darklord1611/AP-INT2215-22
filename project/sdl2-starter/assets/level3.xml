@@ -14,7 +14,8 @@
     <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
     <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
     <object type="Glider" x="1200" y="200" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="Glider" x="1500" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="ShotGlider" x="1000" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <!-- <object type="Glider" x="1500" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="Glider" x="1700" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="ShotGlider" x="2000" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="2000" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
@@ -25,7 +26,7 @@
     <object type="Eskeletor" x="3000" y="300" width="150" height="50" textureID="eskeletor" numFrames="1"/>
     <object type="ShotGlider" x="3100" y="300" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="3200" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
-    <object type="ShotGlider" x="3200" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="3200" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/> -->
     </OBJECTS>
 </PLAY>
 </STATES>

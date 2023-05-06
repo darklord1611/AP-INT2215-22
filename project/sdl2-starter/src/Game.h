@@ -27,7 +27,7 @@ private:
     bool m_continue;
     int m_currentLevel;
     bool m_levelComplete;
-    int m_numLevelCompleted;
+    int m_completedLevels;
     vector<string> m_levelFiles;
 public:
     static Game* Instance() 
@@ -51,16 +51,21 @@ public:
     // setter and getter
     int getGameHeight() const { return m_gameHeight; }
     int getGameWidth() const { return m_gameWidth; }
+
     void setPlayerLives(int lives) { m_playerLives = lives; }
     int getPlayerLives() { return m_playerLives; }
+
     int getScore() { return m_Score; }
+
     void setCurrentLevel(int currentLevel);
     int getCurrentLevel() { return m_currentLevel; }
     void setLevelComplete(bool completed) { m_levelComplete = completed; }
     bool getLevelComplete() { return m_levelComplete; }
-    void numLevelCompleted() { m_numLevelCompleted++; }
-    int getNumLevelCompleted() { return m_numLevelCompleted; }
+
+    void setCompletedLevels() { m_completedLevels++; }
+    int getCompletedLevels() { return m_completedLevels; }
     vector<string> getLevelFiles() { return m_levelFiles; }
+
     void saveGameStats();
     void loadGameStats(); 
     double getScrollSpeed() { return m_scrollSpeed; }

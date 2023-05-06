@@ -37,13 +37,13 @@ Game::Game()
     g_renderer = 0;
     m_playerLives = 3;
     isRunning = false;
-    m_levelFiles.push_back("assets/levelBoss.xml");
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
     m_levelFiles.push_back("assets/level3.xml");
+    m_levelFiles.push_back("assets/levelBoss.xml");
     m_currentLevel = 1;
     upgradeCurrentScore(m_Score);
-    m_numLevelCompleted = 0;
+    m_completedLevels = 0;
 }
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
@@ -182,7 +182,7 @@ void Game::resetGame()
     m_continue = false;
     m_playerLives = 3;
     upgradeCurrentScore(0);
-    m_numLevelCompleted = 0;
+    m_completedLevels = 0;
 }
 
 void Game::saveGameStats() 

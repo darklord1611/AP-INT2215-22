@@ -71,7 +71,7 @@ void Eskeletor::handleAnimation()
         if(teleCounter == teleTime) 
         {
             m_position.setX(rand() % 400 + 500);
-            m_position.setY(rand() % 300 + 400);
+            m_position.setY(rand() % 600);
             teleCounter = 0;
         }
         teleCounter++;

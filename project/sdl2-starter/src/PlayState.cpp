@@ -109,27 +109,7 @@ bool PlayState::onEnter()
         string level = theGame::Instance()->getLevelFiles()[theGame::Instance()->getCurrentLevel() - 1];
         stateParser.parseState(level, s_playID, &m_gameObjects, &m_textureIDList);
     }
-    if(theGame::Instance()->getCurrentLevel() >= 2) 
-    {
-        for(int i = 0; i < m_gameObjects.size(); i++) 
-        {
-            if(m_gameObjects[i]->type() == "Enemy") 
-            {
-                Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i]);
-                enemy->setEffect();
-            }
-        }
-    }
-    _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/bullet2.png", "bullet2", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/bullet3.png", "bullet3", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/lives.png", "lives", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/smallexplosion.png", "smallexplosion", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/largeexplosion.png", "largeexplosion", theGame::Instance()->getRenderer());
-    _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
-    theGame::Instance()->loadHighScore();
-    
-    cout << "entering PlayState" << endl;
+    initPlay();
     return true;
 }
 
@@ -409,4 +389,26 @@ string PlayState::getEnemyType(GameObject* object)
     if(enemy->getScore() == 20) return "ShotGlider";
     if(enemy->getScore() == 30) return "Eskeletor";
     return "Turret";
+}
+
+void PlayState::initPlay() 
+{
+    int completedLevels = theGame::Instance()->getCompletedLevels();
+    for(int i = 0; i < m_gameObjects.size(); i++) 
+    {
+        if(m_gameObjects[i]->type() == "Enemy") 
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i]);
+            enemy->setEffect(completedLevels);
+        }
+    }
+    _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/bullet2.png", "bullet2", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/bullet3.png", "bullet3", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/lives.png", "lives", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/smallexplosion.png", "smallexplosion", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/largeexplosion.png", "largeexplosion", theGame::Instance()->getRenderer());
+    _TextureManager::Instance()->load("assets/explosion.png", "explosion", theGame::Instance()->getRenderer());
+    theGame::Instance()->loadHighScore();
+    cout << "entering PlayState" << endl;
 }

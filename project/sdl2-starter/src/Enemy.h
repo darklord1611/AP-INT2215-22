@@ -9,11 +9,22 @@ class Enemy: public ShooterObject
 protected:
     int m_score;
     bool specialEffect = false;
+    bool deathEffect = false;
     int m_health;
     Enemy() : ShooterObject() {}
     virtual ~Enemy() {}
 public:
-    void setEffect() { specialEffect = true; }
+    void setEffect(int effect) 
+    { 
+        if(effect >= 7) 
+        {
+            specialEffect = true;
+            deathEffect = true;
+        } else if(effect >= 4) 
+        {
+            specialEffect = true;
+        }
+    }
     int getHealth() { return m_health; }
     int getScore() { return m_score; }
     virtual string type() { return "Enemy"; }

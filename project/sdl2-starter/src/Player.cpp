@@ -6,6 +6,8 @@
 #include "SoundManager.h"
 #include "BulletHandler.h"
 
+const int bossLevel = 4;
+
 Player::Player() : ShooterObject() 
 {
     m_invulnerable = false;
@@ -41,20 +43,26 @@ void Player::update()
 {
     if(theGame::Instance()->getLevelComplete()) 
     {
-        theGame::Instance()->numLevelCompleted();
+        theGame::Instance()->setCompletedLevels();
         if(m_position.getX() >= theGame::Instance()->getGameWidth()) 
         {
-            
-            int nextLevel = theGame::Instance()->getCurrentLevel() + 1;
-            if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
+            if(theGame::Instance()->getCompletedLevels() == 9) 
             {
-                theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+                theGame::Instance()->setCurrentLevel(bossLevel);
             } else 
             {
-                theGame::Instance()->setCurrentLevel(nextLevel);
+                int nextLevel = theGame::Instance()->getCurrentLevel() % 3 + 1;
+                if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
+                {
+                    theGame::Instance()->getStateMachine()->changeState(new GameOverState());
+                } else 
+                {
+                    theGame::Instance()->setCurrentLevel(nextLevel);
+                } 
             }
         } else 
         {
+            m_invulnerable = true;
             m_velocity.setY(0);
             m_velocity.setX(3);
             ShooterObject::update();

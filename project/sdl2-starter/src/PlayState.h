@@ -26,6 +26,7 @@ public:
     string getEnemyType(GameObject* object);
     bool isLevelComplete(const vector<GameObject*> &objects);
     virtual ~PlayState() {}
+    void initPlay();
 };
 
 #endif // define __PlayState__
