@@ -7,11 +7,14 @@
 
 Eskeletor::Eskeletor() : Enemy() 
 {
+    teleCounter = 0;
+    teleTime = 200;
     m_score = 30;
     m_dyingTime = 50;
     m_health = 3;
     m_moveSpeed = 3;
     m_bulletFiringSpeed = 50;
+    isTeleportable = false;
 }
 
 void Eskeletor::collision()
@@ -37,6 +40,7 @@ void Eskeletor::update()
 {
     if(!m_bDying)
     {
+        if(specialEffect) isTeleportable = true;
         scroll(theGame::Instance()->getScrollSpeed() - 0.5);
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
@@ -50,9 +54,26 @@ void Eskeletor::update()
     }
     else
     {
+        isTeleportable = false;
         m_velocity.setY(5);
         scroll(theGame::Instance()->getScrollSpeed());
         doDyingAnimation();
     }
+    handleAnimation();
     ShooterObject::update();
+}
+
+
+void Eskeletor::handleAnimation() 
+{
+    if(isTeleportable) 
+    {
+        if(teleCounter == teleTime) 
+        {
+            m_position.setX(rand() % 400 + 500);
+            m_position.setY(rand() % 300 + 400);
+            teleCounter = 0;
+        }
+        teleCounter++;
+    }
 }

@@ -27,7 +27,7 @@ private:
     bool m_continue;
     int m_currentLevel;
     bool m_levelComplete;
-
+    int m_numLevelCompleted;
     vector<string> m_levelFiles;
 public:
     static Game* Instance() 
@@ -58,6 +58,8 @@ public:
     int getCurrentLevel() { return m_currentLevel; }
     void setLevelComplete(bool completed) { m_levelComplete = completed; }
     bool getLevelComplete() { return m_levelComplete; }
+    void numLevelCompleted() { m_numLevelCompleted++; }
+    int getNumLevelCompleted() { return m_numLevelCompleted; }
     vector<string> getLevelFiles() { return m_levelFiles; }
     void saveGameStats();
     void loadGameStats(); 

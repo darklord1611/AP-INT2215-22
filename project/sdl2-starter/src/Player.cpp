@@ -41,13 +41,18 @@ void Player::update()
 {
     if(theGame::Instance()->getLevelComplete()) 
     {
+        theGame::Instance()->numLevelCompleted();
         if(m_position.getX() >= theGame::Instance()->getGameWidth()) 
         {
+            
             int nextLevel = theGame::Instance()->getCurrentLevel() + 1;
             if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
             {
                 theGame::Instance()->getStateMachine()->changeState(new GameOverState());
-            } else theGame::Instance()->setCurrentLevel(nextLevel);
+            } else 
+            {
+                theGame::Instance()->setCurrentLevel(nextLevel);
+            }
         } else 
         {
             m_velocity.setY(0);

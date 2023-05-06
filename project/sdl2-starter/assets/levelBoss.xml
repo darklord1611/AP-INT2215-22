@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<STATES>
+<PLAY>
+    <TEXTURES>
+    <texture filename="assets/helicopter.png" ID="player"></texture>
+    <texture filename="assets/boss1.png" ID="boss"></texture>
+    <texture filename="assets/clouds.png" ID="background"></texture>
+    </TEXTURES>
+
+    <OBJECTS>
+    <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
+    <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
+    <object type="Boss" x="1200" y="100" width="230" height="183" textureID="boss" numFrames="1"/>
+    </OBJECTS>
+</PLAY>
+</STATES>

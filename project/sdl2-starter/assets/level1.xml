@@ -6,20 +6,20 @@
     <texture filename="assets/glider.png" ID="glider"></texture>
     <texture filename="assets/shotglider.png" ID="shotglider"></texture>
     <texture filename="assets/clouds.png" ID="background"></texture>
-    <texture filename="assets/smaller_eskeletor.png" ID="small_eskeletor"></texture>
-    <texture filename="assets/eskeletor.png" ID="eskeletor"></texture>
     </TEXTURES>
 
     <OBJECTS>
     <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5"/>
     <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
-    <object type="Glider" x="700" y="100" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="Glider" x="900" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="Glider" x="1100" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="ShotGlider" x="1200" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
-    <object type="ShotGlider" x="1200" y="500" width="50" height="50" textureID="shotglider" numFrames="1"/>
-    <object type="Glider" x="1300" y="150" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="Glider" x="1400" y="350" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="1000" y="150" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="1300" y="450" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="1600" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="1900" y="200" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="2200" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="ShotGlider" x="1300" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1300" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1500" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1600" y="500" width="50" height="50" textureID="shotglider" numFrames="1"/>
     </OBJECTS>
 </PLAY>
 </STATES>

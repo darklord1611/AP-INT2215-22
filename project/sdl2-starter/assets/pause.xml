@@ -11,9 +11,8 @@
         </TEXTURES>
         <OBJECTS>
             <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5" />
-            <object type="Player" x="100" y="193" width="128" height="55" textureID="player" numFrames="4" />
-            <object type="Glider" x="443" y="312" width="40" height="40" textureID="explosion" numFrames="1" />
-            <object type="Eskeletor" x="964" y="100" width="100" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4" />
+            <object type="Turret" x="1119" y="100" width="230" height="183" textureID="boss" numFrames="1" />
         </OBJECTS>
     </PLAY>
 </STATES>

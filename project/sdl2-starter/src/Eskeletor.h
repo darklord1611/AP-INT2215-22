@@ -6,6 +6,11 @@
 
 class Eskeletor : public Enemy
 {
+private:
+    int teleCounter;
+    int teleTime;
+    bool isTeleportable;
+    void handleAnimation();
 public:
     virtual ~Eskeletor() {}
     Eskeletor();
