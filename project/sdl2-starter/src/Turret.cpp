@@ -5,9 +5,9 @@
 
 Turret::Turret() 
 {
-    m_score = 150;
+    m_score = 40;
     m_dyingTime = 1000;
-    m_health = 15;
+    m_health = 10;
     m_bulletFiringSpeed = 70;
 }
 

@@ -4,10 +4,10 @@
 
 SmallEskeletor::SmallEskeletor() : Enemy() 
 {
-    m_score = 10;
+    m_score = 0;
     m_dyingTime = 50;
     m_health = 1;
-    m_moveSpeed = 3;
+    m_moveSpeed = 2;
     m_bulletFiringSpeed = 0;
 }
 void SmallEskeletor::load(unique_ptr<LoaderParams> const &pParams) 
@@ -38,7 +38,6 @@ void SmallEskeletor::update()
 {
     if(!m_bDying)
     {
-
     }
     else
     {

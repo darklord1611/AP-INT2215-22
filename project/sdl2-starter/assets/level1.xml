@@ -16,6 +16,7 @@
     <object type="Glider" x="1700" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="Glider" x="2300" y="200" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="Glider" x="2500" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Eskeletor" x="1000" y="100" width="150" height="50" textureID="eskeletor" numFrames="1"/>
     <object type="ShotGlider" x="1200" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="1200" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="1400" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/>

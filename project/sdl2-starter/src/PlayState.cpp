@@ -6,7 +6,7 @@
 #include "TextureManager.h"
 #include "Enemy.h"
 #include "StateParser.h"
-
+#include <cstdio>
 const static int s_buffer = 4;
 const string PlayState::s_playID = "PLAY";
 
@@ -345,7 +345,13 @@ void PlayState::saveGame()
         object->LinkEndChild(objects[i]);
     }
     // Save the file
-    bool success = doc.SaveFile("assets/pause.xml");
+    const char* fileName = "assets/pause.xml";
+    TiXmlDocument existDoc;
+    if(existDoc.LoadFile(fileName)) 
+    {
+        remove(fileName);
+    }
+    bool success = doc.SaveFile(fileName);
     if(success) 
     {
         cout << "XML file saved successfully." << endl;
