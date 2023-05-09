@@ -104,6 +104,7 @@ bool PlayState::onEnter()
     {
         theGame::Instance()->loadGameStats();
         stateParser.parseState("assets/pause.xml", s_playID, &m_gameObjects, &m_textureIDList);
+        theGame::Instance()->continueGame();
     } else 
     {
         string level = theGame::Instance()->getLevelFiles()[theGame::Instance()->getCurrentLevel() - 1];
@@ -199,7 +200,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
                     if(dynamic_cast<Enemy*>(pObject)->getHealth() == 0) 
                     {
                         theGame::Instance()->upgradeCurrentScore(dynamic_cast<Enemy*>(pObject)->getScore());
-                        if(getEnemyType(pObject) == "Eskeletor") 
+                        if(getEnemyType(pObject) == "Eskeletor" && theGame::Instance()->getCurrentLevel() >= 7) 
                         {
                             for(int i = -100; i <= 100; i += 100) 
                             {
@@ -393,13 +394,13 @@ string PlayState::getEnemyType(GameObject* object)
 
 void PlayState::initPlay() 
 {
-    int completedLevels = theGame::Instance()->getCompletedLevels();
+    int currentLevel = theGame::Instance()->getCurrentLevel();
     for(int i = 0; i < m_gameObjects.size(); i++) 
     {
         if(m_gameObjects[i]->type() == "Enemy") 
         {
             Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i]);
-            enemy->setEffect(completedLevels);
+            enemy->setEffect(currentLevel);
         }
     }
     _TextureManager::Instance()->load("assets/bullet1.png", "bullet1", theGame::Instance()->getRenderer());

@@ -27,7 +27,7 @@ void ShotGlider::update()
     if(!m_bDying)
     {
         if(specialEffect) isInvisible = true;
-        scroll(theGame::Instance()->getScrollSpeed() - 0.5);
+        scroll(theGame::Instance()->getScrollSpeed());
         if(m_position.getY() + m_height >= theGame::Instance()->getGameHeight())
         {
             m_velocity.setY(-m_moveSpeed);

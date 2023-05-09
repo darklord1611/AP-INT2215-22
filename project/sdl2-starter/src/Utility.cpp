@@ -54,13 +54,15 @@ string modify(int value)
     return str_score;
 }
 
-void saveStats(string path, int current_score, int lives) 
+void saveStats(string path, int current_score, int lives, int currentRound, int isRoundComplete) 
 {
     ofstream file(path.c_str());
     if(file.is_open()) 
     {
         file << current_score << endl;
-        file << lives;
+        file << lives << endl;
+        file << currentRound << endl;
+        file << isRoundComplete;
         file.close();
     } else 
     {
@@ -76,10 +78,16 @@ vector<int> getStats(string path)
     {
         int score;
         int lives;
+        int currentRound;
+        int isRoundComplete;
         file >> score;
         file >> lives;
+        file >> currentRound;
+        file >> isRoundComplete;
         stat.push_back(score);
         stat.push_back(lives);
+        stat.push_back(currentRound);
+        stat.push_back(isRoundComplete);
         file.close();
     } else 
     {

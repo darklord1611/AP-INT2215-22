@@ -6,7 +6,6 @@
 #include "SoundManager.h"
 #include "BulletHandler.h"
 
-const int bossLevel = 4;
 
 Player::Player() : ShooterObject() 
 {
@@ -43,23 +42,16 @@ void Player::update()
 {
     if(theGame::Instance()->getLevelComplete()) 
     {
-        theGame::Instance()->setCompletedLevels();
         if(m_position.getX() >= theGame::Instance()->getGameWidth()) 
         {
-            if(theGame::Instance()->getCompletedLevels() == 9) 
+            int nextLevel = theGame::Instance()->getCurrentLevel() + 1;
+            if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
             {
-                theGame::Instance()->setCurrentLevel(bossLevel);
+                theGame::Instance()->getStateMachine()->changeState(new GameOverState());
             } else 
             {
-                int nextLevel = theGame::Instance()->getCurrentLevel() % 3 + 1;
-                if(nextLevel > theGame::Instance()->getLevelFiles().size()) 
-                {
-                    theGame::Instance()->getStateMachine()->changeState(new GameOverState());
-                } else 
-                {
-                    theGame::Instance()->setCurrentLevel(nextLevel);
-                } 
-            }
+                theGame::Instance()->setCurrentLevel(nextLevel);
+            } 
         } else 
         {
             m_invulnerable = true;
@@ -72,15 +64,15 @@ void Player::update()
     {
         if(!m_bDying)
             {
-                // reset velocity
-                m_velocity.setX(0);
-                m_velocity.setY(0);
-                // get input
-                handleInput();
-                // do normal position += velocity update
-                ShooterObject::update();
-                // update the animation
-                handleAnimation();
+            // reset velocity
+            m_velocity.setX(0);
+            m_velocity.setY(0);
+            // get input
+            handleInput();
+            // do normal position += velocity update
+            ShooterObject::update();
+            // update the animation
+            handleAnimation();
             }
             else // if the player is doing the death animation
             {

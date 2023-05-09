@@ -31,7 +31,7 @@ Game* Game::instance = 0;
 Game::Game() 
 {
     m_continue = false;
-    m_scrollSpeed = 0.5;
+    m_scrollSpeed = 0.8;
     m_Score = 0;
     g_window = 0;
     g_renderer = 0;
@@ -40,16 +40,21 @@ Game::Game()
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
     m_levelFiles.push_back("assets/level3.xml");
+    m_levelFiles.push_back("assets/level1.xml");
+    m_levelFiles.push_back("assets/level2.xml");
+    m_levelFiles.push_back("assets/level3.xml");
+    m_levelFiles.push_back("assets/level1.xml");
+    m_levelFiles.push_back("assets/level2.xml");
+    m_levelFiles.push_back("assets/level3.xml");
     m_levelFiles.push_back("assets/levelBoss.xml");
     m_currentLevel = 1;
     upgradeCurrentScore(m_Score);
-    m_completedLevels = 0;
 }
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags) 
 {
     m_continue = false;
-    m_scrollSpeed = 0.8;
+    m_scrollSpeed = 0.2;
     m_Score = 0;
     m_gameHeight = height;
     m_gameWidth = width;
@@ -182,18 +187,18 @@ void Game::resetGame()
     m_continue = false;
     m_playerLives = 3;
     upgradeCurrentScore(0);
-    m_completedLevels = 0;
 }
 
 void Game::saveGameStats() 
 {
-    saveStats("assets/stats.txt", m_Score, m_playerLives);
+    saveStats("assets/stats.txt", m_Score, m_playerLives, m_currentLevel, m_levelComplete);
 }
 
 void Game::loadGameStats() 
 {
     m_playerLives = getStats("assets/stats.txt")[1];
-    m_Score = getStats("assets/stats.txt")[0];
-    upgradeCurrentScore(m_Score);
-    cout << m_Score << endl;
+    int score = getStats("assets/stats.txt")[0];
+    m_currentLevel = getStats("assets/stats.txt")[2];
+    m_levelComplete = getStats("assets/stats.txt")[3];
+    upgradeCurrentScore(score);
 }

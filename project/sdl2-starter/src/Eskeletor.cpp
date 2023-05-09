@@ -41,7 +41,7 @@ void Eskeletor::update()
     if(!m_bDying)
     {
         if(specialEffect) isTeleportable = true;
-        scroll(theGame::Instance()->getScrollSpeed() - 0.5);
+        scroll(theGame::Instance()->getScrollSpeed());
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(-1 * (rand() % 5 + 1), rand() % 10 - 5));

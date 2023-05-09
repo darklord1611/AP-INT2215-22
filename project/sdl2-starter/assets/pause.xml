@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<STATES>
+    <PLAY>
+        <TEXTURES>
+            <texture filename="assets/clouds.png" ID="background" />
+            <texture filename="assets/helicopter.png" ID="player" />
+            <texture filename="assets/glider.png" ID="glider" />
+            <texture filename="assets/shotglider.png" ID="shotglider" />
+            <texture filename="assets/eskeletor.png" ID="eskeletor" />
+            <texture filename="assets/turret.png" ID="turret" />
+        </TEXTURES>
+        <OBJECTS>
+            <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5" />
+            <object type="Player" x="-2" y="140" width="128" height="55" textureID="player" numFrames="4" />
+            <object type="Glider" x="-3630" y="228" width="50" height="50" textureID="glider" numFrames="1" />
+            <object type="Glider" x="-940" y="6304" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="-399" y="6958" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="ShotGlider" x="1357" y="390" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="ShotGlider" x="1357" y="114" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="Eskeletor" x="1457" y="100" width="150" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="Eskeletor" x="1457" y="500" width="150" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="Turret" x="1958" y="100" width="50" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="Turret" x="1858" y="500" width="50" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="Eskeletor" x="2058" y="300" width="150" height="50" textureID="eskeletor" numFrames="1" />
+            <object type="ShotGlider" x="1858" y="414" width="50" height="50" textureID="shotglider" numFrames="1" />
+        </OBJECTS>
+    </PLAY>
+</STATES>
