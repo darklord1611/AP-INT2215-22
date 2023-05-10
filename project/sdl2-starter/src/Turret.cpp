@@ -7,8 +7,8 @@ Turret::Turret()
 {
     m_score = 40;
     m_dyingTime = 1000;
-    m_health = 10;
-    m_bulletFiringSpeed = 70;
+    m_health = 15;
+    m_bulletFiringSpeed = 40;
 }
 
 void Turret::collision() 
@@ -37,6 +37,11 @@ void Turret::update()
 
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
+            if(specialEffect == true) 
+            {
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 10, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(-2, 3));
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 30, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(2, 3));
+            }
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet2", 1, Vector2D(-3, -3));
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 20, m_position.getY(), 16, 16, "bullet2", 1, Vector2D(0, -3));
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 40, m_position.getY(), 16, 16, "bullet2", 1, Vector2D(3, -3));

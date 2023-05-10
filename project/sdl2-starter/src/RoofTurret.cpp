@@ -8,8 +8,8 @@ RoofTurret::RoofTurret()
 {
     m_score = 45;
     m_dyingTime = 1000;
-    m_health = 10;
-    m_bulletFiringSpeed = 50;
+    m_health = 15;
+    m_bulletFiringSpeed = 40;
 }
 
 void RoofTurret::collision() 

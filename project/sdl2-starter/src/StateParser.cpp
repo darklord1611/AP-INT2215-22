@@ -81,7 +81,7 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, vector<string> *pTextu
 	{
 		string filenameAttribute = e->Attribute("filename");
 		string idAttribute = e->Attribute("ID");
-		pTextureIDs->push_back(idAttribute);	//push into list
+		pTextureIDs->push_back(idAttribute);
 
 		_TextureManager::Instance()->load(filenameAttribute, idAttribute, theGame::Instance()->getRenderer());
 	}

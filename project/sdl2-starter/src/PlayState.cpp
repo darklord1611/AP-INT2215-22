@@ -200,7 +200,7 @@ void PlayState::checkEnemyPlayerBulletCollision(const vector<GameObject*> &objec
                     if(dynamic_cast<Enemy*>(pObject)->getHealth() == 0) 
                     {
                         theGame::Instance()->upgradeCurrentScore(dynamic_cast<Enemy*>(pObject)->getScore());
-                        if(getEnemyType(pObject) == "Eskeletor" && theGame::Instance()->getCurrentLevel() >= 7) 
+                        if(getEnemyType(pObject) == "Eskeletor" && theGame::Instance()->getCurrentLevel() >= 5) 
                         {
                             for(int i = -100; i <= 100; i += 100) 
                             {
@@ -315,7 +315,6 @@ void PlayState::saveGame()
     background->SetAttribute("height", "600");
     background->SetAttribute("textureID", "background");
     background->SetAttribute("numFrames", "1");
-    background->SetAttribute("animSpeed", "0.5");
     object->LinkEndChild(background);
 
     // save player
@@ -334,15 +333,18 @@ void PlayState::saveGame()
     TiXmlElement** objects = new TiXmlElement*[size];
     for(int i = 2; i < size; i++) 
     {
-        objects[i] = new TiXmlElement("object");
-        objects[i]->SetAttribute("type", getEnemyType(m_gameObjects[i]));
-        objects[i]->SetAttribute("x", m_gameObjects[i]->getPosition().getX());
-        objects[i]->SetAttribute("y", m_gameObjects[i]->getPosition().getY());
-        objects[i]->SetAttribute("width", m_gameObjects[i]->getWidth());
-        objects[i]->SetAttribute("height", m_gameObjects[i]->getHeight());
-        objects[i]->SetAttribute("textureID", m_gameObjects[i]->getTextureID());
-        objects[i]->SetAttribute("numFrames", 1);
-        object->LinkEndChild(objects[i]);
+        if(!m_gameObjects[i]->dying()) 
+        {
+            objects[i] = new TiXmlElement("object");
+            objects[i]->SetAttribute("type", getEnemyType(m_gameObjects[i]));
+            objects[i]->SetAttribute("x", m_gameObjects[i]->getPosition().getX());
+            objects[i]->SetAttribute("y", m_gameObjects[i]->getPosition().getY());
+            objects[i]->SetAttribute("width", m_gameObjects[i]->getWidth());
+            objects[i]->SetAttribute("height", m_gameObjects[i]->getHeight());
+            objects[i]->SetAttribute("textureID", m_gameObjects[i]->getTextureID());
+            objects[i]->SetAttribute("numFrames", 1);
+            object->LinkEndChild(objects[i]); 
+        }
     }
     // Save the file
     const char* fileName = "assets/pause.xml";
@@ -396,7 +398,8 @@ string PlayState::getEnemyType(GameObject* object)
     if(enemy->getScore() == 20) return "ShotGlider";
     if(enemy->getScore() == 30) return "Eskeletor";
     if(enemy->getScore() == 40) return "Turret";
-    return "RoofTurret";
+    if(enemy->getScore() == 45) return "RoofTurret";
+    return "Boss";
 }
 
 void PlayState::initPlay() 

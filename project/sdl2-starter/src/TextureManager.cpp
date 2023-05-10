@@ -76,7 +76,7 @@ bool TextureManager::loadFont(string message, string id, SDL_Renderer* g_rendere
         return false;
     }
     SDL_Surface* g_temp_surface = TTF_RenderText_Solid(font, message.c_str(), textColor);
-
+    TTF_CloseFont(font);
     if(g_temp_surface == 0) 
     {
         cout << SDL_GetError() << endl;

@@ -5,9 +5,10 @@
 
 Boss::Boss() : Enemy() 
 {
-    m_health = 100;
+    m_score = 100;
+    m_health = 120;
     m_dyingTime = 100;
-    m_bulletFiringSpeed = 100;
+    m_bulletFiringSpeed = 50;
     m_moveSpeed = 2;
     m_entered = false;
 }
@@ -47,6 +48,9 @@ void Boss::update()
         if(m_position.getX() < (theGame::Instance()->getGameWidth() - (m_width + 20)))
         {
             m_entered = true;
+        } else 
+        {
+            if(m_health < 120) m_health++;
         }
     }
     else
