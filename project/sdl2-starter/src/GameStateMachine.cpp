@@ -28,7 +28,7 @@ void GameStateMachine::changeState(GameState* pState)
         // }
         if(m_gameStates.back()->onExit()) 
         {
-            // delete m_gameStates.back(); // leaking memory problems still there
+            // delete m_gameStates.back(); leaking memory problems still there
             m_gameStates.pop_back();
         }
     }

@@ -6,7 +6,7 @@
 
 RoofTurret::RoofTurret() 
 {
-    m_score = 40;
+    m_score = 45;
     m_dyingTime = 1000;
     m_health = 10;
     m_bulletFiringSpeed = 50;
@@ -17,6 +17,16 @@ void RoofTurret::collision()
     m_health -= 1;
     if(m_health == 0)
     {
+        if(deathEffect == true) 
+        {
+            for (int i = 0; i < 360; i += 20) 
+            {
+                double angle = i * (M_PI / 180);
+                double x = 3 * cos(angle);
+                double y = 3 * sin(angle);
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(x, y));
+            }
+        }
         if(!m_bPlayedDeathSound) 
         {
             TheSoundManager::Instance()->playSound("explode", 0);
@@ -47,6 +57,11 @@ void RoofTurret::update()
     
         if(m_bulletCounter == m_bulletFiringSpeed)
         {
+            if(specialEffect == true) 
+            {
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 10, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(-2, 3));
+                TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 30, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(2, 3));
+            }
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(-3, 3));
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 20, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(0, 3));
             TheBulletHandler::Instance()->addEnemyBullet(m_position.getX() + 40, m_position.getY() + 20, 16, 16, "bullet2", 1, Vector2D(3, 3));

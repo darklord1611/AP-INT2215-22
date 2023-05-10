@@ -19,9 +19,9 @@ public:
         m_score = 10;
         m_dyingTime = 25;
         m_health = 1;
-        m_moveSpeed = 3;
-        m_gap = 40;
-        m_bulletFiringSpeed = 30;
+        m_moveSpeed = 2;
+        m_gap = 60;
+        m_bulletFiringSpeed = 40;
     }
     virtual ~Glider() {}
     virtual void load(unique_ptr<LoaderParams> const &pParams)
@@ -39,7 +39,7 @@ public:
         m_health -= 1;
         if(m_health == 0)
         {
-            if(specialEffect == true) 
+            if(deathEffect == true) 
             {
                 for (int i = 0; i < 360; i += 20) 
                 {
@@ -89,7 +89,7 @@ public:
             m_velocity.setX(0);
             m_velocity.setY(5);
             doDyingAnimation();
-            scroll(0.8);
+            scroll(theGame::Instance()->getScrollSpeed());
         }
         ShooterObject::update();
     }

@@ -395,7 +395,8 @@ string PlayState::getEnemyType(GameObject* object)
     if(enemy->getScore() == 10) return "Glider";
     if(enemy->getScore() == 20) return "ShotGlider";
     if(enemy->getScore() == 30) return "Eskeletor";
-    return "Turret";
+    if(enemy->getScore() == 40) return "Turret";
+    return "RoofTurret";
 }
 
 void PlayState::initPlay() 

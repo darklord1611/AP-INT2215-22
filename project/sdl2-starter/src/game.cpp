@@ -39,13 +39,10 @@ Game::Game()
     isRunning = false;
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
-    m_levelFiles.push_back("assets/level3.xml");
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
-    m_levelFiles.push_back("assets/level3.xml");
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
-    m_levelFiles.push_back("assets/level3.xml");
     m_levelFiles.push_back("assets/levelBoss.xml");
     m_currentLevel = 1;
     upgradeCurrentScore(m_Score);
@@ -72,6 +69,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
         }
     }
+    
     // music
     TheSoundManager::Instance()->load("assets/DST_ElectroRock.ogg", "music1", SOUND_MUSIC);
     TheSoundManager::Instance()->load("assets/boom.wav", "explode", SOUND_SFX);

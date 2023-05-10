@@ -9,7 +9,7 @@ ShotGlider::ShotGlider() : Glider()
     m_invisibleCounter = 0;
     m_invisibleTime = 400;
     m_score = 20;
-    m_bulletFiringSpeed = 100;
+    m_bulletFiringSpeed = 80;
     m_moveSpeed = 3;
 }
 
@@ -50,7 +50,7 @@ void ShotGlider::update()
         isInvisible = false;
         m_velocity.setX(0);
         m_velocity.setY(5);
-        scroll(theGame::Instance()->getScrollSpeed());
+        scroll(1);
         doDyingAnimation();
     }
     ShooterObject::update();

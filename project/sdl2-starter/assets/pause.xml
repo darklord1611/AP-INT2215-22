@@ -11,18 +11,19 @@
         </TEXTURES>
         <OBJECTS>
             <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" animSpeed="0.5" />
-            <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4" />
-            <object type="Glider" x="957" y="151" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="Glider" x="1257" y="451" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="Glider" x="1457" y="301" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="Glider" x="2057" y="201" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="Glider" x="2257" y="401" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="Eskeletor" x="983" y="100" width="150" height="50" textureID="eskeletor" numFrames="1" />
-            <object type="ShotGlider" x="1183" y="243" width="50" height="50" textureID="shotglider" numFrames="1" />
-            <object type="ShotGlider" x="1183" y="357" width="50" height="50" textureID="shotglider" numFrames="1" />
-            <object type="ShotGlider" x="1383" y="139" width="50" height="50" textureID="shotglider" numFrames="1" />
-            <object type="ShotGlider" x="1483" y="257" width="50" height="50" textureID="shotglider" numFrames="1" />
-            <object type="ShotGlider" x="1583" y="257" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="Player" x="0" y="288" width="128" height="55" textureID="player" numFrames="4" />
+            <object type="Glider" x="-129" y="13794" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="-43" y="13497" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="-275" y="12147" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="124" y="11474" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="Glider" x="-89" y="10504" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="ShotGlider" x="35" y="3776" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="ShotGlider" x="-64" y="4264" width="40" height="40" textureID="explosion" numFrames="1" />
+            <object type="ShotGlider" x="775" y="424" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="ShotGlider" x="875" y="26" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="ShotGlider" x="975" y="26" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="Eskeletor" x="1075" y="100" width="105" height="40" textureID="eskeletor" numFrames="1" />
+            <object type="Eskeletor" x="1175" y="400" width="105" height="40" textureID="eskeletor" numFrames="1" />
         </OBJECTS>
     </PLAY>
 </STATES>

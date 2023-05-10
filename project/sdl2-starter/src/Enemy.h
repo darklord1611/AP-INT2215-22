@@ -16,11 +16,11 @@ protected:
 public:
     void setEffect(int effect) 
     { 
-        if(effect >= 7) 
+        if(effect >= 5) 
         {
             specialEffect = true;
             deathEffect = true;
-        } else if(effect >= 4) 
+        } else if(effect >= 3) 
         {
             specialEffect = true;
         }

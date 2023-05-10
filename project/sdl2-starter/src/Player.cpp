@@ -23,7 +23,7 @@ void Player::load(unique_ptr<LoaderParams> const &pParams)
     
     // set up bullets
     m_bulletFiringSpeed = 13;
-    m_moveSpeed = 3;
+    m_moveSpeed = 4;
     
     // we want to be able to fire instantly
     m_bulletCounter = m_bulletFiringSpeed;
