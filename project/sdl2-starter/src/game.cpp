@@ -35,7 +35,7 @@ Game::Game()
     m_Score = 0;
     g_window = 0;
     g_renderer = 0;
-    m_playerLives = 3;
+    m_playerLives = 4;
     isRunning = false;
     m_levelFiles.push_back("assets/level1.xml");
     m_levelFiles.push_back("assets/level2.xml");
@@ -183,7 +183,7 @@ void Game::resetGame()
     m_levelComplete = false;
     m_Score = 0;
     m_continue = false;
-    m_playerLives = 3;
+    m_playerLives = 4;
     upgradeCurrentScore(0);
 }
 
