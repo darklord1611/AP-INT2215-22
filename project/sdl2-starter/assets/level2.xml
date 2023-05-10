@@ -15,9 +15,11 @@
     <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4"/>
     <object type="Glider" x="1500" y="200" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="Glider" x="1600" y="400" width="50" height="50" textureID="glider" numFrames="1"/>
-    <object type="Glider" x="1800" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
+    <object type="Glider" x="2000" y="300" width="50" height="50" textureID="glider" numFrames="1"/>
     <object type="ShotGlider" x="1000" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="1200" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1600" y="0" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1300" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="RoofTurret" x="1400" y="50" width="50" height="50" textureID="turret" numFrames="1"/>
     <object type="Turret" x="1400" y="500" width="50" height="50" textureID="turret" numFrames="1"/>
     <object type="Eskeletor" x="1600" y="100" width="105" height="40" textureID="eskeletor" numFrames="1"/>

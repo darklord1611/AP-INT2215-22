@@ -26,7 +26,11 @@ void ShotGlider::update()
 {
     if(!m_bDying)
     {
-        if(specialEffect) isInvisible = true;
+        if(specialEffect) 
+        {
+            isInvisible = true;
+            m_bulletFiringSpeed = 50;
+        }
         scroll(theGame::Instance()->getScrollSpeed());
         if(m_position.getY() + m_height >= theGame::Instance()->getGameHeight())
         {

@@ -44,8 +44,8 @@ public:
                 for (int i = 0; i < 360; i += 20) 
                 {
                     double angle = i * (M_PI / 180);
-                    double x = 3 * cos(angle);
-                    double y = 3 * sin(angle);
+                    double x = 5 * cos(angle);
+                    double y = 5 * sin(angle);
                     TheBulletHandler::Instance()->addEnemyBullet(m_position.getX(), m_position.getY(), 16, 16, "bullet1", 1, Vector2D(x, y));
                 }
             }

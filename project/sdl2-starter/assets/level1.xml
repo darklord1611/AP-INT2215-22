@@ -22,6 +22,8 @@
     <object type="ShotGlider" x="1400" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="1500" y="500" width="50" height="50" textureID="shotglider" numFrames="1"/>
     <object type="ShotGlider" x="1600" y="500" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1800" y="100" width="50" height="50" textureID="shotglider" numFrames="1"/>
+    <object type="ShotGlider" x="1800" y="600" width="50" height="50" textureID="shotglider" numFrames="1"/>
     </OBJECTS>
 </PLAY>
 </STATES>

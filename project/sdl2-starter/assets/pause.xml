@@ -11,9 +11,8 @@
         </TEXTURES>
         <OBJECTS>
             <object type="Background" x="0" y="0" width="800" height="600" textureID="background" numFrames="1" />
-            <object type="Player" x="100" y="100" width="128" height="55" textureID="player" numFrames="4" />
-            <object type="Glider" x="1014" y="144" width="50" height="50" textureID="glider" numFrames="1" />
-            <object type="ShotGlider" x="981" y="279" width="50" height="50" textureID="shotglider" numFrames="1" />
+            <object type="Player" x="0" y="332" width="128" height="55" textureID="player" numFrames="4" />
+            <object type="Eskeletor" x="704" y="300" width="105" height="40" textureID="eskeletor" numFrames="1" />
         </OBJECTS>
     </PLAY>
 </STATES>

@@ -241,7 +241,7 @@ void PlayState::checkPlayerEnemyCollision(Player* pPlayer, const vector<GameObje
         {
             if(!objects[i]->dead() && !objects[i]->dying())
             {
-                pPlayer->collision();
+                // pPlayer->collision();
                 objects[i]->collision();
             }
         }
